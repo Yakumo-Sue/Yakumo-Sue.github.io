@@ -77,29 +77,58 @@ const config = {
     ({
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
+      // 导航栏
       navbar: {
         hideOnScroll: true,
         title: 'Yakumo-Sue’s Study Journey',
+        // 右侧 logo 设置
         logo: {
           alt: '这是 Logo',
           src: 'img/logo.png',
           srcDark: 'img/logoDark.png',
         },
         items: [
+          // 文档书写
           {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
             label: 'Tutorial',
           },
-          { to: '/blog', label: 'Blog', position: 'left' },
+          // 下拉列表
           {
-            href: 'https://github.com/facebook/docusaurus',
+            type: 'dropdown',
+            label: '社区',
+            position: 'left',
+            items: [
+              {
+                label: 'Facebook',
+                href: 'https://www.facebook.com',
+              },
+              // ... more items
+            ],
+          },
+          // 博客记录
+          {
+            to: '/blog',
+            label: 'Blog',
+            position: 'left'
+          },
+          // 右侧图标
+          {
+            href: 'https://github.com/Yakumo-Sue',
             label: 'GitHub',
             position: 'right',
           },
+          // 搜索栏
+          {
+            type: 'search',
+            position: 'right',
+
+          },
         ],
       },
+      // 页面底部
       footer: {
         style: 'dark',
         links: [
@@ -145,10 +174,14 @@ const config = {
         ],
         copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
       },
+      // 主题设置
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      // 搜索设置 - 申请中
+      // algolia: {
+      // },
     }),
 };
 
