@@ -83,17 +83,28 @@ const config = {
         title: 'Yakumo-Sue’s Study Journey',
         // 右侧 logo 设置
         logo: {
-          alt: '这是 Logo',
+          alt: '迦勒底亚斯 | 八云家的记事簿 | 学习笔记',
           src: 'img/logo.png',
           srcDark: 'img/logoDark.png',
+          // href: 'https://yakumo-sue.github.io/',
         },
         items: [
           // 文档书写
           {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
+            type: 'dropdown',
+            // sidebarId: 'ComputerLanguageSidebar',
             position: 'left',
-            label: 'Tutorial',
+            label: 'ComputerLanguage',
+            items: [
+              {
+                // 类型：文档侧边栏
+                type: 'docSidebar',
+                // ID 关联文件名、sidebar.js 的对象名
+                sidebarId: 'CLanguage',
+                // 关联 sidebars.js 文件中的 label
+                label: '01.C 语言学习',
+              }
+            ],
           },
           // 下拉列表
           {
