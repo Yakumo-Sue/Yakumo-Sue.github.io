@@ -1,8 +1,8 @@
 ---
-sidebar_position: 1
+id: FrontEnd-Struct_Label
+authors: Yakumo-Sue
+title: 1. 互联网概述
 ---
-
-# 1. 互联网概述
 
  - 互联网: 数十亿网站的集合 为我们的生活提供了信息和服务
  - 网站: 每个网站类似于家庭  网站有地址  网站还有网页  若干个网页组成了网站

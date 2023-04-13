@@ -1,8 +1,10 @@
 ---
-sidebar_position: 1
+id: FrontEnd-guides
+title: 前端学习指南
+authors: Yakumo-Sue
+keywords: ['FrontEnd', 'Html', 'Css', 'JavaScript']
 ---
 
-# 介绍
 
 前端知识体系介绍：
 

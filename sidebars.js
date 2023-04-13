@@ -23,20 +23,25 @@ const sidebars = {
 
   // But you can create a sidebar manually
   // 关联 docusaurus.config.js 文件中的 sidebarId
+  // HTML + CSS 笔记
   "Html+Css": [
-    'FrontEnd/intro',
     {
       type: 'category',
       label: '01.HTML + CSS 学习',
+      link: {
+        type: 'doc',
+        id: 'FrontEnd/FrontEnd-guides',
+      },
       collapsible: true,
       collapsed: false,
       items:
         [
-          'FrontEnd/Html+Css/html结构&标签',
+          'FrontEnd/Html+Css/FrontEnd-Struct_Label',
         ]
     }
   ],
 
+  // C 语言 笔记
   C: [
     'intro',
     {
@@ -49,6 +54,22 @@ const sidebars = {
     }
   ],
 
+  // Docusaurus 主题制作笔记
+  BlogTheme: [
+    {
+      type: 'category',
+      // 关联 docusaurus.config.js 文件中的 label
+      label: 'Docusaurus 主题制作',
+      link: {
+        type: 'doc',
+        id: 'BlogTheme/docusaurus-guides',
+      },
+      items: [
+        'BlogTheme/docusaurus-Writing_Guides',
+        'BlogTheme/docusaurus-config'
+      ],
+    }
+  ]
 
 };
 

@@ -81,6 +81,7 @@ const config = {
       navbar: {
         hideOnScroll: true,
         title: 'Yakumo-Sue’s Study Journey',
+
         // 右侧 logo 设置
         logo: {
           alt: '迦勒底亚斯 | 八云家的记事簿 | 学习笔记',
@@ -88,6 +89,7 @@ const config = {
           srcDark: 'img/logoDark.png',
           // href: 'https://yakumo-sue.github.io/',
         },
+
         items: [
           // 文档书写
           {
@@ -116,6 +118,14 @@ const config = {
                 label: '01.C 语言学习',
               }
             ],
+          },
+          {
+            // 类型：文档侧边栏
+            type: 'docSidebar',
+            // ID 关联文件名、sidebar.js 的对象名
+            sidebarId: 'BlogTheme',
+            // 关联 sidebars.js 文件中的 label
+            label: 'Docusaurus 主题制作',
           },
           // 下拉列表
           {
@@ -150,6 +160,7 @@ const config = {
           },
         ],
       },
+
       // 页面底部
       footer: {
         style: 'dark',
@@ -196,15 +207,26 @@ const config = {
         ],
         copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
       },
+
       // 主题设置
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+
       // 搜索设置 - 申请中
       // algolia: {
       // },
+      // meta 设置
+      metadata: [
+        {
+          name: 'keywords',
+          content: 'Yakumo, blog, javascript, typescript, node, react, vue, web, 前端, C/C++, 游戏开发......',
+        },
+      ],
+
     }),
+
 };
 
 module.exports = config;
