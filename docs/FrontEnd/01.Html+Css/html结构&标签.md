@@ -78,9 +78,12 @@ sidebar_position: 1
 - JavaScript 行为标准                       vue react
 
 ### HTML
-  html是来控制网页内容的
+超文本标记语言（英语：HyperText Markup Language，简称：HTML）是一种用于创建网页的标准标记语言。
 
-  html基本结构
+您可以使用 HTML 来建立自己的 WEB 站点，HTML 运行在浏览器上，由浏览器来解析。
+
+### Html基本结构
+
   ```html
   <!DOCTYPE html>
 <!-- html是根标签 root标签 根元素 html标签 -->
@@ -119,16 +122,16 @@ sidebar_position: 1
 
   ### html标签分类
 
-- 单标签: 只有开始标签没有结束标签 <meta/> <input/>  <img/>  在HTML5中 单标签的斜杠省略
-- 双标签  有开始标签 有结束标签  div html body head 
+- 单标签：只有开始标签没有结束标签 ` <meta/>` ` <input/>`  `<img/>`  在 HTML5 中 单标签的斜杠省略
+- 双标签：有开始标签 有结束标签  `<div></div>` `<html></html>` `<body></body>` `<head></head>` 
 
   ### html标签的关系
 
-- 嵌套关系 也叫父子关系  如果一个标签包含另外一个标签那就是父子 || 嵌套 || 包含关系
-- 并列关系 也叫兄弟关系  如果一个标签 不包含另外一个标签那就是 并列 || 兄弟 关系、
+- 嵌套关系 也叫父子关系：如果一个标签包含另外一个标签那就是父子、嵌套、 包含关系
+- 并列关系 也叫兄弟关系：如果一个标签不包含另外一个标签那就是 并列、兄弟 关系、
 
   ### html标签的属性
-- 语法: <标签 属性名="属性值"></标签>
+- 语法: `<标签 属性名="属性值"></标签>`
 - 属性分为html规定的属性(固有属性)和自己规定的属性(自定义属性)
 - 属性名和属性值都必须小写 且用双引号包起来
 
@@ -137,26 +140,46 @@ sidebar_position: 1
 **在html中绝不允许 不用标签 直接写内容**
 
    语义化标签: 就是你看到这个标签 就明白它里面的内容属于哪一类
-   - div标签 --- 主要用来布局的 
-   - span标签 --- 你实在找不到标签可用的时候 用span  写小东西的时候  比如图标 比如很少的文字
+   - div 标签 --- 主要用来布局的 
+   - span 标签 --- 你实在找不到标签可用的时候 用 span 写小东西的时候  比如图标 比如很少的文字
 
    - 标题标签
-        - h1  最大的标题 一个页面中只允许存在一个h1
-        - h2
-        - h3
-        - h4
-        - h5
-        - h6
-  - 段落标签  paragraph
-    - p
+        
+        ~~~html
+        <!DOCTYPE html>
+        <html lang="en">
+        
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <title>标题标签</title>
+        </head>
+        
+        <body>
+        
+            <h1> 一级标题标签 </h1>
+            <h2> 二级标题标签 </h2>
+            <h3> 三级标题标签 </h3>
+            <h4> 四级标题标签 </h4>
+            <h5> 五级标题标签 </h5>
+            <h6> 六级标题标签 </h6>
+        </body>
+        
+        </html>
+        ~~~
+        
+        ![image-20230413140344659](https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images/202304131403715.png)
+  - 段落标签
+    - `<p></p>`
   - 换行标签
-    - br 是一个单标签 只能在html中使用 相当于 \n
+    - `<br />` 是一个单标签 只能在 html 中使用 相当于 `\n`
 
   - 图片标签
-    - img标签 src  alt  title width height 
+    - `img` 标额外的属性有：src 、alt、title、width、height 
 
   - 超链接标签
-    - a  href 要跳转到哪里 可以是相对地址 也可以是网络地址
+    - `<a href="http://www.xxx.com">` 要跳转到哪里 可以是相对地址 也可以是网络地址
 
 
 
@@ -203,7 +226,7 @@ sidebar_position: 1
   - 外链样式(项目中)
 
 ```html
-    <link rel="stylesheet" href="文件路径">
+<link rel="stylesheet" href="文件路径">
 ```
 
 
@@ -284,7 +307,6 @@ sidebar_position: 1
 <style>
     .title1 {
         text-align: center;
-        
     }
 
     .title2 {
@@ -296,7 +318,6 @@ sidebar_position: 1
         text-align: center;
         line-height: 300%;
     }
-
 
     .title4 {
         text-align: center;
@@ -311,9 +332,6 @@ sidebar_position: 1
 </style>
 
 <body>
-
-  
-
         <div class="title1">
             <img src="../html/images/bdlogo.gif" />
         </div>
@@ -330,8 +348,7 @@ sidebar_position: 1
                 <a href="">地图</a>
             </span>
         </div>
-
-
+    
         <div class="title3">
             <span>
                 <a href="">百科</a>
@@ -340,7 +357,6 @@ sidebar_position: 1
                 <a href="">更多>></a>
             </span>
         </div>
-
 
         <div class="title4">
             <span>
