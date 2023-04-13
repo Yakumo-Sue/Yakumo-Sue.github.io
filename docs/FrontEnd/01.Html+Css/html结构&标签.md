@@ -10,40 +10,72 @@ sidebar_position: 1
 
 ## 浏览器
 
-### 浏览器是什么
+**浏览器是什么**
 
-    是浏览器互联网信息 查看文件的一个软件
+​	是浏览器互联网信息 查看文件的一个软件
 
-### 浏览器打开本地文件
+**浏览器打开本地文件**
 
-    1. 文件格式是浏览器认识的格式 比如: html pdf 图片 
-    2. 双击 该文件 以html格式的文件为例
+1. 文件格式是浏览器认识的格式 比如: html pdf 图片 
+2. 双击 该文件 以html格式的文件为例
 
-### 如何在浏览器中查看网页源代码
+**如何在浏览器中查看网页源代码**
 
-    1.打开网页
-    2.鼠标在网页上右键单击 选择查看网页源代码
+1. 打开网页
 
-### 主流浏览器(https://liulanmi.com)
+   ![image-20230413113016639](https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images/202304131130735.png)
 
-    chrome  ie/edge  firefox Opera  safari
-    
-    chrome是我们上课用的
+2. 鼠标在网页上右键单击 选择查看网页源代码
+
+   ![image-20230413113037216](https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images/202304131130240.png)
+
+3. 或者 Ctrl + Shift + C 快捷键打开调试栏
+
+   ![image-20230413113151847](https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images/202304131131931.png)
+
+### **主流浏览器**
+
+- IE/Edge
+
+  IE是微软公司旗下浏览器，是目国内用户量最多的浏览器。IE诞生于1994年，当时微软为了对抗市场份额占据将近百分之九十的网景Netscape Navigator，于是在Windows中开发了自己的浏览器Internet Explorer，自此也引发了第一次浏览器大战。结果可想而知，微软大获全胜，网景不得不将自己卖给AOL公司。但实际上事情并没有结束，网景后来开发了风靡一时的Firefox火狐，至今Firefox也成为世界五大浏览器之一。
+  1996年，微软从Spyglass手里拿到Spyglass Mosaic的源代码和授权，开始开发自己的浏览器IE。后来，微软以IE和Windows捆绑的模式不断向市场扩展份额，使IE成为市场的绝对主流。现在装了Windows系统的电脑基本无法卸载IE。
+
+- Chrome
+
+  Chrome浏览器是google旗下的浏览器。Chrome浏览器至发布以来一直讲究简洁、快速、安全，所以Chrome浏览器到现在一直受人追捧。最开始Chrome采用webkit作为浏览器内核，直到2013年，google宣布不再使用苹果的webkit内核，开始使用webkit的分支内核Blink。
+
+- Safari
+
+  第二次浏览器大战是从苹果公司发布Safari浏览器开始的。2003年，苹果公司在苹果手机上开发Safari浏览器，利用自己得天独厚的手机市场份额使Safari浏览器迅速成为世界主流浏览器。Safari是最早使用webkit内核的浏览器也是现在苹果默认的浏览器。
+
+- Opera
+
+  Opera是挪威Opera Software ASA公司旗下的浏览器。1995年，opera公司发布第一版Opera浏览器，使用自己研发的Presto内核。当时opera公司的开发团队不断完善Presto内核，使Opera浏览器一度成为顶级浏览器。直到2016年奇虎360和昆仑万维收购了Oprea浏览器，从此也丢弃了强大的Presto内核，改用当时Google开源的webkit内核。后来Opera浏览器跟随Google将浏览器内核改为Blink内核。自此Presto内核也淡出了互联网市场。
+
+- Firefox
+
+  Firefox浏览器使Mozilla公司旗下浏览器，也是刚才提到的网景公司后来的浏览器。网景被收购后，网景人员创办了Mozilla基金会，这是一个非盈利组织，他们在2004年推出自己的浏览器Firefox。Firefox采用Gecko作为内核。Gecko是一个开源的项目，代码完全公开，因此受到很多人的青睐。Firefox的问世加快了第二次浏览器大战的开始。第二次浏览器大战与第一次二元鼎力的局面不同，这一次的特点就是百家争鸣，也自此打破了IE浏览器从98年网景被收购后独步浏览器市场的局面。
 
 ### 浏览器内核
-    也叫浏览器的渲染引擎  不同的浏览器内核对于同样的代码 显示的样子不一样
-    
-    - safari          Webkit内核
-    - chrome(opera))  Blink内核
-    - ie              Trident内核
-    - firefox         Gecko内核
+也叫浏览器的渲染引擎  不同的浏览器内核对于同样的代码 显示的样子不一样。
+
+1. IE浏览器内核：Trident内核，也是俗称的IE内核；
+2. Chrome浏览器内核：统称为Chromium内核或Chrome内核，以前是Webkit内核，现在是Blink内核；
+3. Firefox浏览器内核：Gecko内核，俗称Firefox内核；
+4. Safari浏览器内核：Webkit内核；
+5. Opera浏览器内核：最初是自己的Presto内核，后来是Webkit，现在是Blink内核；
+6. 360浏览器、猎豹浏览器内核：IE+Chrome双内核；
+7. 搜狗、遨游、QQ浏览器内核：Trident（兼容模式）+Webkit（高速模式）；
+8. 百度浏览器、世界之窗内核：IE内核；
+9. 2345浏览器内核：以前是IE内核，现在也是IE+Chrome双内核；
+
 
 
 ## 网页标准
 
-- HTML 结构标准  相当于人的骨骼                             模板引擎
-- CSS  美化标准  相当于人的皮肤 衣服                        less sass
-- JavaScript 行为标准 相当于人的思考灵魂                    vue react
+- HTML 结构标准                              模板引擎
+- CSS  美化标准                                 less sass
+- JavaScript 行为标准                       vue react
 
 ### HTML
   html是来控制网页内容的
@@ -79,26 +111,31 @@ sidebar_position: 1
 </html>
   ```
 
-  ## html标签
+
+
+  ## Html 标签
 
   html标签总共有四部分组成:` <html lang="en">adsfasdf</html>`, 分别是开始标签`<html lang="en">` 结束标签`</html>` 内容 `adsfasdf` 属性: `lang="en"`
 
   ### html标签分类
 
-    - 单标签: 只有开始标签没有结束标签 <meta/> <input/>  <img/>  在HTML5中 单标签的斜杠省略
-    - 双标签  有开始标签 有结束标签  div html body head 
+- 单标签: 只有开始标签没有结束标签 <meta/> <input/>  <img/>  在HTML5中 单标签的斜杠省略
+- 双标签  有开始标签 有结束标签  div html body head 
 
   ### html标签的关系
 
-    - 嵌套关系 也叫父子关系  如果一个标签包含另外一个标签那就是父子 || 嵌套 || 包含关系
-    - 并列关系 也叫兄弟关系  如果一个标签 不包含另外一个标签那就是 并列 || 兄弟 关系、
+- 嵌套关系 也叫父子关系  如果一个标签包含另外一个标签那就是父子 || 嵌套 || 包含关系
+- 并列关系 也叫兄弟关系  如果一个标签 不包含另外一个标签那就是 并列 || 兄弟 关系、
 
   ### html标签的属性
-    - 语法: <标签 属性名="属性值"></标签>
-    - 属性分为html规定的属性(固有属性)和自己规定的属性(自定义属性)
-    - 属性名和属性值都必须小写 且用双引号包起来、
+- 语法: <标签 属性名="属性值"></标签>
+- 属性分为html规定的属性(固有属性)和自己规定的属性(自定义属性)
+- 属性名和属性值都必须小写 且用双引号包起来
 
-## html中常用的标签(在html中绝不允许 不用标签 直接写内容)
+### html中常用的标签
+
+**在html中绝不允许 不用标签 直接写内容**
+
    语义化标签: 就是你看到这个标签 就明白它里面的内容属于哪一类
    - div标签 --- 主要用来布局的 
    - span标签 --- 你实在找不到标签可用的时候 用span  写小东西的时候  比如图标 比如很少的文字
@@ -121,15 +158,32 @@ sidebar_position: 1
   - 超链接标签
     - a  href 要跳转到哪里 可以是相对地址 也可以是网络地址
 
+
+
 ## 文件路径
-  ### 绝对路径(知道就可以了)
+
+  ### 绝对路径
+
+绝对路径是指**目录下的绝对位置，直接到达目标位置，通常是从盘符开始的路径**。
+
   ### 相对路径(必须掌握)
+
+相对路径就是指由这个文件所在的路径引起的跟其它文件（或文件夹）的路径关系。使用相对路径可以为我们带来非常多的便利。
+
     - ./ 从自己开始找 找平级
     - ../ 从自己的外层开始找 一个外层一个../
 
-## CSS3
 
-  为了让网页更加好看 美观 体验好 学习CSS3
+
+## CSS
+
+**CSS** (Cascading Style Sheets，层叠样式表），是一种用来为结构化文档（如 HTML 文档或 XML 应用）添加样式（字体、间距和颜色等）的计算机语言，**CSS** 文件扩展名为 **.css**。
+
+通过使用 **CSS** 我们可以大大提升网页开发的工作效率！
+
+在我们的 **CSS** 教程中，您会学到如何使用 CSS 同时控制多重网页的样式和布局。
+
+**CSS3** 现在已被大部分现代浏览器支持，而下一版的 **CSS4** 仍在开发中。
 
   - 行内样式
 ```html
@@ -151,6 +205,8 @@ sidebar_position: 1
 ```html
     <link rel="stylesheet" href="文件路径">
 ```
+
+
 
 ## 案例 - 微博
 
@@ -209,6 +265,8 @@ sidebar_position: 1
 ~~~
 
 ![image-20230413112150764](https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images/image-20230413112150764.png)
+
+
 
 ## 案例 - 百度
 
