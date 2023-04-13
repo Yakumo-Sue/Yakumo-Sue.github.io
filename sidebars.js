@@ -23,15 +23,32 @@ const sidebars = {
 
   // But you can create a sidebar manually
   // 关联 docusaurus.config.js 文件中的 sidebarId
-  CLanguage: [
+  "Html+Css": [
+    'FrontEnd/intro',
+    {
+      type: 'category',
+      label: '01.HTML + CSS 学习',
+      collapsible: true,
+      collapsed: false,
+      items:
+        [
+          'FrontEnd/Html+Css/html结构&标签',
+        ]
+    }
+  ],
+
+  C: [
     'intro',
     {
       type: 'category',
       // 关联 docusaurus.config.js 文件中的 label
       label: '01.C 语言学习',
-      items: ['CLanguage/intro'],
+      items: [
+        'GameDev/C/intro'
+      ],
     }
   ],
+
 
 };
 

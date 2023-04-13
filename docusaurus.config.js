@@ -92,15 +92,26 @@ const config = {
           // 文档书写
           {
             type: 'dropdown',
-            // sidebarId: 'ComputerLanguageSidebar',
+            sidebarId: 'ComputerLanguageSidebar',
             position: 'left',
-            label: 'ComputerLanguage',
+            label: '计算机语言学习',
             items: [
+              // 前端内容
+              // HTML + CSS
               {
                 // 类型：文档侧边栏
                 type: 'docSidebar',
                 // ID 关联文件名、sidebar.js 的对象名
-                sidebarId: 'CLanguage',
+                sidebarId: 'Html+Css',
+                // 关联 sidebars.js 文件中的 label
+                label: '01.HTML + CSS 学习',
+              },
+              // C 语言文档
+              {
+                // 类型：文档侧边栏
+                type: 'docSidebar',
+                // ID 关联文件名、sidebar.js 的对象名
+                sidebarId: 'C',
                 // 关联 sidebars.js 文件中的 label
                 label: '01.C 语言学习',
               }

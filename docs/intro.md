@@ -2,46 +2,34 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# 介绍
 
-Let's discover **Docusaurus in less than 5 minutes**.
+计算机语言学习，记录了当前我学习了的所有知识体系内容。
 
-## Getting Started
+## 前端知识体系
 
-Get started by **creating a new site**.
+- JavaScript
+- HTML+CSS
+- HTML5
+- CCS3
+- NodeJs
+- MySQL
+- Vue3
+- React
+- TypeScript
+- ...
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
 
-### What you'll need
+## 游戏开发学习体系
 
-- [Node.js](https://nodejs.org/en/download/) version 16.14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+- C
+- C++
+- OpenGL
+- Games101
+- UE4、UE5
 
-## Generate a new site
 
-Generate a new Docusaurus site using the **classic template**.
+## Python 相关学习
 
-The classic template will automatically be added to your project after you run the command:
+- Python
 
-```bash
-npm init docusaurus@latest my-website classic
-```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
