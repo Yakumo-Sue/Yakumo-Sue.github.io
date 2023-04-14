@@ -37,6 +37,7 @@ const sidebars = {
       items:
         [
           'FrontEnd/Html+Css/FrontEnd-Struct_Label',
+          'FrontEnd/Html+Css/FrontEnd-List_Selector_Box',
         ]
     }
   ],
