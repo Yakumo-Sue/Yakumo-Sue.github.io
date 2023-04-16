@@ -38,6 +38,7 @@ const sidebars = {
         [
           'FrontEnd/Html+Css/FrontEnd-Struct_Label',
           'FrontEnd/Html+Css/FrontEnd-List_Selector_Box',
+          'FrontEnd/Html+Css/FrontEnd-Table_Text_Font_Element',
         ]
     }
   ],
