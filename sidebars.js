@@ -23,6 +23,7 @@ const sidebars = {
 
   // But you can create a sidebar manually
   // 关联 docusaurus.config.js 文件中的 sidebarId
+
   // HTML + CSS 笔记
   "Html+Css": [
     {
@@ -45,13 +46,34 @@ const sidebars = {
 
   // C 语言 笔记
   C: [
-    'intro',
     {
       type: 'category',
       // 关联 docusaurus.config.js 文件中的 label
       label: '01.C 语言学习',
+      link: {
+        type: 'doc',
+        id: 'GameDev/C/C-guides',
+      },
+      collapsible: true,
+      collapsed: false,
+      items: [],
+    }
+  ],
+
+  // C++ 语言 笔记
+  "C++": [
+    {
+      type: 'category',
+      // 关联 docusaurus.config.js 文件中的 label
+      label: '02.C++ 学习',
+      link: {
+        type: 'doc',
+        id: 'GameDev/C++/C++-guides',
+      },
+      collapsible: true,
+      collapsed: false,
       items: [
-        'GameDev/C/intro'
+        'GameDev/C++/C++基础语法'
       ],
     }
   ],

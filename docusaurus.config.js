@@ -116,9 +116,19 @@ const config = {
                 sidebarId: 'C',
                 // 关联 sidebars.js 文件中的 label
                 label: '01.C 语言学习',
+              },
+              // C++ 语言文档
+              {
+                // 类型：文档侧边栏
+                type: 'docSidebar',
+                // ID 关联文件名、sidebar.js 的对象名
+                sidebarId: 'C++',
+                // 关联 sidebars.js 文件中的 label
+                label: '02.C++ 学习',
               }
             ],
           },
+          // Docusaurus 博客
           {
             // 类型：文档侧边栏
             type: 'docSidebar',
@@ -127,7 +137,7 @@ const config = {
             // 关联 sidebars.js 文件中的 label
             label: 'Docusaurus 主题制作',
           },
-          // 下拉列表
+          // 工具列表
           {
             type: 'dropdown',
             label: '社区',
@@ -140,7 +150,7 @@ const config = {
               // ... more items
             ],
           },
-          // 博客记录
+          // 博客记录 - 记录好文章
           {
             to: '/blog',
             label: 'Blog',

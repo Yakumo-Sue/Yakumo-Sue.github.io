@@ -1,5 +1,7 @@
 ---
-sidebar_position: 1
+id: Total-guides
+authors: Yakumo-Sue
+keywords: ['GameDev', 'C', 'C++', 'STL', 'UE4', 'UE5', 'JS', 'Html', 'CSS', 'NodeJs', 'MySQL', 'React', 'TypeScript', '...' ]
 ---
 
 # 介绍
@@ -19,7 +21,6 @@ sidebar_position: 1
 - TypeScript
 - ...
 
-
 ## 游戏开发学习体系
 
 - C
@@ -28,8 +29,6 @@ sidebar_position: 1
 - Games101
 - UE4、UE5
 
-
 ## Python 相关学习
 
 - Python
-

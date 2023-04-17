@@ -1,10 +1,10 @@
 ---
-id: C-guides
+id: C++-guides
 authors: Yakumo-Sue
-keywords: ['C']
+keywords: [ 'C++' ]
 ---
 
-# Tutorial Intro
+# C++ Intro
 
 Let's discover **Docusaurus in less than 5 minutes**.
 
