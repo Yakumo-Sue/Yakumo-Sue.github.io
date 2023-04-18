@@ -4,46 +4,81 @@ authors: Yakumo-Sue
 keywords: [ 'C++' ]
 ---
 
-# C++ Intro
+# 00. C++ 介绍
 
-Let's discover **Docusaurus in less than 5 minutes**.
+C++ 是一种静态类型的、编译式的、通用的、大小写敏感的、不规则的编程语言，支持过程化编程、面向对象编程和泛型编程。
 
-## Getting Started
+C++ 被认为是一种中级语言，它综合了高级语言和低级语言的特点。
 
-Get started by **creating a new site**.
+C++ 是由 Bjarne Stroustrup 于 1979 年在新泽西州美利山贝尔实验室开始设计开发的。C++ 进一步扩充和完善了 C 语言，最初命名为带类的C，后来在 1983 年更名为 C++。
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+C++ 是 C 的一个超集，事实上，任何合法的 C 程序都是合法的 C++ 程序。
 
-### What you'll need
+> 注意：
+> 使用静态类型的编程语言是在编译时执行类型检查，而不是在运行时执行类型检查。
 
-- [Node.js](https://nodejs.org/en/download/) version 16.14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
 
-## Generate a new site
 
-Generate a new Docusaurus site using the **classic template**.
+## 1. 面向对象程序设计
 
-The classic template will automatically be added to your project after you run the command:
+C++ 完全支持面向对象的程序设计，包括面向对象开发的四大特性：
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+- **封装（Encapsulation）**：封装是将数据和方法组合在一起，对外部隐藏实现细节，只公开对外提供的接口。这样可以提高安全性、可靠性和灵活性。
+- **继承（Inheritance）**：继承是从已有类中派生出新类，新类具有已有类的属性和方法，并且可以扩展或修改这些属性和方法。这样可以提高代码的复用性和可扩展性。
+- **多态（Polymorphism）**：多态是指同一种操作作用于不同的对象，可以有不同的解释和实现。它可以通过接口或继承实现，可以提高代码的灵活性和可读性。
+- **抽象（Abstraction）**：抽象是从具体的实例中提取共同的特征，形成抽象类或接口，以便于代码的复用和扩展。抽象类和接口可以让程序员专注于高层次的设计和业务逻辑，而不必关注底层的实现细节。
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
 
-The command also installs all necessary dependencies you need to run Docusaurus.
 
-## Start your site
+## 2. 标准库
 
-Run the development server:
+标准的 C++ 由三个重要部分组成：
 
-```bash
-cd my-website
-npm run start
-```
+- 核心语言，提供了所有构件块，包括变量、数据类型和常量，等等。
+- C++ 标准库，提供了大量的函数，用于操作文件、字符串等。
+- 标准模板库（STL），提供了大量的方法，用于操作数据结构等。
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
 
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
 
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+## 3. ANSI 标准
+
+ANSI 标准是为了确保 C++ 的便携性 —— 您所编写的代码在 Mac、UNIX、Windows、Alpha 计算机上都能通过编译。
+
+由于 ANSI 标准已稳定使用了很长的时间，所有主要的 C++ 编译器的制造商都支持 ANSI 标准。
+
+
+
+## 4. C++ 的使用
+
+C++ 语言在许多行业和领域都有广泛应用，包括：
+
+- 游戏开发：C++ 是游戏开发领域中最常用的编程语言之一，因为它具有高效的性能和直接控制硬件的能力。许多主要的游戏引擎，如 Unreal Engine 和 Unity，都使用 C++ 编写。
+- 嵌入式系统开发：C++ 可以在嵌入式系统中发挥重要作用，如智能手机、汽车、机器人和家电等领域。由于嵌入式系统通常具有严格的资源限制和实时要求，因此 C++ 的高效性能和内存控制功能非常有用。
+- 金融领域：C++ 在金融领域中被广泛应用，如高频交易、算法交易和风险管理等领域。由于这些应用程序需要高效的性能和对硬件的直接控制，C++ 语言是一个合适的选择。
+- 图形图像处理：C++ 可以用于开发图形和图像处理应用程序，如计算机视觉、计算机图形学和人工智能领域。由于这些应用程序需要高效的计算能力和对硬件的控制，因此 C++ 是一个很好的选择。
+- 科学计算和数值分析：C++ 可以用于开发科学计算和数值分析应用程序，如数值模拟和高性能计算等领域。由于这些应用程序需要高效的计算能力和对硬件的直接控制，C++ 语言是一个很好的选择。
+
+
+
+## 5. 标准化
+
+| 发布时间 | 通称                    | 备注                       |
+| :------- | :---------------------- | :------------------------- |
+| 2020     | C++20, C++2a            | ISO/IEC 14882:2020         |
+| 2017     | C++17                   | 第五个C++标准              |
+| 2017     | coroutines TS           | 协程库扩展                 |
+| 2017     | ranges TS               | 提供范围机制               |
+| 2017     | library fundamentals TS | 标准库扩展                 |
+| 2016     | concurrency TS          | 用于并发计算的扩展         |
+| 2015     | concepts TS             | 概念库，用于优化编译期信息 |
+| 2015     | TM TS                   | 事务性内存操作             |
+| 2015     | parallelism TS          | 用于并行计算的扩展         |
+| 2015     | filesystem TS           | 文件系统                   |
+| 2014     | C++14                   | 第四个C++标准              |
+| 2011     | -                       | 十进制浮点数扩展           |
+| 2011     | C++11                   | 第三个C++标准              |
+| 2010     | -                       | 数学函数扩展               |
+| 2007     | C++TR1                  | C++技术报告：库扩展        |
+| 2006     | -                       | C++性能技术报告            |
+| 2003     | C++03                   | 第二个C++标准              |
+| 1998     | C++98                   | 第一个C++标准              |

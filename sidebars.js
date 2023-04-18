@@ -73,7 +73,8 @@ const sidebars = {
       collapsible: true,
       collapsed: false,
       items: [
-        'GameDev/C++/C++基础语法'
+        'GameDev/C++/C++-Basic_Language',
+        'GameDev/C++/C++-Project_Contact'
       ],
     }
   ],
