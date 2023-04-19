@@ -4,6 +4,10 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
+// Math KaTeX
+const math = require('remark-math');
+const katex = require('rehype-katex');
+
 /** @type {import('@docusaurus/types').Plugin} */
 function MyPlugin(context, options) {
   return {
@@ -11,6 +15,7 @@ function MyPlugin(context, options) {
   };
 }
 
+// const katex = (await import('rehype-katex')).default;
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -59,17 +64,37 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           path: 'docs',
+          remarkPlugins: [math],
+          rehypePlugins: [katex],
         },
         blog: {
           showReadingTime: true,
           path: 'blog',
           postsPerPage: 5,
+          remarkPlugins: [math],
+          rehypePlugins: [katex],
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
       }),
     ],
+  ],
+
+  stylesheets: [
+    // 本地 static 中的 样式
+    // {
+    //   href: 'katex/katex.min.css',
+    //   type: 'text/css',
+    // },
+    // 网上资源
+    {
+      href: 'https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css',
+      type: 'text/css',
+      integrity:
+        'sha384-MlJdn/WNKDGXveldHDdyRP1R4CTHr3FeuDNfhsLPYrq2t0UBkUdK2jyTnXPEK1NQ',
+      crossorigin: 'anonymous',
+    },
   ],
 
   themeConfig:
