@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_website=self.webpackChunkmy_website||[]).push([[535],{5641:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Markdown\u6570\u5b66\u516c\u5f0f","permalink":"/blog/Markdown"},{"title":"\u6e38\u620f\u5f00\u53d1\u77e5\u8bc6\u4f53\u7cfb","permalink":"/blog/Game-Dev"}]}')}}]);
