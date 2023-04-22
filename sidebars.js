@@ -41,7 +41,8 @@ const sidebars = {
           'FrontEnd/Html+Css/FrontEnd-List_Selector_Box',
           'FrontEnd/Html+Css/FrontEnd-Table_Text_Font_Element',
           'FrontEnd/Html+Css/FrontEnd-DefaultCss_Selector_Display_Background',
-          'FrontEnd/Html+Css/FrontEnd-CSS_Feature'
+          'FrontEnd/Html+Css/FrontEnd-CSS_Feature',
+          'FrontEnd/Html+Css/FrontEnd-Position_Index'
         ]
     }
   ],
