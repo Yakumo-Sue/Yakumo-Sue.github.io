@@ -42,7 +42,8 @@ const sidebars = {
           'FrontEnd/Html+Css/FrontEnd-Table_Text_Font_Element',
           'FrontEnd/Html+Css/FrontEnd-DefaultCss_Selector_Display_Background',
           'FrontEnd/Html+Css/FrontEnd-CSS_Feature',
-          'FrontEnd/Html+Css/FrontEnd-Position_Index'
+          'FrontEnd/Html+Css/FrontEnd-Position_Index',
+          'FrontEnd/Html+Css/FrontEnd-Display'
         ]
     }
   ],
@@ -59,7 +60,9 @@ const sidebars = {
       },
       collapsible: true,
       collapsed: false,
-      items: [],
+      items: [
+        'GameDev/C/C-Total_Learning'
+      ],
     }
   ],
 
