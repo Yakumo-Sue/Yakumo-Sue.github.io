@@ -43,7 +43,8 @@ const sidebars = {
           'FrontEnd/Html+Css/FrontEnd-DefaultCss_Selector_Display_Background',
           'FrontEnd/Html+Css/FrontEnd-CSS_Feature',
           'FrontEnd/Html+Css/FrontEnd-Position_Index',
-          'FrontEnd/Html+Css/FrontEnd-Display'
+          'FrontEnd/Html+Css/FrontEnd-Display',
+          'FrontEnd/Html+Css/FrontEnd-Case_XiaoMi'
         ]
     }
   ],
