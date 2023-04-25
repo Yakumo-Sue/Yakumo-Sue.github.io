@@ -62,7 +62,8 @@ const sidebars = {
       collapsible: true,
       collapsed: false,
       items: [
-        'GameDev/C/C-Total_Learning'
+        'GameDev/C/C-Total_Learning',
+        'GameDev/C/C-If_For'
       ],
     }
   ],
