@@ -66,7 +66,8 @@ const sidebars = {
         'GameDev/C/C-Total_Learning',
         'GameDev/C/C-If_For',
         'GameDev/C/C-Function',
-        'GameDev/C/C-Array'
+        'GameDev/C/C-Array',
+        'GameDev/C/C-Operator'
       ],
     }
   ],
