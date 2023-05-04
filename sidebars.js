@@ -72,6 +72,7 @@ const sidebars = {
         'GameDev/C/C-Struct',
         'GameDev/C/C-Debug_skills',
         'GameDev/C/C-Array_Save',
+        'GameDev/C/C-Pointer_Detail'
       ],
     }
   ],
