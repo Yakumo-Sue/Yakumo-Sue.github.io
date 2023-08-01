@@ -19,7 +19,7 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm
+        run: npm install
       - name: Build website
         run: yarn build
 
