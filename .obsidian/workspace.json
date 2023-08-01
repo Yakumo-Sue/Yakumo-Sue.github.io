@@ -1,0 +1,217 @@
+{
+  "main": {
+    "id": "4df7790e57819788",
+    "type": "split",
+    "children": [
+      {
+        "id": "4b0c670ac727ba15",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "15d26d1146330fab",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "计划制定/7、8月计划书.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "929f6d624ec04bbe",
+    "type": "split",
+    "children": [
+      {
+        "id": "bac69fcb8279a3a7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4d5bd2ab514818f1",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "86b8a1fe57415beb",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "a4bf100faaa96551",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          },
+          {
+            "id": "ba45541236bd0801",
+            "type": "leaf",
+            "state": {
+              "type": "recent-files",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "2bc3d31d218ce835",
+    "type": "split",
+    "children": [
+      {
+        "id": "8c05795f1a4bfa3c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cb22e0b592283207",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "计划制定/7、8月计划书.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "506337f9da158930",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "计划制定/7、8月计划书.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "8295f89aba00473b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "377ac50f95aee32c",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "计划制定/7、8月计划书.md"
+              }
+            }
+          },
+          {
+            "id": "4ebe949497265257",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "obsidian-advanced-slides:Show Slide Preview": false,
+      "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false,
+      "templater-obsidian:Templater": false
+    }
+  },
+  "active": "4d5bd2ab514818f1",
+  "lastOpenFiles": [
+    "db.json",
+    "public/img/default.png",
+    "public/2023/08/01/hello-world/index.html",
+    "public/2023/08/01/hello-world",
+    "public/2023/08/01",
+    "public/2023/08",
+    "public/2023",
+    "public/404.html",
+    "public/js/utils.js",
+    "public/js/plugins.js",
+    "public/js/local-search.js",
+    "public/js/leancloud.js",
+    "public/img/fluid.png",
+    "public/img/police_beian.png",
+    "public/img/loading.gif",
+    "public/img/avatar.png",
+    "themes/fluid/source/img/police_beian.png",
+    "themes/fluid/source/img/loading.gif",
+    "themes/fluid/source/img/fluid.png",
+    "themes/fluid/source/img/default.png",
+    "themes/fluid/source/img/avatar.png",
+    "themes/fluid/README_en.md",
+    "themes/fluid/README.md",
+    "node_modules/hexo-theme-fluid/README.md",
+    "node_modules/source-map/CHANGELOG.md",
+    "node_modules/source-map/README.md",
+    "source/_posts/hello-world.md",
+    "scaffolds/post.md",
+    "scaffolds/page.md",
+    "scaffolds/draft.md",
+    "node_modules/xmlchars/README.md",
+    "node_modules/xml-name-validator/README.md",
+    "node_modules/ws/README.md",
+    "node_modules/moment/README.md",
+    "node_modules/moment/CHANGELOG.md",
+    "node_modules/moize/README.md",
+    "node_modules/moize/CHANGELOG.md",
+    "node_modules/minimatch/README.md",
+    "node_modules/mime-types/README.md",
+    "node_modules/mime-types/HISTORY.md",
+    "node_modules/mime-db/README.md",
+    "node_modules/mime-db/HISTORY.md",
+    "node_modules/mime/README.md",
+    "node_modules/mime/CHANGELOG.md",
+    "node_modules/micromatch/README.md",
+    "node_modules/micro-memoize/README.md",
+    "计划制定/7、8月计划书.md.canvas"
+  ]
+}
