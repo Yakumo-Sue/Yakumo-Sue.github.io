@@ -1,46 +1,35 @@
-name: Deploy hexo blog
+.github/workflows/pages.yml
+name: Pages
+
 on:
   push:
     branches:
-      - "main"
+      - main # default branch
+
 jobs:
-  build-and-deploy:
+  pages:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v2
         with:
-          ref: "gh-pages"
-
-      - name: Setup node
-        uses: actions/setup-node@v3
+          node-version: "16"
+      - name: Cache NPM dependencies
+        uses: actions/cache@v2
         with:
-          node-version: "14"
-
-      - name: Setup yarn & Install node_modules
-        uses: borales/actions-yarn@v3.0.0
-        with:
-          cmd: install
-
-      - name: Check yarn & node version
-        run: |
-          echo "Node version is `node -v`"
-          echo "Yarn version is `yarn -v`"
-
-      
-      - name: Deploy to GitHub Pages
+          path: node_modules
+          key: ${{ runner.OS }}-npm-cache
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        run: |
-          yarn clean
-          yarn build
-          yarn deploy
         with:
           github_token: ${{ secrets.ACCESS_TOKEN }}
-          # Build output to publish to the `gh-pages` branch:
-          publish_dir: ./build
-          # The following lines assign commit authorship to the official
-          # GH-Actions bot for deploys to `gh-pages` branch:
-          # https://github.com/actions/checkout/issues/13#issuecomment-724415212
-          # The GH actions bot is used by default if you didn't specify the two fields.
-          # You can swap them out with your own user credentials.
-          user_name: Yakumo-Sue
-          user_email: esue627@gmail.com
+          publish_dir: ./public
