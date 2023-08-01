@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "计划制定/7、8月计划书.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               }
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "计划制定/7、8月计划书.md",
+                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "计划制定/7、8月计划书.md",
+                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "计划制定/7、8月计划书.md"
+                "file": "README.md"
               }
             }
           },
@@ -164,8 +164,9 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "4d5bd2ab514818f1",
+  "active": "15d26d1146330fab",
   "lastOpenFiles": [
+    "计划制定/7、8月计划书.md",
     "db.json",
     "public/img/default.png",
     "public/2023/08/01/hello-world/index.html",
@@ -177,7 +178,6 @@
     "public/js/utils.js",
     "public/js/plugins.js",
     "public/js/local-search.js",
-    "public/js/leancloud.js",
     "public/img/fluid.png",
     "public/img/police_beian.png",
     "public/img/loading.gif",
