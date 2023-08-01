@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
-description: ''
-keywords:
-author: John Doe
+title: 八云家的记事簿 | 迦勒底亚斯 | Finis Chaldea | フィニス・カルデア
+subtitle: '一个学习之人，努力努力！！！'
+description: '学习笔记：前端、独立游戏开发、绘画技巧、写作、历史神话......'
+keywords: [ C++, NodeJs, UE ]
+author: Yakumo
 language: en
 timezone: ''
 

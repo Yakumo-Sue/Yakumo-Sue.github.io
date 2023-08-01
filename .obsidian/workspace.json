@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "4b0c670ac727ba15",
+        "id": "2cf95c2c09a7481c",
         "type": "tabs",
         "children": [
           {
-            "id": "15d26d1146330fab",
+            "id": "0cf801556ff06387",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "source/_posts/博客部署流程.md",
                 "mode": "source",
                 "source": false
               }
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
+                "file": "source/_posts/博客部署流程.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "README.md",
+                "file": "source/_posts/博客部署流程.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md"
+                "file": "source/_posts/博客部署流程.md"
               }
             }
           },
@@ -164,54 +164,54 @@
       "templater-obsidian:Templater": false
     }
   },
-  "active": "4d5bd2ab514818f1",
+  "active": "0cf801556ff06387",
   "lastOpenFiles": [
     "source/_posts/博客部署流程.md",
-    "计划制定/7、8月计划书.md",
-    "计划制定",
-    "themes/Shoka/node_modules/right-align/README.md",
-    "themes/Shoka/node_modules/right-align/package.json",
-    "themes/Shoka/node_modules/right-align/LICENSE",
-    "themes/Shoka/node_modules/right-align/index.js",
-    "themes/Shoka/node_modules/right-align",
-    "themes/Shoka/node_modules/longest/README.md",
-    "themes/Shoka/node_modules/longest/package.json",
-    "themes/Shoka/node_modules/longest/LICENSE",
-    "themes/Shoka/node_modules/longest/index.js",
-    "themes/Shoka/node_modules/longest",
-    "themes/Shoka/node_modules/is-buffer/test/basic.js",
-    "themes/Shoka/node_modules/is-buffer/README.md",
-    "themes/Shoka/node_modules/cliui/README.md",
-    "themes/Shoka/node_modules/center-align/README.md",
-    "themes/Shoka/node_modules/amdefine/README.md",
-    "themes/Shoka/node_modules/proxy-from-env/README.md",
-    "themes/Shoka/node_modules/buffer-crc32/README.md",
-    "themes/Shoka/node_modules/fd-slicer/README.md",
-    "themes/Shoka/node_modules/fd-slicer/CHANGELOG.md",
-    "themes/Shoka/node_modules/extract-zip/readme.md",
-    "node_modules/supports-color/readme.md",
-    "themes/Shoka/node_modules/node-addon-api/doc/reference.md",
-    "themes/Shoka/node_modules/node-addon-api/tools/README.md",
-    "themes/Shoka/node_modules/node-addon-api/README.md",
-    "themes/Shoka/node_modules/node-addon-api/doc/object_lifetime_management.md",
-    "themes/Shoka/node_modules/node-addon-api/doc/number.md",
-    "themes/Shoka/node_modules/node-addon-api/doc/node-gyp.md",
-    "themes/Shoka/node_modules/node-addon-api/doc/memory_management.md",
-    "themes/Shoka/node_modules/node-addon-api/LICENSE.md",
-    "themes/Shoka/node_modules/node-addon-api/doc/handle_scope.md",
-    "themes/Shoka/node_modules/node-addon-api/doc/generator.md",
-    "themes/Shoka/node_modules/node-addon-api/doc/function.md",
-    "themes/Shoka/node_modules/node-addon-api/doc/function_reference.md",
-    "themes/Shoka/screenshot.png",
-    "themes/Shoka/source/images/wechatpay.png",
-    "themes/Shoka/source/images/search.png",
-    "themes/Shoka/source/images/play_needle.png",
-    "themes/Shoka/source/images/play_disc.png",
-    "themes/Shoka/source/images/paypal.png",
-    "themes/Shoka/source/images/logo.svg",
-    "themes/Shoka/source/images/avatar.jpg",
-    "themes/Shoka/source/images/apple-touch-icon.png",
-    "themes/Shoka/source/images/alipay.png",
+    "README.md",
+    "themes/fluid/source/img/Blog-Logo/logo.png",
+    "themes/fluid/source/img/Post-Banner/00.defaults/default.png",
+    "themes/fluid/source/img/Post-Banner/00.defaults/Learning.jpg",
+    "themes/fluid/source/img/Post-Banner/00.defaults/avatar.jpg",
+    "themes/fluid/source/img/Post-Banner/00.defaults/1316737.jpeg",
+    "themes/fluid/source/img/Post-Banner/00.defaults/1316292.jpeg",
+    "themes/fluid/source/img/Post-Banner/00.defaults",
+    "themes/fluid/source/img/Post-Banner/新建文件夹",
+    "themes/fluid/source/img/Post-Banner/01.blogs/1316853.jpeg",
+    "themes/fluid/source/img/Post-Banner/01.blogs",
+    "themes/fluid/source/img/Post-Banner",
+    "themes/fluid/source/img/01.Post-Banner",
+    "themes/fluid/source/img/01.Blogs",
+    "themes/fluid/source/img/新建文件夹",
+    "themes/fluid/source/img/img - 快捷方式.lnk",
+    "themes/fluid/source/img/Blog-Logo/Hexo.png",
+    "themes/fluid/source/img/Blog-Logo",
+    "source/img/1308601.jpg",
+    "source/img",
+    "source/about/index.md",
+    "node_modules/sax/README.md",
+    "node_modules/once/README.md",
+    "node_modules/wrappy/README.md",
+    "node_modules/path-is-absolute/readme.md",
+    "node_modules/stylus/node_modules/source-map/README.md",
+    "node_modules/stylus/node_modules/ms/readme.md",
+    "node_modules/stylus/node_modules/ms/license.md",
+    "node_modules/stylus/node_modules/debug/README.md",
+    "node_modules/stylus/Readme.md",
+    "node_modules/stylus/Changelog.md",
+    "node_modules/range-parser/README.md",
+    "node_modules/range-parser/HISTORY.md",
+    "node_modules/toidentifier/README.md",
+    "node_modules/toidentifier/HISTORY.md",
+    "node_modules/setprototypeof/README.md",
+    "node_modules/send/node_modules/on-finished/README.md",
+    "node_modules/send/node_modules/on-finished/HISTORY.md",
+    "node_modules/send/node_modules/statuses/README.md",
+    "node_modules/send/node_modules/statuses/HISTORY.md",
+    "node_modules/send/node_modules/ms/readme.md",
+    "node_modules/send/node_modules/ms/license.md",
+    "node_modules/send/node_modules/mime/README.md",
+    "node_modules/send/node_modules/mime/CHANGELOG.md",
+    "themes/fluid/source/img/1316737.jpeg",
     "计划制定/7、8月计划书.md.canvas"
   ]
 }

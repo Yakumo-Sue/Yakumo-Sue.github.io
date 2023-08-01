@@ -1,1 +1,7 @@
-{}
+{
+  "userIgnoreFilters": [
+    "node_modules/"
+  ],
+  "attachmentFolderPath": "./",
+  "promptDelete": false
+}
