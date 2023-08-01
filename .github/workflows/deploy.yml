@@ -1,37 +1,40 @@
-name: Deploy hexo blog
+name: Deploy to GitHub Pages
+
 on:
   push:
     branches:
-      - "main"
+      - main
+    # Review gh actions docs if you want to further define triggers, paths, etc
+    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
+
 jobs:
-  build-and-deploy:
+  deploy:
+    name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          ref: "gh-pages"
+          node-version: 18
+          cache: npm
 
-      - name: Setup node
-        uses: actions/setup-node@v3
+      - name: Install dependencies
+        run: npm
+      - name: Build website
+        run: yarn build
+
+      # Popular action to deploy to GitHub Pages:
+      # Docs: https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-docusaurus
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          node-version: "14"
-
-      - name: Setup yarn & Install node_modules
-        uses: borales/actions-yarn@v3.0.0
-        with:
-          cmd: install
-
-      - name: Check yarn & node version
-        run: |
-          echo "Node version is `node -v`"
-          echo "Yarn version is `yarn -v`"
-
-      - name: Build & Deploy
-        run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "action@github.com"
-          sed -i'' "s~git@github.com:~https://${{ secrets.ACCESS_TOKEN }}@github.com/~" _config.yml
-          rm -rf .deploy_git
-          yarn clean
-          yarn build
-          yarn deploy
+          github_token: ${{ secrets.ACCESS_TOKEN }}
+          # Build output to publish to the `gh-pages` branch:
+          publish_dir: ./build
+          # The following lines assign commit authorship to the official
+          # GH-Actions bot for deploys to `gh-pages` branch:
+          # https://github.com/actions/checkout/issues/13#issuecomment-724415212
+          # The GH actions bot is used by default if you didn't specify the two fields.
+          # You can swap them out with your own user credentials.
+          user_name: Yakumo-Sue
+          user_email: esue627@gmail.com
