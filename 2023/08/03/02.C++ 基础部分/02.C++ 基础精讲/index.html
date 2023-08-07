@@ -25,7 +25,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/img/Blog-Logo/C++_Logo.png">
 <meta property="article:published_time" content="2023-08-03T07:05:00.959Z">
-<meta property="article:modified_time" content="2023-08-04T06:06:55.953Z">
+<meta property="article:modified_time" content="2023-08-04T06:17:58.919Z">
 <meta property="article:author" content="Yakumo">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary_large_image">
@@ -240,7 +240,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          13k 字
+          14k 字
         
       </span>
     
@@ -252,7 +252,7 @@
         
         
           <!-- compatible with older versions-->
-          109 分钟
+          118 分钟
         
       </span>
     
@@ -329,7 +329,25 @@
 <p>对比1，2 发现：</p>
 <p>2 中 b 使用默认值，因此将 b 的值拷贝到寄存器后压栈，而是直接将常量0ah(10) 压栈，减少了此寄存器拷贝；</p>
 <p>同理有3，使用默认值是：调用函数减少了 mov 指令。</p>
-<h2 id="2-内联函数-inline"><a href="#2-内联函数-inline" class="headerlink" title="2. 内联函数 inline"></a>2. 内联函数 inline</h2><p><strong>内联函数与普通函数的区别？</strong></p>
+<h2 id="2-内联函数-inline"><a href="#2-内联函数-inline" class="headerlink" title="2. 内联函数 inline"></a>2. 内联函数 inline</h2><p><strong>特征：</strong></p>
+<ul>
+<li>相当于把内联函数里面的内容写在调用内联函数处；</li>
+<li>相当于不用执行进入函数的步骤，直接执行函数体；</li>
+<li>相当于宏，却比宏多了类型检查，真正具有函数特性；</li>
+<li>编译器一般不内联包含循环、递归、switch 等复杂操作的内联函数；</li>
+<li>在类声明中定义的函数，除了虚函数的其他函数都会自动隐式地当成内联函数。</li>
+</ul>
+<p><strong>使用：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// 声明1（加 inline，建议使用）</span><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">functionName</span><span class="hljs-params">(<span class="hljs-type">int</span> first, <span class="hljs-type">int</span> second,...)</span></span>;<br><br><span class="hljs-comment">// 声明2（不加 inline）</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">functionName</span><span class="hljs-params">(<span class="hljs-type">int</span> first, <span class="hljs-type">int</span> second,...)</span></span>;<br><br><span class="hljs-comment">// 定义</span><br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">functionName</span><span class="hljs-params">(<span class="hljs-type">int</span> first, <span class="hljs-type">int</span> second,...)</span> </span>&#123;<span class="hljs-comment">/****/</span>&#125;;<br><br><span class="hljs-comment">// 类内定义，隐式内联</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span> &#123;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">doA</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; &#125;         <span class="hljs-comment">// 隐式内联</span><br>&#125;<br><br><span class="hljs-comment">// 类外定义，需要显式内联</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span> &#123;<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">doA</span><span class="hljs-params">()</span></span>;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">A::doA</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; &#125;   <span class="hljs-comment">// 需要显式内联</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>编译器对 inline 函数的处理步骤：</strong></p>
+<ol>
+<li>将 inline 函数体复制到 inline 函数调用点处；</li>
+<li>为所用 inline 函数中的局部变量分配内存空间；</li>
+<li>将 inline 函数的的输入参数和返回值映射到调用方法的局部变量空间中；</li>
+<li>如果 inline 函数有多个返回点，将其转变为 inline 函数代码块末尾的分支（使用 GOTO）。</li>
+</ol>
+<p><strong>内联函数与普通函数的区别？</strong></p>
 <ol>
 <li>内联函数；在编译过程中，就没有函数调用开销。在函数的调用点直接将函数的代码进行展开处理</li>
 </ol>
@@ -344,6 +362,20 @@
 </ol>
 <p>注意：</p>
 <p>（1）如果用vs调试Debug，不会将函数展开成内联.release版本可以。</p>
+<p><strong>优缺点：</strong></p>
+<p>优点</p>
+<ol>
+<li>内联函数同宏函数一样将在被调用处进行代码展开，省去了参数压栈、栈帧开辟与回收，结果返回等，从而提高程序运行速度。</li>
+<li>内联函数相比宏函数来说，在代码展开时，会做安全检查或自动类型转换（同普通函数），而宏定义则不会。</li>
+<li>在类中声明同时定义的成员函数，自动转化为内联函数，因此内联函数可以访问类的成员变量，宏定义则不能。</li>
+<li>内联函数在运行时可调试，而宏定义不可以。</li>
+</ol>
+<p>缺点</p>
+<ol>
+<li>代码膨胀。内联是以代码膨胀（复制）为代价，消除函数调用带来的开销。如果执行函数体内代码的时间，相比于函数调用的开销较大，那么效率的收获会很少。另一方面，每一处内联函数的调用都要复制代码，将使程序的总代码量增大，消耗更多的内存空间。</li>
+<li>inline 函数无法随着函数库升级而升级。inline函数的改变需要重新编译，不像 non-inline 可以直接链接。</li>
+<li>是否内联，程序员不可控。内联函数只是对编译器的建议，是否对函数内联，决定权在于编译器。</li>
+</ol>
 <h2 id="3-详解函数重载"><a href="#3-详解函数重载" class="headerlink" title="3. 详解函数重载"></a>3. 详解函数重载</h2><p><strong>函数重载</strong>：一组函数，其中函数名相同，参数列表的个数或者类型不同，那么这一组函数就称作函数重载。函数重载发生在编译时期。</p>
 <p>（1）函数重载与函数返回值无关，因为在产生符号时没有返回值<br>（2） 函数重载需要在同一个作用域<br>（3）const 或者 volatile 的时候，是如何影响形参的</p>
 <p><strong>C++ 支持函数重载，而 C 则不支持：</strong></p>
@@ -691,8 +723,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/03/02.C++%20%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/01.%E7%90%86%E8%A7%A3%20C++%20%E5%86%85%E6%A0%B8/" title="理解 C++ 内核">
-                        <span class="hidden-mobile">理解 C++ 内核</span>
+                      <a href="/2023/08/01/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E6%B5%81%E7%A8%8B/" title="博客部署流程">
+                        <span class="hidden-mobile">博客部署流程</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
