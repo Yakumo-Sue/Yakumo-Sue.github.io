@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/02.C++ 基础部分/03.C++ 面向对象.md",
+                "file": "source/_posts/02.C++ 基础部分/04.C++ 函数模板.md",
                 "mode": "source",
                 "source": false
               }
@@ -93,7 +93,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/02.C++ 基础部分/03.C++ 面向对象.md",
+                "file": "source/_posts/02.C++ 基础部分/04.C++ 函数模板.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,7 +110,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/02.C++ 基础部分/03.C++ 面向对象.md",
+                "file": "source/_posts/02.C++ 基础部分/04.C++ 函数模板.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,7 +133,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/02.C++ 基础部分/03.C++ 面向对象.md"
+                "file": "source/_posts/02.C++ 基础部分/04.C++ 函数模板.md"
               }
             }
           },
@@ -166,11 +166,12 @@
   },
   "active": "b5ba2552366f4e8f",
   "lastOpenFiles": [
+    "source/_posts/02.C++ 基础部分/03.C++ 面向对象.md",
+    "source/_posts/02.C++ 基础部分/04.C++ 函数模板.md",
     "source/_posts/02.C++ 基础部分/02.C++ 基础精讲.md",
     "source/_posts/02.C++ 基础部分/01.理解 C++ 内核.md",
     "source/_posts/02.C++ 基础部分/00.C++ 基本语法学习.md",
     "source/_posts/00.相关知识点/C++ 11 新特性.md",
-    "source/_posts/02.C++ 基础部分/03.C++ 面向对象.md",
     "source/_posts/00.相关知识点",
     "themes/fluid/source/img/Blog-Logo/C++_Logo.png",
     "themes/fluid/source/img/Blog-Logo/C++_Logo.png.crdownload",
@@ -211,7 +212,6 @@
     "node_modules/setprototypeof/README.md",
     "node_modules/send/node_modules/on-finished/README.md",
     "node_modules/send/node_modules/on-finished/HISTORY.md",
-    "node_modules/send/node_modules/statuses/README.md",
     "计划制定/7、8月计划书.md.canvas"
   ]
 }
