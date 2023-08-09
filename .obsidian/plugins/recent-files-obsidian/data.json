@@ -1,6 +1,10 @@
 {
   "recentFiles": [
     {
+      "basename": "05.C++ 运算符重载",
+      "path": "source/_posts/02.C++ 基础部分/05.C++ 运算符重载.md"
+    },
+    {
       "basename": "04.C++ 函数模板",
       "path": "source/_posts/02.C++ 基础部分/04.C++ 函数模板.md"
     },
@@ -11,6 +15,26 @@
     {
       "basename": "02.C++ 基础精讲",
       "path": "source/_posts/02.C++ 基础部分/02.C++ 基础精讲.md"
+    },
+    {
+      "basename": "07.C++ STL",
+      "path": "source/_posts/02.C++ 基础部分/07.C++ STL.md"
+    },
+    {
+      "basename": "06.C++ 继承与多态",
+      "path": "source/_posts/02.C++ 基础部分/06.C++ 继承与多态.md"
+    },
+    {
+      "basename": "post",
+      "path": "scaffolds/post.md"
+    },
+    {
+      "basename": "page",
+      "path": "scaffolds/page.md"
+    },
+    {
+      "basename": "draft",
+      "path": "scaffolds/draft.md"
     },
     {
       "basename": "01.理解 C++ 内核",
