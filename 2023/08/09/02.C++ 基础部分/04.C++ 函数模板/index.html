@@ -1,0 +1,806 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Blog-Logo/logo.png">
+  <link rel="icon" href="/img/Blog-Logo/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yakumo">
+  <meta name="keywords" content="C++,NodeJs,UE">
+  
+    <meta name="description" content="本节分为四个部分：  理解函数模板 理解类模板 实现 C++ STL 向量容器 vector 理解容器控件配置器 allocator  1. 理解函数模板1. 定义函数模板不是一个实在的函数，编译器不能为其生成可执行代码。定义函数模板后只是一个对函数功能框架的描述，当它具体执行时，将根据传递的实际参数决定其功能。 2. 用法面向对象的继承和多态机制有效提高了程序的可重用性和可扩充性。在程序的可重用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 函数模板">
+<meta property="og:url" content="http://example.com/2023/08/09/02.C++%20%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/04.C++%20%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF/index.html">
+<meta property="og:site_name" content="八云家的记事簿 | 迦勒底亚斯 | Finis Chaldea | フィニス・カルデア">
+<meta property="og:description" content="本节分为四个部分：  理解函数模板 理解类模板 实现 C++ STL 向量容器 vector 理解容器控件配置器 allocator  1. 理解函数模板1. 定义函数模板不是一个实在的函数，编译器不能为其生成可执行代码。定义函数模板后只是一个对函数功能框架的描述，当它具体执行时，将根据传递的实际参数决定其功能。 2. 用法面向对象的继承和多态机制有效提高了程序的可重用性和可扩充性。在程序的可重用">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/Blog-Logo/C++_Logo.png">
+<meta property="article:published_time" content="2023-08-09T09:11:56.648Z">
+<meta property="article:modified_time" content="2023-08-09T09:11:56.648Z">
+<meta property="article:author" content="Yakumo">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/Blog-Logo/C++_Logo.png">
+  
+  
+  
+  <title>C++ 函数模板 - 八云家的记事簿 | 迦勒底亚斯 | Finis Chaldea | フィニス・カルデア</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>八云家的记事簿</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>目录</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>链接</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/Post-Banner/01.blogs/1316853.jpeg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="C++ 函数模板"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Yakumo
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-09 09:11" pubdate>
+          Wednesday, August 9th 2023, 9:11 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          19k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          160 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">C++ 函数模板</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>本节分为四个部分：</p>
+<ol>
+<li>理解函数模板</li>
+<li>理解类模板</li>
+<li>实现 C++ STL 向量容器 vector</li>
+<li>理解容器控件配置器 allocator</li>
+</ol>
+<h2 id="1-理解函数模板"><a href="#1-理解函数模板" class="headerlink" title="1. 理解函数模板"></a>1. 理解函数模板</h2><h3 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h3><p>函数模板不是一个实在的函数，编译器不能为其生成可执行代码。定义函数模板后只是一个对函数功能框架的描述，当它具体执行时，将根据传递的实际参数决定其功能。</p>
+<h3 id="2-用法"><a href="#2-用法" class="headerlink" title="2. 用法"></a>2. 用法</h3><p>面向对象的继承和多态机制有效提高了程序的可重用性和可扩充性。在程序的可重用性方面，程序员还希望得到更多支持。举一个最简单的例子，为了交换两个整型变量的值，需要写下面的 Swap 函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Swap</span><span class="hljs-params">(<span class="hljs-type">int</span>&amp; x, <span class="hljs-type">int</span>&amp; y)</span> </span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">int</span> temp = x;<br>	x = y;<br>	y = temp;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>为了交换两个 double 型变量的值，还需要编写下面的 Swap 函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Swap</span> <span class="hljs-params">(<span class="hljs-type">double</span> &amp; xr <span class="hljs-type">double</span> &amp; y)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">double</span> tmp = x;<br>    x = y;<br>    y = tmp;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如果还要交换两个 char 型变量的值，交换两个 CStudent 类对象的值……都需要再编写 Swap 函数。而这些 Swap 函数除了处理的数据类型不同外，形式上都是一样的。</p>
+<p>能否只写一遍 Swap 函数，就能用来交换各种类型的变量的值呢？继承和多态显然无法解决这个问题。因此，“模板”的概念就应运而生了。</p>
+<p>程序设计语言中的模板就是用来批量生成功能和形式都几乎相同的代码的。有了模板，编译器就能在需要的时候，根据模板自动生成程序的代码。从同一个模板自动生成的代码，形式几乎是一样的。</p>
+<p><strong>模板函数、模板的特例化和非模板函数的重载关系</strong>：候选的函数中，优先在精确匹配中选择，优先选择普通函数，特例性更强的模版函数次之，然后是模版函数的特化版本，最后才是泛化版本。</p>
+<p><strong>模板代码是不能声明在.h，实现在.cpp</strong>，模板代码调用之前，一定要看到模板定义的地方，这样的话，模板才能够正常的实例化，产生能够被编译器编译的代码。模板代码都是放在头文件中，然后在源文件中直接进行 <code>#include</code></p>
+<h3 id="3-原理"><a href="#3-原理" class="headerlink" title="3. 原理"></a>3. 原理</h3><p>C++ 语言支持模板。有了模板，可以只写一个 Swap 模板，编译器会根据 Swap 模板自动生成多个 Sawp 函数，用以交换不同类型变量的值。</p>
+<p>在 C++ 中，模板分为函数模板和类模板两种。</p>
+<ul>
+<li>函数模板是用于生成函数；</li>
+<li>类模板则是用于生成类的。</li>
+</ul>
+<p>函数模板的写法如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> 类型参数<span class="hljs-number">1</span>, <span class="hljs-keyword">class</span>类型参数<span class="hljs-number">2</span>, ...&gt;<br>返回值类型  模板名(形参表)<br>&#123;<br>    函数体<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>其中的 class 关键字也可以用 typename 关键字替换</strong>，例如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> 类型参数<span class="hljs-number">1</span>, <span class="hljs-keyword">typename</span> 类型参数<span class="hljs-number">2</span>, ...&gt;<br></code></pre></td></tr></table></figure>
+
+<p>函数模板看上去就像一个函数。前面提到的 Swap 模板的写法如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;<br><span class="hljs-function">T <span class="hljs-title">Swap</span><span class="hljs-params">(T&amp; x, T&amp; y)</span></span><br><span class="hljs-function"></span>&#123;<br>	T tmp = x; <br>	x = y; <br>	y = tmp;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>T 是类型参数，代表类型。编译器由模板自动生成函数时，会用具体的类型名对模板中所有的类型参数进行替换，其他部分则原封不动地保留。同一个类型参数只能替换为同一种类型。编译器在编译到调用函数模板的语句时，会根据实参的类型判断该如何替换模板中的类型参数。</p>
+<p><strong>示例：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;<br><span class="hljs-function">T <span class="hljs-title">Swap</span><span class="hljs-params">(T&amp; x, T&amp; y)</span></span><br><span class="hljs-function"></span>&#123;<br>	T tmp = x;<br>	x = y;<br>	y = tmp;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-type">int</span> n = <span class="hljs-number">1</span>, m = <span class="hljs-number">2</span>;<br>	<span class="hljs-comment">// 编译器自动生成 void Swap (int &amp;, int &amp;)函数</span><br>	<span class="hljs-built_in">Swap</span>(n, m);<br><br>	<span class="hljs-type">double</span> f = <span class="hljs-number">1.2</span>, g = <span class="hljs-number">3.4</span>;<br>	<span class="hljs-comment">// 编译器自动生成 void Swap (double &amp;, double &amp;)函数</span><br>	<span class="hljs-built_in">Swap</span>(f, g);<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>编译器在编译到 <code>Swap(n, m);</code> 时找不到函数 Swap 的定义，但是发现实参 n、m 都是 int 类型的，用 int 类型替换 Swap 模板中的 T 能得到下面的函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Swap</span> <span class="hljs-params">(<span class="hljs-type">int</span> &amp; x, <span class="hljs-type">int</span> &amp; y)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> tmp = x;<br>    x = y;<br>    y = tmp;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>该函数可以匹配 <code>Swap(n, m);</code> 这条语句。于是编译器就自动用 int 替换 Swap 模板中的 T，生成上面的 Swap 函数，将该 Swap 函数的源代码加入程序中一起编译，并且将 <code>Swap(n, m);</code> 编译成对自动生成的 Swap 函数的调用。</p>
+<p>同理，编译器在编译到 <code>Swap(f, g);</code> 时会用 double 替换 Swap 模板中的 T，自动生成以下 Swap 函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Swap</span><span class="hljs-params">(<span class="hljs-type">double</span> &amp; x, <span class="hljs-type">double</span> &amp; y)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">double</span> tmp = x;<br>    x = y;<br>    y = tmp;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>然后再将 <code>Swap(f, g);</code> 编译成对该 Swap 函数的调用。</p>
+<p>编译器由模板自动生成函数的过程叫模板的实例化。由模板实例化而得到的函数称为模板函数。在某些编译器中，模板只有在被实例化时，编译器才会检查其语法正确性。如果程序中写了一个模板却没有用到，那么编译器不会报告这个模板中的语法错误。</p>
+<p>编译器对模板进行实例化时，并非只能通过模板调用语句的实参来实例化模板中的类型参数，模板调用语句可以明确指明要把类型参数实例化为哪种类型。可以用：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++">模板名&lt;实际类型参数<span class="hljs-number">1</span>, 实际类型参数<span class="hljs-number">2</span>, ...&gt;<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-理解类模板"><a href="#2-理解类模板" class="headerlink" title="2. 理解类模板"></a>2. 理解类模板</h2><h3 id="1-定义-1"><a href="#1-定义-1" class="headerlink" title="1. 定义"></a>1. 定义</h3><p>为了多快好省地定义出一批<strong>相似的类</strong>,可以定义「类模板」，然后<strong>由类模板生成不同的类</strong>。</p>
+<p>类模板的定义形式如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> 类型参数<span class="hljs-number">1</span>，<span class="hljs-keyword">class</span> 类型参数<span class="hljs-number">2</span>，...&gt; <span class="hljs-comment">//类型参数表</span><br><span class="hljs-keyword">class</span> 类模板名<br>&#123;<br>   成员函数和成员变量<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>用类模板定义对象的写法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c++">类模板名&lt;真实类型参数表&gt; 对象名(构造函数实参表);<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>类模板用于实现类所需数据的类型参数化</li>
+<li>类模板在表示如数组、表、图等数据结构显得特别重要</li>
+<li>这些数据结构的表示和算法不受所包含的元素类型的影响</li>
+</ul>
+<h3 id="2-类模板实现顺序栈"><a href="#2-类模板实现顺序栈" class="headerlink" title="2. 类模板实现顺序栈"></a>2. 类模板实现顺序栈</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">define</span>  _CRT_SECURE_NO_WARNINGS</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SeqStack</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-comment">// 公共方法</span><br>		<span class="hljs-comment">// 构造函数初始化</span><br>		<span class="hljs-comment">// 构造和析构函数名不加&lt;T&gt; 其他出现模板的地方都加上类型参数列表</span><br>	<span class="hljs-built_in">SeqStack</span>(<span class="hljs-type">int</span> size = <span class="hljs-number">10</span>)<br>		: <span class="hljs-built_in">PStack</span>(<span class="hljs-keyword">new</span> T[size])<br>		, <span class="hljs-built_in">Top</span>(<span class="hljs-number">0</span>)<br>		, <span class="hljs-built_in">Size</span>(size) &#123;<br>		<span class="hljs-comment">// 初始化生成的指令更少，效率更高。</span><br>		<span class="hljs-comment">// 仅调用默认构造函数（如果存在类成员）。赋值需要调用默认构造函数和赋值运算符</span><br>	&#125;;<br><br>	<span class="hljs-comment">// 拷贝构造</span><br>	<span class="hljs-comment">// 初始化列表的方式初始化 size 和 top</span><br>	<span class="hljs-built_in">SeqStack</span>(<span class="hljs-type">const</span> SeqStack&lt;T&gt;&amp; stack)<br>		: <span class="hljs-built_in">Top</span>(stack.Top)<br>		, <span class="hljs-built_in">Size</span>(stack.Size) &#123;<br>		<span class="hljs-comment">// 重新设置栈</span><br>		PStack = <span class="hljs-keyword">new</span> T[stack.Size];<br>		<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; Top; i++)<br>		&#123;<br>			PStack[i] = stack.PStack[i];<br>		&#125;<br>	&#125;<br><br>	<span class="hljs-comment">// 析构函数 释放内存</span><br>	~<span class="hljs-built_in">SeqStack</span>()<br>	&#123;<br>		<span class="hljs-keyword">if</span> (PStack)<br>		&#123;<br>			<span class="hljs-keyword">delete</span>[] PStack;<br>			PStack = <span class="hljs-literal">nullptr</span>;<br>		&#125;<br>	&#125;<br><br>	<span class="hljs-comment">// 复制重载</span><br>	SeqStack&lt;T&gt;&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> SeqStack&lt;T&gt;&amp; stack)<br>	&#123;<br>		<span class="hljs-comment">// 判断是否相等</span><br>		<span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> == &amp;stack)<br>		&#123;<br>			<span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>		&#125;<br>		<span class="hljs-comment">// 清空</span><br>		<span class="hljs-keyword">delete</span>[] PStack;<br><br>		<span class="hljs-comment">// 重新赋值</span><br>		Top = stack.Top;<br>		Size = stack.Size;<br>		PStack = <span class="hljs-keyword">new</span> T[stack.Size];<br>		<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; Top; i++)<br>		&#123;<br>			PStack[i] = stack.PStack[i];<br>		&#125;<br><br>		<span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>	&#125;<br><br>	<span class="hljs-comment">// 共有方法</span><br>	<span class="hljs-comment">// 1. push 方法</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">push</span><span class="hljs-params">(<span class="hljs-type">const</span> T&amp; val)</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">full</span>())<br>		&#123;<br>			<span class="hljs-built_in">resize</span>();<br>		&#125;<br>		PStack[Top] = val;<br>		Top++;<br>	&#125;<br><br>	<span class="hljs-comment">// 2. pop 方法</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">pop</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">empty</span>())<br>		&#123;<br>			<span class="hljs-keyword">return</span>;<br>		&#125;<br>		Top--;<br>	&#125;<br><br>	<span class="hljs-comment">// 3. top 方法</span><br>	<span class="hljs-function">T <span class="hljs-title">top</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">empty</span>())<br>		&#123;<br>			<span class="hljs-keyword">throw</span> <span class="hljs-string">&quot;Stack is empty!&quot;</span>;<br>		&#125;<br>		<span class="hljs-keyword">return</span> PStack[Top - <span class="hljs-number">1</span>];<br>	&#125;<br><br>	<span class="hljs-comment">// 4. full 方法</span><br>	<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">full</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123;<br>		<span class="hljs-keyword">return</span> Top == Size;<br>	&#125;<br><br>	<span class="hljs-comment">// 5. empty 方法</span><br>	<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">empty</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123;<br>		<span class="hljs-keyword">return</span> Top == <span class="hljs-number">0</span>;<br>	&#125;<br><br>	<span class="hljs-comment">// 私有方法和数据</span><br><span class="hljs-keyword">private</span>:<br>	<span class="hljs-comment">// 扩容方法</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">resize</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		T* p = <span class="hljs-keyword">new</span> T[Size * <span class="hljs-number">2</span>];<br>		<span class="hljs-comment">// 将值赋值过去</span><br>		<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; Top; i++)<br>		&#123;<br>			p[i] = PStack[i];<br>		&#125;<br>		<span class="hljs-comment">// 扩大</span><br>		Size *= <span class="hljs-number">2</span>;<br>		<span class="hljs-comment">// 清空</span><br>		<span class="hljs-keyword">delete</span> PStack;<br>		<span class="hljs-comment">// 重新赋值</span><br>		PStack = p;<br>	&#125;<br><br>	T* PStack;<br>	<span class="hljs-type">int</span> Top;<br>	<span class="hljs-type">int</span> Size;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	SeqStack&lt;<span class="hljs-type">int</span>&gt; stack;<br>	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">8</span>; ++i) &#123;<br>		stack.<span class="hljs-built_in">push</span>(i);<br>	&#125;<br><br>	<span class="hljs-keyword">while</span> (!stack.<span class="hljs-built_in">empty</span>())<br>	&#123;<br>		cout &lt;&lt; stack.<span class="hljs-built_in">top</span>() &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>		stack.<span class="hljs-built_in">pop</span>();<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="3-实现-C-STL-向量容器-vector"><a href="#3-实现-C-STL-向量容器-vector" class="headerlink" title="3. 实现 C++ STL 向量容器 vector"></a>3. 实现 C++ STL 向量容器 vector</h2><p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308081541125.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>vector 的本质是一个数组，在vector 中需要有三个指针：</p>
+<ul>
+<li><code>First</code>：指向数组的起始位置</li>
+<li><code>Last</code>：指向已经存放的最后一个元素的下一个位置</li>
+<li><code>End</code>：指向数组长度的末尾元素的下一个位置。</li>
+</ul>
+<p>vector 方法：</p>
+<ul>
+<li>数组的容量：<code>End-First</code></li>
+<li>数组中存放的元素个数：<code>Last-First</code></li>
+<li>数组是否为空：<code>First == Last</code></li>
+<li>数组是否已满：<code>Last == End</code></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">vector</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-comment">// 构造函数</span><br>	<span class="hljs-built_in">vector</span>(<span class="hljs-type">int</span> size = <span class="hljs-number">10</span>)<br>		: <span class="hljs-built_in">First</span>(<span class="hljs-keyword">new</span> T[size])<br>		, <span class="hljs-built_in">Last</span>(First)<br>		, <span class="hljs-built_in">End</span>(First + size)<br>	&#123;<br>		<span class="hljs-comment">// 使用初始化列表方式</span><br>	&#125;<br>	<span class="hljs-comment">// 拷贝构造函数</span><br>	<span class="hljs-built_in">vector</span>(<span class="hljs-type">const</span> vector&lt;T&gt;&amp; rhs)<br>	&#123;<br>		<span class="hljs-comment">// 获取容器长度</span><br>		<span class="hljs-type">int</span> size = rhs.End - rhs.First;<br>		<span class="hljs-comment">// 创建新容器</span><br>		First = <span class="hljs-keyword">new</span> T[size];<br>		<span class="hljs-comment">// 获取数据长度</span><br>		<span class="hljs-type">int</span> len = rhs.Last - rhs.First;<br>		<span class="hljs-comment">// 遍历赋值</span><br>		<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; len; i++)<br>		&#123;<br>			First[i] = rhs.First[i];<br>		&#125;<br>		<span class="hljs-comment">// 重置 Last 和 End</span><br>		Last = First + len;<br>		End = First + size;<br>	&#125;<br>	<span class="hljs-comment">// 析构函数</span><br>	~<span class="hljs-built_in">vector</span>()<br>	&#123;<br>		<span class="hljs-keyword">delete</span>[] First;<br>		First = End = Last = <span class="hljs-literal">nullptr</span>;<br>	&#125;<br>	<span class="hljs-comment">// 赋值重载</span><br>	vector&lt;T&gt;&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> vector&lt;T&gt;&amp; rhs)<br>	&#123;<br>		<span class="hljs-comment">// 判断</span><br>		<span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> == &amp;rhs)<br>		&#123;<br>			<span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>		&#125;<br><br>		<span class="hljs-comment">// 清除</span><br>		<span class="hljs-keyword">delete</span>[] First;<br><br>		<span class="hljs-comment">// 重新计算并赋值</span><br>		<span class="hljs-comment">// 获取容器长度</span><br>		<span class="hljs-type">int</span> size = rhs.End - rhs.First;<br>		<span class="hljs-comment">// 创建新容器</span><br>		First = <span class="hljs-keyword">new</span> T[size];<br>		<span class="hljs-comment">// 获取数据长度</span><br>		<span class="hljs-type">int</span> len = rhs.Last - rhs.First;<br>		<span class="hljs-comment">// 遍历赋值</span><br>		<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; len; i++)<br>		&#123;<br>			First[i] = rhs.First[i];<br>		&#125;<br>		<span class="hljs-comment">// 重置 Last 和 End</span><br>		Last = First + len;<br>		End = First + size;<br><br>		<span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>	&#125;<br><br>	<span class="hljs-comment">// 共有方法</span><br>	<span class="hljs-comment">// push_back 方法：容器添加内容</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">push_back</span><span class="hljs-params">(<span class="hljs-type">const</span> T&amp; val)</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">full</span>())<br>		&#123;<br>			<span class="hljs-built_in">extend</span>();<br>		&#125;<br>		<span class="hljs-comment">// 先给之以后，下次 push 则会递增内存</span><br>		*Last++ = val;<br>	&#125;<br>	<span class="hljs-comment">// pop_back 方法：容器删除内容</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">pop_back</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">empty</span>())<br>		&#123;<br>			<span class="hljs-keyword">return</span>;<br>		&#125;<br>		--Last;<br>	&#125;<br>	<span class="hljs-comment">// back 方法：输出删除内容</span><br>	<span class="hljs-function">T <span class="hljs-title">back</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">return</span> *(Last - <span class="hljs-number">1</span>);<br>	&#125;<br>	<span class="hljs-comment">// full 方法：容器是否已满</span><br>	<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">full</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">return</span> Last == End;<br>	&#125;<br>	<span class="hljs-comment">// empty 方法：容器是否为空</span><br>	<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">empty</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">return</span> Last == First;<br>	&#125;<br>	<span class="hljs-comment">// size 方法：获取内容厂区</span><br>	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">size</span><span class="hljs-params">()</span> <span class="hljs-type">const</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">return</span> Last - First;<br>	&#125;<br><br><span class="hljs-comment">// 私有方法</span><br><span class="hljs-keyword">private</span>:<br>	<span class="hljs-comment">// vector 容器扩容</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">extend</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-type">int</span> size = End - First;<br>		T* ptmp = <span class="hljs-keyword">new</span> T[size * <span class="hljs-number">2</span>];<br><br>		<span class="hljs-comment">// 遍历并转移</span><br>		<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; size; i++)<br>		&#123;<br>			ptmp[i] = First[i];<br>		&#125;<br>		<span class="hljs-comment">// 删除原先的</span><br>		<span class="hljs-keyword">delete</span>[] First;<br><br>		<span class="hljs-comment">// 重新覆盖</span><br>		First = ptmp;<br>		Last = First + size;<br>		End = First + <span class="hljs-number">2</span> * size;<br>	&#125;<br><br><span class="hljs-comment">// 私有数据</span><br><span class="hljs-keyword">private</span>:<br>	T* First;<br>	T* Last;<br>	T* End;<br>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-built_in">Test</span>() <br>	&#123; <br>		cout &lt;&lt; <span class="hljs-string">&quot;Test()&quot;</span> &lt;&lt; endl; <br>	&#125;<br>	Test&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> Test&amp; t) <br>	&#123; <br>		cout &lt;&lt; <span class="hljs-string">&quot;operator=&quot;</span> &lt;&lt; endl; <br>		<span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>; <br>	&#125;<br>	~<span class="hljs-built_in">Test</span>() <br>	&#123; <br>		cout &lt;&lt; <span class="hljs-string">&quot;~Test()&quot;</span> &lt;&lt; endl; <br>	&#125;<br>	<span class="hljs-built_in">Test</span>(<span class="hljs-type">const</span> Test&amp;) <br>	&#123; <br>		cout &lt;&lt; <span class="hljs-string">&quot;Test(const Test&amp;)&quot;</span> &lt;&lt; endl; <br>	&#125;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	Test t1;<br>	Test t2;<br><br>	cout &lt;&lt; <span class="hljs-string">&quot;vector&lt;Test&gt; vec&quot;</span> &lt;&lt; endl;<br><br>	vector&lt;Test&gt; vec;<br>	cout &lt;&lt; <span class="hljs-string">&quot;vector&lt;Test&gt; vec; push_back&quot;</span> &lt;&lt; endl;<br><br>	vec.<span class="hljs-built_in">push_back</span>(t1);<br>	vec.<span class="hljs-built_in">push_back</span>(t2);<br><br>	cout &lt;&lt; <span class="hljs-string">&quot;vector&lt;Test&gt; vec; pop_back&quot;</span> &lt;&lt; std::endl;<br>	vec.<span class="hljs-built_in">pop_back</span>();<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308082143193.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>问题：在我们实现的 <code>vector</code> 构造函数中，使用 <code>new T[size]</code>  ：它做了两件事情：</p>
+<p>（1）开辟内存空间<br>（2）调用 T 类型的默认构造函数构造对象</p>
+<p>其中第二步是一种浪费，因为我还没在vector 添加元素，提前构造一遍对象 然后在析构时候是否纯属多余。</p>
+<p>同时：在实现 <code>pop_back(）</code> 时，存在内存泄漏</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">pop_back</span><span class="hljs-params">()</span> <span class="hljs-comment">// 从容器末尾删除元素</span></span><br><span class="hljs-function"></span>&#123;<br>  <span class="hljs-keyword">if</span> (<span class="hljs-built_in">empty</span>())<br>    <span class="hljs-keyword">return</span>;<br>  --Last;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p> 仅仅将 Last 指针 –，并没有释放 Test 申请的资源。<strong>需要调用对象的析构函数</strong></p>
+<h2 id="4-理解容器控件配置器-allocator"><a href="#4-理解容器控件配置器-allocator" class="headerlink" title="4. 理解容器控件配置器 allocator"></a>4. 理解容器控件配置器 allocator</h2><p><strong>通过 Win msvc 编译器的实现：</strong></p>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308082147401.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// CLASS TEMPLATE vector</span><br><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">_Ty</span>, <span class="hljs-keyword">class</span> <span class="hljs-title class_">_Alloc</span> = allocator&lt;_Ty&gt;&gt;<br>	<span class="hljs-keyword">class</span> vector<br>		: <span class="hljs-keyword">public</span> _Vector_alloc&lt;_Vec_base_types&lt;_Ty, _Alloc&gt;&gt;<br>	&#123;	<span class="hljs-comment">// varying size array of values</span><br><span class="hljs-keyword">private</span>:<br>	<span class="hljs-keyword">using</span> _Mybase = _Vector_alloc&lt;_Vec_base_types&lt;_Ty, _Alloc&gt;&gt;;<br>	<span class="hljs-keyword">using</span> _Alty = <span class="hljs-keyword">typename</span> _Mybase::_Alty;<br>	<span class="hljs-keyword">using</span> _Alty_traits = <span class="hljs-keyword">typename</span> _Mybase::_Alty_traits;<br>......<br></code></pre></td></tr></table></figure>
+
+<p>系统的实现，除了数据类型外，还有一个<code>allocator</code>,它将开辟空间和构造对象分离开。  </p>
+<p>而这，也就是空间配置器做的工作；</p>
+<h3 id="1-容器的空间配置器"><a href="#1-容器的空间配置器" class="headerlink" title="1. 容器的空间配置器"></a>1. 容器的空间配置器</h3><p>空间配置器主要有四个功能：</p>
+<ol>
+<li>内存开辟 allocate（底层调用<code>malloc</code>）；</li>
+<li>内存释放 deallocate（底层调用<code>free</code>）；</li>
+<li>对象构造 construct（调用<code>构造函数</code>）；</li>
+<li>对象析构 destroy（调用<code>析构函数</code>）；</li>
+</ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// 定义容器的空间适配器和 C++ 标准库的 allocator 实现一样</span><br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;<br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Allocator</span><br>&#123;<br>	<span class="hljs-comment">// 负责内存的开辟</span><br>	<span class="hljs-function">T* <span class="hljs-title">allocate</span><span class="hljs-params">(<span class="hljs-type">size_t</span> size)</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">return</span> (T*)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(T) * size);<br>	&#125;<br>	<span class="hljs-comment">// 负责内存的释放</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">deallocate</span><span class="hljs-params">(<span class="hljs-type">void</span>* p)</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-built_in">free</span>(p);<br>	&#125;<br>	<span class="hljs-comment">// 负责对象构造</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">construct</span><span class="hljs-params">(T* p, <span class="hljs-type">const</span> T&amp; val)</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">new</span> (p) <span class="hljs-built_in">T</span>(val);<br>	&#125;<br>	<span class="hljs-comment">// 负责对象析构</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">destory</span><span class="hljs-params">(T* p)</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-comment">// ~T() 代表了 T 类型的析构函数</span><br> 		p-&gt;~<span class="hljs-built_in">T</span>();<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><strong>重新实现 vector：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-comment">// 定义容器的空间配置器，和C++标准库的allocator实现一样</span><br><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Allocator</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-comment">// 负责内存开辟</span><br>	<span class="hljs-function">T* <span class="hljs-title">allocate</span><span class="hljs-params">(<span class="hljs-type">size_t</span> size)</span> </span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">return</span> (T*)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(T) * size);<br>	&#125;<br>	<span class="hljs-comment">// 负责内存释放</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">deallocate</span><span class="hljs-params">(<span class="hljs-type">void</span>* p)</span> </span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-built_in">free</span>(p);<br>	&#125;<br>	<span class="hljs-comment">// 负责对象构造</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">construct</span><span class="hljs-params">(T* p, <span class="hljs-type">const</span> T&amp; val)</span> </span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">new</span> (p)<span class="hljs-built_in">T</span>(val); <span class="hljs-comment">// 定位new</span><br>	&#125;<br>	<span class="hljs-comment">// 负责对象析构</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">destroy</span><span class="hljs-params">(T* p)</span> </span><br><span class="hljs-function">	</span>&#123;<br>		p-&gt;~<span class="hljs-built_in">T</span>(); <span class="hljs-comment">// ~T()代表了T类型的析构函数</span><br>	&#125;<br>&#125;;<br><br><span class="hljs-comment">// 通过 allocator 适配器重写 vector</span><br><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T, <span class="hljs-keyword">typename</span> Alloc = Allocator&lt;T&gt;&gt;<br><span class="hljs-keyword">class</span> vector<br>&#123;<br>	<span class="hljs-comment">// 公共构造、拷贝、重载、析构、方法函数</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-comment">// 构造函数</span><br>	<span class="hljs-comment">// 需要把内存开辟和对象构造分开处理</span><br>	<span class="hljs-built_in">vector</span>(<span class="hljs-type">int</span> size = <span class="hljs-number">10</span>)<br>		: <span class="hljs-built_in">First</span>(_allocator.<span class="hljs-built_in">allocate</span>(size))<br>		, <span class="hljs-built_in">Last</span>(First)<br>		, <span class="hljs-built_in">End</span>(First + size)<br>	&#123;<br>		<span class="hljs-comment">// 通过初始化列表的方式，初始化数据</span><br>	&#125;<br><br>	<span class="hljs-comment">// 拷贝函数</span><br>	<span class="hljs-built_in">vector</span>(<span class="hljs-type">const</span> vector&lt;T&gt;&amp; rhs)<br>	&#123;<br>		<span class="hljs-comment">// 定义 大小</span><br>		<span class="hljs-type">int</span> size = rhs.End - rhs.First;<br>		<span class="hljs-comment">// 空间适配器开辟空间</span><br>		First = _allocator.<span class="hljs-built_in">allocate</span>(size);<br>		<span class="hljs-comment">// 获取长度</span><br>		<span class="hljs-type">int</span> len = rhs.Last - rhs.First;<br><br>		<span class="hljs-comment">// 拷贝数据</span><br>		<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; len; i++)<br>		&#123;<br>			<span class="hljs-comment">// 空间适配器的构造方法赋值</span><br>			_allocator.<span class="hljs-built_in">construct</span>(First + i, rhs.First[i]);<br>		&#125;<br>		<span class="hljs-comment">// 重新配置 Last 和 End</span><br>		Last = First + len;<br>		End = First + size;<br>	&#125;<br>	<span class="hljs-comment">// 析构函数</span><br>	~<span class="hljs-built_in">vector</span>()<br>	&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;~vector&quot;</span> &lt;&lt; endl;<br>		<span class="hljs-comment">// 析构容器有效的元素，然后释放 First 指针指向的堆内存</span><br>		T* p = First;<br>		<span class="hljs-keyword">for</span> (p = First; p != Last; p++)<br>		&#123;<br>			<span class="hljs-comment">// cout &lt;&lt; &quot;p =&quot; &lt;&lt; p &lt;&lt; endl;</span><br>			<span class="hljs-comment">//  把 First 指针指向的数组的有效元素进行析构操作</span><br>			_allocator.<span class="hljs-built_in">destroy</span>(p);<br>		&#125;<br>		<span class="hljs-comment">// 释放堆上的数组内存</span><br>		_allocator.<span class="hljs-built_in">deallocate</span>(First);<br>		<span class="hljs-comment">// 重置 指针</span><br>		First = Last = End = <span class="hljs-literal">nullptr</span>;<br>	&#125;<br><br><br>	<span class="hljs-comment">// 赋值重载</span><br>	vector&lt;T&gt;&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> vector&lt;T&gt;&amp; rhs)<br>	&#123;<br>		<span class="hljs-comment">// 1. 判断</span><br>		<span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> == &amp;rhs)<br>		&#123;<br>			<span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>		&#125;<br>		<span class="hljs-comment">// 2. 清空</span><br>		<span class="hljs-comment">// 析构容器有效的元素，然后释放 First 指针指向的堆内存</span><br>		T* p = First;<br>		<span class="hljs-keyword">for</span> (p = First; p != End; p++)<br>		&#123;<br>			<span class="hljs-comment">//  把 First 指针指向的数组的有效元素进行析构操作</span><br>			_allocator.<span class="hljs-built_in">destroy</span>(p);<br>		&#125;<br>		<span class="hljs-comment">// 释放堆上的数组内存</span><br>		_allocator.<span class="hljs-built_in">deallocate</span>(First);<br><br>		<span class="hljs-comment">// 3. 重新计算</span><br>		<span class="hljs-comment">// 定义 大小</span><br>		<span class="hljs-type">int</span> size = rhs.End - rhs.First;<br>		<span class="hljs-comment">// 空间适配器开辟空间</span><br>		First = _allocator.<span class="hljs-built_in">allocate</span>(size);<br>		<span class="hljs-comment">// 获取长度</span><br>		<span class="hljs-type">int</span> len = rhs.Last - rhs.First;<br><br>		<span class="hljs-comment">// 拷贝数据</span><br>		<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; len; i++)<br>		&#123;<br>			<span class="hljs-comment">// 空间适配器的构造方法赋值</span><br>			_allocator.<span class="hljs-built_in">construct</span>(First + i, rhs.First[i]);<br>		&#125;<br>		<span class="hljs-comment">// 重新配置 Last 和 End</span><br>		Last = First + len;<br>		End = First + size;<br><br>		<span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>	&#125;<br><br>	<span class="hljs-comment">// 公共方法</span><br>	<span class="hljs-comment">// 1. push_back 方法</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">push_back</span><span class="hljs-params">(<span class="hljs-type">const</span> T&amp; val)</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-comment">// 判断</span><br>		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">full</span>())<br>		&#123;<br>			<span class="hljs-built_in">expand</span>();<br>		&#125;<br>		<span class="hljs-comment">// 通过适配器添加内容</span><br>		_allocator.<span class="hljs-built_in">construct</span>(Last, val);<br>		Last++;<br>	&#125;<br>	<span class="hljs-comment">// 2. pop_back 方法</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">pop_back</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">empty</span>())<br>		&#123;<br>			<span class="hljs-keyword">return</span>;<br>		&#125;<br>		<span class="hljs-comment">// 不仅要把 Last 指针--，还需要析构删除的元素</span><br>		--Last;<br>		_allocator.<span class="hljs-built_in">destroy</span>(Last);<br>	&#125;<br>	<span class="hljs-comment">// 3. back 方法</span><br>	<span class="hljs-function">T <span class="hljs-title">back</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">return</span> *(Last - <span class="hljs-number">1</span>);<br>	&#125;<br>	<span class="hljs-comment">// 4. full 方法</span><br>	<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">full</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123; <span class="hljs-keyword">return</span> Last == End; &#125;<br>	<span class="hljs-comment">// 5. empty 方法</span><br>	<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">empty</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123; <span class="hljs-keyword">return</span> First == Last; &#125;<br>	<span class="hljs-comment">// 6. size 方法</span><br>	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">size</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123; <span class="hljs-keyword">return</span> Last - First; &#125;<br><br><span class="hljs-comment">// 私有属性和方法</span><br><span class="hljs-keyword">private</span>:<br>	<span class="hljs-comment">// 指向数组起始的位置</span><br>	T* First;<br>	<span class="hljs-comment">// 指向数组中有效元素的后继位置</span><br>	T* Last;<br>	<span class="hljs-comment">// 指向数组空间的后继位置</span><br>	T* End;<br>	<span class="hljs-comment">// 定义容器的空间配置器对象</span><br>	Alloc _allocator;<br><br>	<span class="hljs-comment">// 扩容方法</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">expand</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-comment">// 获取大小</span><br>		<span class="hljs-type">int</span> size = End - First;<br>		<span class="hljs-comment">// 配置 2 倍适配器空间</span><br>		T* ptmp = _allocator.<span class="hljs-built_in">allocate</span>(size * <span class="hljs-number">2</span>);<br>		<span class="hljs-comment">// 赋值</span><br>		<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; size; i++)<br>		&#123;<br>			_allocator.<span class="hljs-built_in">construct</span>(ptmp + i, First[i]);<br>		&#125;<br><br>		<span class="hljs-comment">// 清空</span><br>		<span class="hljs-comment">// 析构容器有效的元素，然后释放 First 指针指向的堆内存</span><br>		T* p = First;<br>		<span class="hljs-keyword">for</span> (p = First; p != End; p++)<br>		&#123;<br>			<span class="hljs-comment">//  把 First 指针指向的数组的有效元素进行析构操作</span><br>			_allocator.<span class="hljs-built_in">destroy</span>(p);<br>		&#125;<br>		<span class="hljs-comment">// 释放堆上的数组内存</span><br>		_allocator.<span class="hljs-built_in">deallocate</span>(First);<br><br>		<span class="hljs-comment">// 重新赋值</span><br>		First = ptmp;<br>		Last = First + size;<br>		End = First + size * <span class="hljs-number">2</span>;<br>	&#125;<br>&#125;;<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-built_in">Test</span>()<br>	&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;Test()&quot;</span> &lt;&lt; endl;<br>	&#125;<br>	Test&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> Test&amp; t)<br>	&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;operator=&quot;</span> &lt;&lt; endl;<br>		<span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>	&#125;<br>	~<span class="hljs-built_in">Test</span>() <br>	&#123; <br>		cout &lt;&lt; <span class="hljs-string">&quot;~Test()&quot;</span> &lt;&lt; endl; <br>	&#125;<br>	<span class="hljs-built_in">Test</span>(<span class="hljs-type">const</span> Test&amp;)<br>	&#123; <br>		cout &lt;&lt; <span class="hljs-string">&quot;Test(const Test&amp;)&quot;</span> &lt;&lt; endl; <br>	&#125;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	Test t1, t2;<br>	cout &lt;&lt; <span class="hljs-string">&quot;1.&quot;</span> &lt;&lt; endl;<br>	cout &lt;&lt; <span class="hljs-string">&quot;vector&lt;Test&gt; vec&quot;</span> &lt;&lt; endl;<br><br>	vector&lt;Test&gt; vec;<br>	cout &lt;&lt; <span class="hljs-string">&quot;vector&lt;Test&gt; vec; push_back&quot;</span> &lt;&lt; endl;<br><br>	vec.<span class="hljs-built_in">push_back</span>(t1);<br>	vec.<span class="hljs-built_in">push_back</span>(t2);<br><br>	cout &lt;&lt; <span class="hljs-string">&quot;vector&lt;Test&gt; vec; pop_back&quot;</span> &lt;&lt; endl;<br>	vec.<span class="hljs-built_in">pop_back</span>();<br>	cout &lt;&lt; <span class="hljs-string">&quot;end&quot;</span> &lt;&lt; endl;<br><br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308091632516.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>现在的效果就和 msvc 实现的 vector 相同了</p>
+<h3 id="2-运算符重载与迭代器实现"><a href="#2-运算符重载与迭代器实现" class="headerlink" title="2. 运算符重载与迭代器实现"></a>2. 运算符重载与迭代器实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// 迭代器一般是现成容器的嵌套类型</span><br><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">iterator</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-comment">// 构造函数</span><br>	<span class="hljs-built_in">iterator</span>(T* p = <span class="hljs-literal">nullptr</span>)<br>		: _ptr(p)<br>	&#123;<br>		<span class="hljs-comment">// 初始化列表方式</span><br>	&#125;<br>	<span class="hljs-comment">// 拷贝构造函数</span><br>	<span class="hljs-built_in">iterator</span>(<span class="hljs-type">const</span> iterator&amp; iter)<br>		: _ptr(iter._ptr)<br>	&#123;<br>		<span class="hljs-comment">// ...</span><br>	&#125;<br><br>	<span class="hljs-comment">// 重载函数合集</span><br>	<span class="hljs-comment">// 1. 前置 ++</span><br>	iterator&amp; <span class="hljs-keyword">operator</span>++()<br>	&#123;<br>		_ptr++;<br>		<span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>	&#125;<br>	<span class="hljs-comment">// 2. 后置 ++</span><br>	iterator <span class="hljs-keyword">operator</span>++(<span class="hljs-type">int</span>) &#123;<br>		<span class="hljs-function">iterator <span class="hljs-title">tmp</span><span class="hljs-params">(*<span class="hljs-keyword">this</span>)</span></span>;<br>		_ptr++;<br>		<span class="hljs-keyword">return</span> tmp;<br>	&#125;<br>	<span class="hljs-comment">// 3. 解引用</span><br>	T&amp; <span class="hljs-keyword">operator</span>*()<br>	&#123;<br>		<span class="hljs-keyword">return</span> *_ptr;<br>	&#125;<br>	<span class="hljs-comment">// 4. !=</span><br>	<span class="hljs-type">bool</span> <span class="hljs-keyword">operator</span>!=(<span class="hljs-type">const</span> iterator&amp; iter) <span class="hljs-type">const</span><br>	&#123;<br>		<span class="hljs-keyword">return</span> _ptr != iter._ptr;<br>	&#125;<br><br><span class="hljs-keyword">private</span>:<br>	T* _ptr;<br>&#125;;<br><br><br><span class="hljs-comment">//迭代器方法</span><br><span class="hljs-function">iterator <span class="hljs-title">begin</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-built_in">iterator</span>(First); &#125;<br><span class="hljs-function">iterator <span class="hljs-title">end</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-built_in">iterator</span>(Last); &#125;<br><br><span class="hljs-comment">//运算符重载[]</span><br>T&amp; <span class="hljs-keyword">operator</span>[](<span class="hljs-type">int</span> index) &#123;<br>	<span class="hljs-keyword">if</span> (index &lt; <span class="hljs-number">0</span> || index &gt;= <span class="hljs-built_in">size</span>()) &#123;<br>		<span class="hljs-keyword">throw</span> <span class="hljs-string">&quot;OutofRangeException&quot;</span>;<br>	&#125;<br><br>	<span class="hljs-keyword">return</span> First[index];<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-最终-vector-实现"><a href="#3-最终-vector-实现" class="headerlink" title="3. 最终 vector 实现"></a>3. 最终 vector 实现</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><br><span class="hljs-comment">// 定义容器的空间配置器，和C++标准库的allocator实现一样</span><br><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T&gt;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Allocator</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-comment">// 负责内存开辟</span><br>	<span class="hljs-function">T* <span class="hljs-title">allocate</span><span class="hljs-params">(<span class="hljs-type">size_t</span> size)</span> </span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">return</span> (T*)<span class="hljs-built_in">malloc</span>(<span class="hljs-built_in">sizeof</span>(T) * size);<br>	&#125;<br>	<span class="hljs-comment">// 负责内存释放</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">deallocate</span><span class="hljs-params">(<span class="hljs-type">void</span>* p)</span> </span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-built_in">free</span>(p);<br>	&#125;<br>	<span class="hljs-comment">// 负责对象构造</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">construct</span><span class="hljs-params">(T* p, <span class="hljs-type">const</span> T&amp; val)</span> </span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">new</span> (p)<span class="hljs-built_in">T</span>(val); <span class="hljs-comment">// 定位new</span><br>	&#125;<br>	<span class="hljs-comment">// 负责对象析构</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">destroy</span><span class="hljs-params">(T* p)</span> </span><br><span class="hljs-function">	</span>&#123;<br>		p-&gt;~<span class="hljs-built_in">T</span>(); <span class="hljs-comment">// ~T()代表了T类型的析构函数</span><br>	&#125;<br>&#125;;<br><br><span class="hljs-comment">// 通过 allocator 适配器重写 vector</span><br><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">typename</span> T, <span class="hljs-keyword">typename</span> Alloc = Allocator&lt;T&gt;&gt;<br><span class="hljs-keyword">class</span> vector<br>&#123;<br>	<span class="hljs-comment">// 公共构造、拷贝、重载、析构、方法函数</span><br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-comment">// 构造函数</span><br>	<span class="hljs-comment">// 需要把内存开辟和对象构造分开处理</span><br>	<span class="hljs-built_in">vector</span>(<span class="hljs-type">int</span> size = <span class="hljs-number">10</span>)<br>		: <span class="hljs-built_in">First</span>(_allocator.<span class="hljs-built_in">allocate</span>(size))<br>		, <span class="hljs-built_in">Last</span>(First)<br>		, <span class="hljs-built_in">End</span>(First + size)<br>	&#123;<br>		<span class="hljs-comment">// 通过初始化列表的方式，初始化数据</span><br>	&#125;<br><br>	<span class="hljs-comment">// 拷贝函数</span><br>	<span class="hljs-built_in">vector</span>(<span class="hljs-type">const</span> vector&lt;T&gt;&amp; rhs)<br>	&#123;<br>		<span class="hljs-comment">// 定义 大小</span><br>		<span class="hljs-type">int</span> size = rhs.End - rhs.First;<br>		<span class="hljs-comment">// 空间适配器开辟空间</span><br>		First = _allocator.<span class="hljs-built_in">allocate</span>(size);<br>		<span class="hljs-comment">// 获取长度</span><br>		<span class="hljs-type">int</span> len = rhs.Last - rhs.First;<br><br>		<span class="hljs-comment">// 拷贝数据</span><br>		<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; len; i++)<br>		&#123;<br>			<span class="hljs-comment">// 空间适配器的构造方法赋值</span><br>			_allocator.<span class="hljs-built_in">construct</span>(First + i, rhs.First[i]);<br>		&#125;<br>		<span class="hljs-comment">// 重新配置 Last 和 End</span><br>		Last = First + len;<br>		End = First + size;<br>	&#125;<br>	<span class="hljs-comment">// 析构函数</span><br>	~<span class="hljs-built_in">vector</span>()<br>	&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;~vector&quot;</span> &lt;&lt; endl;<br>		<span class="hljs-comment">// 析构容器有效的元素，然后释放 First 指针指向的堆内存</span><br>		T* p = First;<br>		<span class="hljs-keyword">for</span> (p = First; p != Last; p++)<br>		&#123;<br>			<span class="hljs-comment">// cout &lt;&lt; &quot;p =&quot; &lt;&lt; p &lt;&lt; endl;</span><br>			<span class="hljs-comment">//  把 First 指针指向的数组的有效元素进行析构操作</span><br>			_allocator.<span class="hljs-built_in">destroy</span>(p);<br>		&#125;<br>		<span class="hljs-comment">// 释放堆上的数组内存</span><br>		_allocator.<span class="hljs-built_in">deallocate</span>(First);<br>		<span class="hljs-comment">// 重置 指针</span><br>		First = Last = End = <span class="hljs-literal">nullptr</span>;<br>	&#125;<br><br><br>	<span class="hljs-comment">// 赋值重载</span><br>	vector&lt;T&gt;&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> vector&lt;T&gt;&amp; rhs)<br>	&#123;<br>		<span class="hljs-comment">// 1. 判断</span><br>		<span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span> == &amp;rhs)<br>		&#123;<br>			<span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>		&#125;<br>		<span class="hljs-comment">// 2. 清空</span><br>		<span class="hljs-comment">// 析构容器有效的元素，然后释放 First 指针指向的堆内存</span><br>		T* p = First;<br>		<span class="hljs-keyword">for</span> (p = First; p != End; p++)<br>		&#123;<br>			<span class="hljs-comment">//  把 First 指针指向的数组的有效元素进行析构操作</span><br>			_allocator.<span class="hljs-built_in">destroy</span>(p);<br>		&#125;<br>		<span class="hljs-comment">// 释放堆上的数组内存</span><br>		_allocator.<span class="hljs-built_in">deallocate</span>(First);<br><br>		<span class="hljs-comment">// 3. 重新计算</span><br>		<span class="hljs-comment">// 定义 大小</span><br>		<span class="hljs-type">int</span> size = rhs.End - rhs.First;<br>		<span class="hljs-comment">// 空间适配器开辟空间</span><br>		First = _allocator.<span class="hljs-built_in">allocate</span>(size);<br>		<span class="hljs-comment">// 获取长度</span><br>		<span class="hljs-type">int</span> len = rhs.Last - rhs.First;<br><br>		<span class="hljs-comment">// 拷贝数据</span><br>		<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; len; i++)<br>		&#123;<br>			<span class="hljs-comment">// 空间适配器的构造方法赋值</span><br>			_allocator.<span class="hljs-built_in">construct</span>(First + i, rhs.First[i]);<br>		&#125;<br>		<span class="hljs-comment">// 重新配置 Last 和 End</span><br>		Last = First + len;<br>		End = First + size;<br><br>		<span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>	&#125;<br>	<span class="hljs-comment">//运算符重载[]</span><br>	T&amp; <span class="hljs-keyword">operator</span>[](<span class="hljs-type">int</span> index) <br>	&#123;<br>		<span class="hljs-comment">// 判断索引位置</span><br>		<span class="hljs-keyword">if</span> (index &lt; <span class="hljs-number">0</span> || index &gt;= <span class="hljs-built_in">size</span>()) &#123;<br>			<span class="hljs-keyword">throw</span> <span class="hljs-string">&quot;OutofRangeException&quot;</span>;<br>		&#125;<br>		<span class="hljs-comment">// 返回索引值</span><br>		<span class="hljs-keyword">return</span> First[index];<br>	&#125;<br><br>	<span class="hljs-comment">// 公共方法</span><br>	<span class="hljs-comment">// 1. push_back 方法</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">push_back</span><span class="hljs-params">(<span class="hljs-type">const</span> T&amp; val)</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-comment">// 判断</span><br>		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">full</span>())<br>		&#123;<br>			<span class="hljs-built_in">expand</span>();<br>		&#125;<br>		<span class="hljs-comment">// 通过适配器添加内容</span><br>		_allocator.<span class="hljs-built_in">construct</span>(Last, val);<br>		Last++;<br>	&#125;<br>	<span class="hljs-comment">// 2. pop_back 方法</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">pop_back</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">if</span> (<span class="hljs-built_in">empty</span>())<br>		&#123;<br>			<span class="hljs-keyword">return</span>;<br>		&#125;<br>		<span class="hljs-comment">// 不仅要把 Last 指针--，还需要析构删除的元素</span><br>		--Last;<br>		_allocator.<span class="hljs-built_in">destroy</span>(Last);<br>	&#125;<br>	<span class="hljs-comment">// 3. back 方法</span><br>	<span class="hljs-function">T <span class="hljs-title">back</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">return</span> *(Last - <span class="hljs-number">1</span>);<br>	&#125;<br>	<span class="hljs-comment">// 4. full 方法</span><br>	<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">full</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123; <span class="hljs-keyword">return</span> Last == End; &#125;<br>	<span class="hljs-comment">// 5. empty 方法</span><br>	<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">empty</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123; <span class="hljs-keyword">return</span> First == Last; &#125;<br>	<span class="hljs-comment">// 6. size 方法</span><br>	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">size</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123; <span class="hljs-keyword">return</span> Last - First; &#125;<br><br>	<span class="hljs-comment">// 迭代器一般是现成容器的嵌套类型</span><br>	<span class="hljs-keyword">class</span> <span class="hljs-title class_">iterator</span><br>	&#123;<br>	<span class="hljs-keyword">public</span>:<br>		<span class="hljs-comment">// 构造函数</span><br>		<span class="hljs-built_in">iterator</span>(T* p = <span class="hljs-literal">nullptr</span>)<br>			: _ptr(p)<br>		&#123;<br>			<span class="hljs-comment">// 初始化列表方式</span><br>		&#125;<br>		<span class="hljs-comment">// 拷贝构造函数</span><br>		<span class="hljs-built_in">iterator</span>(<span class="hljs-type">const</span> iterator&amp; iter)<br>			: _ptr(iter._ptr)<br>		&#123;<br>			<span class="hljs-comment">// ...</span><br>		&#125;<br><br>		<span class="hljs-comment">// 重载函数合集</span><br>		<span class="hljs-comment">// 1. 前置 ++</span><br>		iterator&amp; <span class="hljs-keyword">operator</span>++()<br>		&#123;<br>			_ptr++;<br>			<span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>		&#125;<br>		<span class="hljs-comment">// 2. 后置 ++</span><br>		iterator <span class="hljs-keyword">operator</span>++(<span class="hljs-type">int</span>) &#123;<br>			<span class="hljs-function">iterator <span class="hljs-title">tmp</span><span class="hljs-params">(*<span class="hljs-keyword">this</span>)</span></span>;<br>			_ptr++;<br>			<span class="hljs-keyword">return</span> tmp;<br>		&#125;<br>		<span class="hljs-comment">// 3. 解引用</span><br>		T&amp; <span class="hljs-keyword">operator</span>*()<br>		&#123;<br>			<span class="hljs-keyword">return</span> *_ptr;<br>		&#125;<br>		<span class="hljs-comment">// 4. !=</span><br>		<span class="hljs-type">bool</span> <span class="hljs-keyword">operator</span>!=(<span class="hljs-type">const</span> iterator&amp; iter) <span class="hljs-type">const</span><br>		&#123;<br>			<span class="hljs-keyword">return</span> _ptr != iter._ptr;<br>		&#125;<br><br>	<span class="hljs-keyword">private</span>:<br>		T* _ptr;<br>	&#125;;<br>	<span class="hljs-comment">//迭代器方法</span><br>	<span class="hljs-function">iterator <span class="hljs-title">begin</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-built_in">iterator</span>(First); &#125;<br>	<span class="hljs-function">iterator <span class="hljs-title">end</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-built_in">iterator</span>(Last); &#125;<br><br><br><span class="hljs-comment">// 私有属性和方法</span><br><span class="hljs-keyword">private</span>:<br>	<span class="hljs-comment">// 指向数组起始的位置</span><br>	T* First;<br>	<span class="hljs-comment">// 指向数组中有效元素的后继位置</span><br>	T* Last;<br>	<span class="hljs-comment">// 指向数组空间的后继位置</span><br>	T* End;<br>	<span class="hljs-comment">// 定义容器的空间配置器对象</span><br>	Alloc _allocator;<br><br>	<span class="hljs-comment">// 扩容方法</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">expand</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-comment">// 获取大小</span><br>		<span class="hljs-type">int</span> size = End - First;<br>		<span class="hljs-comment">// 配置 2 倍适配器空间</span><br>		T* ptmp = _allocator.<span class="hljs-built_in">allocate</span>(size * <span class="hljs-number">2</span>);<br>		<span class="hljs-comment">// 赋值</span><br>		<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; size; i++)<br>		&#123;<br>			_allocator.<span class="hljs-built_in">construct</span>(ptmp + i, First[i]);<br>		&#125;<br><br>		<span class="hljs-comment">// 清空</span><br>		<span class="hljs-comment">// 析构容器有效的元素，然后释放 First 指针指向的堆内存</span><br>		T* p = First;<br>		<span class="hljs-keyword">for</span> (p = First; p != End; p++)<br>		&#123;<br>			<span class="hljs-comment">//  把 First 指针指向的数组的有效元素进行析构操作</span><br>			_allocator.<span class="hljs-built_in">destroy</span>(p);<br>		&#125;<br>		<span class="hljs-comment">// 释放堆上的数组内存</span><br>		_allocator.<span class="hljs-built_in">deallocate</span>(First);<br><br>		<span class="hljs-comment">// 重新赋值</span><br>		First = ptmp;<br>		Last = First + size;<br>		End = First + size * <span class="hljs-number">2</span>;<br>	&#125;<br>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-built_in">Test</span>()<br>	&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;Test()&quot;</span> &lt;&lt; endl;<br>	&#125;<br>	Test&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> Test&amp; t)<br>	&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;operator=&quot;</span> &lt;&lt; endl;<br>		<span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>	&#125;<br>	~<span class="hljs-built_in">Test</span>() <br>	&#123; <br>		cout &lt;&lt; <span class="hljs-string">&quot;~Test()&quot;</span> &lt;&lt; endl; <br>	&#125;<br>	<span class="hljs-built_in">Test</span>(<span class="hljs-type">const</span> Test&amp;)<br>	&#123; <br>		cout &lt;&lt; <span class="hljs-string">&quot;Test(const Test&amp;)&quot;</span> &lt;&lt; endl; <br>	&#125;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	Test t1, t2;<br>	cout &lt;&lt; <span class="hljs-string">&quot;vector&lt;Test&gt; vec&quot;</span> &lt;&lt; endl;<br><br>	vector&lt;Test&gt; vec;<br>	cout &lt;&lt; <span class="hljs-string">&quot;vector&lt;Test&gt; vec; push_back&quot;</span> &lt;&lt; endl;<br><br>	vec.<span class="hljs-built_in">push_back</span>(t1);<br>	vec.<span class="hljs-built_in">push_back</span>(t2);<br><br>	cout &lt;&lt; <span class="hljs-string">&quot;vector&lt;Test&gt; vec; pop_back&quot;</span> &lt;&lt; endl;<br>	vec.<span class="hljs-built_in">pop_back</span>();<br>	cout &lt;&lt; <span class="hljs-string">&quot;end&quot;</span> &lt;&lt; endl;<br><br>	cout &lt;&lt; <span class="hljs-string">&quot;-------------------------------&quot;</span> &lt;&lt; endl;<br>	vector&lt;Test&gt;::iterator it = vec.<span class="hljs-built_in">begin</span>();<br>	<span class="hljs-keyword">for</span> (; it != vec.<span class="hljs-built_in">end</span>(); ++it) &#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;it = &quot;</span> &lt;&lt; &amp;(*it) &lt;&lt; endl;<br>		std::cout &lt;&lt; <span class="hljs-string">&quot;iterator&quot;</span> &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; endl;;<br>	&#125;<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>C++ 函数模板</div>
+      <div>http://example.com/2023/08/09/02.C++ 基础部分/04.C++ 函数模板/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yakumo</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 9, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/08/09/02.C++%20%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/03.C++%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" title="C++ 面向对象">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C++ 面向对象</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/08/03/02.C++%20%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/00.C++%20%E5%9F%BA%E6%9C%AC%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0/" title="">
+                        <span class="hidden-mobile"></span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
