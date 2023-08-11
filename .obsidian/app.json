@@ -2,6 +2,6 @@
   "userIgnoreFilters": [
     "node_modules/"
   ],
-  "attachmentFolderPath": "./",
+  "attachmentFolderPath": "source/_posts",
   "promptDelete": false
 }

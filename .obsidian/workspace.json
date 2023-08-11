@@ -72,8 +72,17 @@
               "type": "recent-files",
               "state": {}
             }
+          },
+          {
+            "id": "15d10c5b721d9a51",
+            "type": "leaf",
+            "state": {
+              "type": "file-tree-view",
+              "state": {}
+            }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -161,10 +170,11 @@
       "command-palette:打开命令面板": false,
       "obsidian-advanced-slides:Show Slide Preview": false,
       "obsidian-excalidraw-plugin:新建 Excalidraw 绘图": false,
-      "templater-obsidian:Templater": false
+      "templater-obsidian:Templater": false,
+      "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "271cf01efa17ea1c",
+  "active": "4d5bd2ab514818f1",
   "lastOpenFiles": [
     "source/_posts/02.C++ 基础部分/05.C++ 运算符重载.md",
     "source/_posts/02.C++ 基础部分/06.C++ 继承与多态.md",
