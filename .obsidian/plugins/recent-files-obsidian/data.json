@@ -1,16 +1,24 @@
 {
   "recentFiles": [
     {
+      "basename": "09.C++ 智能指针",
+      "path": "source/_posts/03.C++进阶部分/09.C++ 智能指针.md"
+    },
+    {
+      "basename": "08.C++ 优化",
+      "path": "source/_posts/03.C++进阶部分/08.C++ 优化.md"
+    },
+    {
+      "basename": "06.C++ 继承与多态",
+      "path": "source/_posts/02.C++ 基础部分/06.C++ 继承与多态.md"
+    },
+    {
       "basename": "07.C++ STL",
       "path": "source/_posts/02.C++ 基础部分/07.C++ STL.md"
     },
     {
       "basename": "05.C++ 运算符重载",
       "path": "source/_posts/02.C++ 基础部分/05.C++ 运算符重载.md"
-    },
-    {
-      "basename": "06.C++ 继承与多态",
-      "path": "source/_posts/02.C++ 基础部分/06.C++ 继承与多态.md"
     },
     {
       "basename": "01.理解 C++ 内核",
