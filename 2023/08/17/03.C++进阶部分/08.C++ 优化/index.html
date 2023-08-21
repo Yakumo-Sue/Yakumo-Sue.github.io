@@ -1,0 +1,847 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Blog-Logo/logo.png">
+  <link rel="icon" href="/img/Blog-Logo/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yakumo">
+  <meta name="keywords" content="C++,NodeJs,UE">
+  
+    <meta name="description" content="本节分为六部分：  对象使用时调用了哪些方法 函数使用时调用了哪些方法 三条对象优化规则 右值引用 move 移动语义 forward 完美转义  1. 对象使用时调用了哪些方法C++ 编译器对于对象构造的优化，用临时对象生成新对象的时候，临时对象不产生了，直接构建新对象。 12345678910111213141516171819202122232425262728293031323334353">
+<meta property="og:type" content="article">
+<meta property="og:title" content="08.C++ 优化">
+<meta property="og:url" content="http://example.com/2023/08/17/03.C++%E8%BF%9B%E9%98%B6%E9%83%A8%E5%88%86/08.C++%20%E4%BC%98%E5%8C%96/index.html">
+<meta property="og:site_name" content="八云家的记事簿 | 迦勒底亚斯 | Finis Chaldea | フィニス・カルデア">
+<meta property="og:description" content="本节分为六部分：  对象使用时调用了哪些方法 函数使用时调用了哪些方法 三条对象优化规则 右值引用 move 移动语义 forward 完美转义  1. 对象使用时调用了哪些方法C++ 编译器对于对象构造的优化，用临时对象生成新对象的时候，临时对象不产生了，直接构建新对象。 12345678910111213141516171819202122232425262728293031323334353">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/Blog-Logo/C++_Logo.png">
+<meta property="article:published_time" content="2023-08-17T01:40:18.350Z">
+<meta property="article:modified_time" content="2023-08-21T07:18:46.905Z">
+<meta property="article:author" content="Yakumo">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/Blog-Logo/C++_Logo.png">
+  
+  
+  
+  <title>08.C++ 优化 - 八云家的记事簿 | 迦勒底亚斯 | Finis Chaldea | フィニス・カルデア</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 80vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>八云家的记事簿</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>目录</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>链接</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/Post-Banner/01.blogs/1314358.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="08.C++ 优化"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Yakumo
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-08-17 01:40" pubdate>
+          Thursday, August 17th 2023, 1:40 am
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          14k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          116 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">08.C++ 优化</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>本节分为六部分：</p>
+<ol>
+<li>对象使用时调用了哪些方法</li>
+<li>函数使用时调用了哪些方法</li>
+<li>三条对象优化规则</li>
+<li>右值引用</li>
+<li>move 移动语义</li>
+<li>forward 完美转义</li>
+</ol>
+<h3 id="1-对象使用时调用了哪些方法"><a href="#1-对象使用时调用了哪些方法" class="headerlink" title="1. 对象使用时调用了哪些方法"></a>1. 对象使用时调用了哪些方法</h3><p><strong>C++ 编译器对于对象构造的优化，用临时对象生成新对象的时候，临时对象不产生了，直接构建新对象。</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">Test</span>(<span class="hljs-type">int</span> a = <span class="hljs-number">10</span>) :<span class="hljs-built_in">ma</span>(a)<br>    &#123;<br>        cout &lt;&lt; <span class="hljs-string">&quot;Test(int)&quot;</span> &lt;&lt; endl;<br>    &#125;<br>    ~<span class="hljs-built_in">Test</span>()<br>    &#123;<br>        cout &lt;&lt; <span class="hljs-string">&quot;~Test()&quot;</span> &lt;&lt; endl;<br>    &#125;<br>    <span class="hljs-built_in">Test</span>(<span class="hljs-type">const</span> Test&amp; t) :<span class="hljs-built_in">ma</span>(t.ma)<br>    &#123;<br>        cout &lt;&lt; <span class="hljs-string">&quot;Test(const Test&amp;)&quot;</span> &lt;&lt; endl;<br>    &#125;<br>    Test&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> Test&amp; t)<br>    &#123;<br>        cout &lt;&lt; <span class="hljs-string">&quot;operator=&quot;</span> &lt;&lt; endl;<br>        ma = t.ma;<br>        <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;<br>    &#125;<br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-type">int</span> ma;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br><br>    cout &lt;&lt; <span class="hljs-string">&quot;1.Test t1;&quot;</span> &lt;&lt; endl;<br>    Test t1;<br><br>    cout &lt;&lt; <span class="hljs-string">&quot;\n2.Test t2(t1)&quot;</span> &lt;&lt; endl;<br>    <span class="hljs-comment">// 拷贝构造函数</span><br>    <span class="hljs-function">Test <span class="hljs-title">t2</span><span class="hljs-params">(t1)</span></span>;<br><br>    cout &lt;&lt; <span class="hljs-string">&quot;\n3.Test t3 = t1;&quot;</span> &lt;&lt; endl;<br>    <span class="hljs-comment">// 拷贝构造函数</span><br>    Test t3 = t1;<br><br>    cout &lt;&lt; <span class="hljs-string">&quot;\n4.Test t4 = Test(20);&quot;</span> &lt;&lt; endl;<br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">    C++ 编译器对于对象构造的优化：用临时对象生成新对象的时候，临时对象</span><br><span class="hljs-comment">    就不产生了，直接构造新对象就可以了</span><br><span class="hljs-comment">    */</span><br>    <span class="hljs-comment">// 和Test t4(20);没有区别的！ 仅调用一次默认构造函数</span><br>    Test t4 = <span class="hljs-built_in">Test</span>(<span class="hljs-number">20</span>);<br>    <br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308170951985.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><strong>调用赋值函数，因为t4原本已存在</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++">cout &lt;&lt; <span class="hljs-string">&quot;\n5. t4 = t2;&quot;</span> &lt;&lt; endl;<br>t4 = t2;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308171001411.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><strong>显式生成临时对象，临时对象生成后，给 t4 赋值,出语句后，临时对象析构 (默认构造函数，赋值运算符，析构函数)</strong></p>
+<p>用临时对象赋值给已存在的对象的时候，要产生临时对象，再调用 <code>operator=</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++">cout &lt;&lt; <span class="hljs-string">&quot;\n6. t4 = Test(20);&quot;</span> &lt;&lt; endl;<br><span class="hljs-comment">// 显式生成临时对象,临时对象生成后</span><br><span class="hljs-comment">// 给t4赋值,出语句后，临时对象析构 (默认构造函数，赋值运算符，析构函数)</span><br>t4 = <span class="hljs-built_in">Test</span>(<span class="hljs-number">20</span>);<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308171003567.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><strong>构造函数完成类型转换。</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++"> cout &lt;&lt; <span class="hljs-string">&quot;\n7.t4 = (Test)30;&quot;</span> &lt;&lt; endl;<br><span class="hljs-comment">/************************************************************************/</span><br><span class="hljs-comment">/*  </span><br><span class="hljs-comment">	把其他类型转成类类型的时候，编译器就看这个类的类型</span><br><span class="hljs-comment">	有没有合适的构造函数 把整型转成 Test，就看这个类的类型有没有</span><br><span class="hljs-comment">    带 int 类型参数的构造函数 ，有，就可以显式生成临时对象，然后</span><br><span class="hljs-comment">    赋值给 t4 出语句后，临时对象析构</span><br><span class="hljs-comment">*/</span><span class="hljs-comment">/************************************************************************/</span><br><span class="hljs-comment">// 把 30 强转成 Test 类型 int-&gt;Test(int)  同 t4 = Test(20);</span><br>t4 = (Test)<span class="hljs-number">30</span>;<br><br>cout &lt;&lt; <span class="hljs-string">&quot;\n8.t4 = 40;&quot;</span> &lt;&lt; endl;<br><span class="hljs-comment">// 隐式生成临时对象,然后赋值给t4，出语句后，临时对象析构  同7</span><br>t4 = <span class="hljs-number">40</span>;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308171006393.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><strong>临时对象生存周期：所在的语句</strong></p>
+<p>而引用就是别名，相当于给这块内存又给了个名字，所以用引用来引用临时对象，临时对象的生命周期就变成引用变量的生命周期了。</p>
+<p>所以用指针指向临时变量是不安全的，而用引用引用临时对象是安全的。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++">cout &lt;&lt; <span class="hljs-string">&quot;\n9. Test *p = &amp;Test(40);&quot;</span> &lt;&lt; endl;<br><span class="hljs-comment">// 指针指向临时对象，这个临时对象肯定是要生成的</span><br>Test* p = &amp;<span class="hljs-built_in">Test</span>(<span class="hljs-number">40</span>);<br><span class="hljs-comment">// 然后p指向这个临时对象的地址</span><br><span class="hljs-comment">// 出语句后，临时对象析构 </span><br><span class="hljs-comment">// 此时p指向的是一个已经析构的临时对象，p相当于野指针了</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++">cout &lt;&lt; <span class="hljs-string">&quot;\n10. const Test &amp;ref = Test(50);&quot;</span> &lt;&lt; endl;<br><span class="hljs-comment">// 引用一个临时对象，这个临时对象也是要生成的</span><br><span class="hljs-type">const</span> Test&amp; ref = <span class="hljs-built_in">Test</span>(<span class="hljs-number">50</span>);<br><span class="hljs-comment">// 出语句后，临时对象不析构，因为引用相当于是别名，临时对象出语句析构是因为没有名字 </span><br><span class="hljs-comment">// 用引用变量引用临时对象是安全的，临时对象就是有名字了，临时对象的生存周期就变成引用变量的</span><br><span class="hljs-comment">// 生存周期了。引用变量是这个函数的局部变量，return完，这个临时对象才析构 </span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308171011279.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><strong>程序运行，对象构造顺序以及背后调用总结</strong></p>
+<ul>
+<li>先全局</li>
+<li>再进入 main</li>
+</ul>
+<p><strong>注意：</strong></p>
+<ul>
+<li>静态局部变量，内存分配是在程序运行之前就分配好的，因为有初值的静态局部变量存储在 <code>.data</code> 区，<code>.data</code> 区的内存是事先就分配好的；但是静态局部变量的初始化（对象的构造）是在运行到它的时候才初始化，<code>.data</code> 区析构的时候是程序结束（main 结束）的时候析构</li>
+<li>new 比 malloc 多的：new 不仅分配内存，还构建对象；delete 比 free 多的：delete 不仅释放内存，释放之前先调用析构函数。</li>
+</ul>
+<p><strong>对象底层调用代码示例：（注释是构造顺序与底层调用的方法）</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-comment">//因为a,b有默认值所以构造有3种方式：</span><br>    <span class="hljs-comment">//Test() Test(10) Test(10, 10)</span><br>    <span class="hljs-built_in">Test</span>(<span class="hljs-type">int</span> a = <span class="hljs-number">5</span>, <span class="hljs-type">int</span> b = <span class="hljs-number">5</span>)<span class="hljs-comment">//构造函数 </span><br>        :<span class="hljs-built_in">ma</span>(a), <span class="hljs-built_in">mb</span>(b)<br>    &#123;<br>        cout &lt;&lt; <span class="hljs-string">&quot;Test(int, int)：&quot;</span> &lt;&lt; ma &lt;&lt; <span class="hljs-string">&quot;,&quot;</span> &lt;&lt; mb &lt;&lt; endl;<br>    &#125;<br>    ~<span class="hljs-built_in">Test</span>()<span class="hljs-comment">//析构函数 </span><br>    &#123;<br>        cout &lt;&lt; <span class="hljs-string">&quot;~Test()：&quot;</span> &lt;&lt; ma &lt;&lt; <span class="hljs-string">&quot;,&quot;</span> &lt;&lt; mb &lt;&lt; endl;<br>    &#125;<br>    <span class="hljs-built_in">Test</span>(<span class="hljs-type">const</span> Test&amp; src)<span class="hljs-comment">//拷贝构造函数 </span><br>        :<span class="hljs-built_in">ma</span>(src.ma), <span class="hljs-built_in">mb</span>(src.mb)<br>    &#123;<br>        cout &lt;&lt; <span class="hljs-string">&quot;Test(const Test&amp;)&quot;</span> &lt;&lt; endl;<br>    &#125;<br>    <span class="hljs-type">void</span> <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> Test&amp; src)<span class="hljs-comment">//赋值函数 </span><br>    &#123;<br>        ma = src.ma;<br>        mb = src.mb;<br>        cout &lt;&lt; <span class="hljs-string">&quot;operator=&quot;</span> &lt;&lt; endl;<br>    &#125;<br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-type">int</span> ma;<br>    <span class="hljs-type">int</span> mb;<br>&#125;;<br><br><span class="hljs-comment">// 在mian函数之前构造，在main函数结束后释放，存储在.data段</span><br><span class="hljs-function">Test <span class="hljs-title">t1</span><span class="hljs-params">(<span class="hljs-number">10</span>, <span class="hljs-number">10</span>)</span></span>;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br><br>    cout &lt;&lt; <span class="hljs-string">&quot;\n---------------------------main()&quot;</span> &lt;&lt; endl;<br><br>    cout &lt;&lt; <span class="hljs-string">&quot;\n 1.Test t2(20,20); &quot;</span> &lt;&lt; endl;<br>    <span class="hljs-comment">// 默认构造函数</span><br>    <span class="hljs-function">Test <span class="hljs-title">t2</span><span class="hljs-params">(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>)</span></span>;<br><br>    cout &lt;&lt; <span class="hljs-string">&quot;\n 2.Test t3 = t2&quot;</span> &lt;&lt; endl;<br>    <span class="hljs-comment">// 拷贝构造函数</span><br>    Test t3 = t2;<br><br>    cout &lt;&lt; <span class="hljs-string">&quot;\n 3.Test t3 = t2&quot;</span> &lt;&lt; endl;<br>    <span class="hljs-comment">// 第一次运行到它才初始化</span><br>    <span class="hljs-type">static</span> Test t4 = <span class="hljs-built_in">Test</span>(<span class="hljs-number">30</span>, <span class="hljs-number">30</span>);<br><br>    cout &lt;&lt; <span class="hljs-string">&quot;\n 4 t2 = (Test)(50, 50);&quot;</span> &lt;&lt; endl;<br>    <span class="hljs-comment">// (50,50)是逗号表达式，(表达式1，表达式2，表达式n)</span><br>    <span class="hljs-comment">// (50,50)的最后的结果是最后一个表达式n的结果 50</span><br>    <span class="hljs-comment">// (50, 50) =  (Test)50;</span><br>    t2 = (Test)(<span class="hljs-number">50</span>, <span class="hljs-number">50</span>);    <span class="hljs-comment">// Test(int,int) operator= 出语句调用~Test()</span><br><br>    cout &lt;&lt; <span class="hljs-string">&quot;\n 5  Test* p1 = new Test(70, 70);&quot;</span> &lt;&lt; endl;<br>    Test* p1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Test</span>(<span class="hljs-number">70</span>, <span class="hljs-number">70</span>);    <span class="hljs-comment">// Test(int,int) 要调用delete才析构对象</span><br>    cout &lt;&lt; <span class="hljs-string">&quot;\n 6  Test* p2 = new Test[2];&quot;</span> &lt;&lt; endl;<br>    Test* p2 = <span class="hljs-keyword">new</span> Test[<span class="hljs-number">2</span>];         <span class="hljs-comment">// Test(int,int) Test(int,int) 要调用delete才析构对象</span><br>    cout &lt;&lt; <span class="hljs-string">&quot;\n 7  Test* p3 = &amp;Test(80, 80);&quot;</span> &lt;&lt; endl;<br>    Test* p3 = &amp;<span class="hljs-built_in">Test</span>(<span class="hljs-number">80</span>, <span class="hljs-number">80</span>);       <span class="hljs-comment">// Test(int,int) 出语句调用~Test()</span><br>    cout &lt;&lt; <span class="hljs-string">&quot;\n 8  const Test&amp; p4 = Test(90, 90);&quot;</span> &lt;&lt; endl;<br>    <span class="hljs-type">const</span> Test&amp; p4 = <span class="hljs-built_in">Test</span>(<span class="hljs-number">90</span>, <span class="hljs-number">90</span>);  <span class="hljs-comment">// Test(int,int)</span><br><br>    <span class="hljs-comment">// ~Test()</span><br>    <span class="hljs-keyword">delete</span> p1;<br>    <span class="hljs-comment">// ~Test() ~Test()</span><br>    <span class="hljs-keyword">delete</span>[]p2;<br><br>    cout &lt;&lt; <span class="hljs-string">&quot;\n---------------------------finish&quot;</span> &lt;&lt; endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-function">Test <span class="hljs-title">t5</span><span class="hljs-params">(<span class="hljs-number">100</span>, <span class="hljs-number">100</span>)</span></span>;<span class="hljs-comment">//Test(int, int)</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308171023620.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="2-函数使用时调用了哪些方法"><a href="#2-函数使用时调用了哪些方法" class="headerlink" title="2. 函数使用时调用了哪些方法"></a>2. 函数使用时调用了哪些方法</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br> <br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br> <br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>  <span class="hljs-comment">//有默认值，可以有2种构造方式：Test()  Test(20)</span><br>  <span class="hljs-built_in">Test</span>(<span class="hljs-type">int</span> data = <span class="hljs-number">10</span>) :<span class="hljs-built_in">ma</span>(data)<br>  &#123;<br>    cout &lt;&lt; <span class="hljs-string">&quot;Test(int):&quot;</span> &lt;&lt;  ma &lt;&lt;  endl;<br>  &#125;<br>  ~<span class="hljs-built_in">Test</span>()<br>  &#123;<br>    cout &lt;&lt; <span class="hljs-string">&quot;~Test()&quot;</span> &lt;&lt; ma &lt;&lt;  endl;<br>  &#125;<br>  <span class="hljs-built_in">Test</span>(<span class="hljs-type">const</span> Test &amp;t) :<span class="hljs-built_in">ma</span>(t.ma)<br>  &#123;<br>    cout &lt;&lt; <span class="hljs-string">&quot;Test(const Test&amp;)&quot;</span> &lt;&lt; endl;<br>  &#125;<br>  <span class="hljs-type">void</span> <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> Test &amp;t)<br>  &#123;<br>    cout &lt;&lt; <span class="hljs-string">&quot;operator=&quot;</span> &lt;&lt; endl;<br>    ma = t.ma;<br>  &#125;<br>  <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">getData</span><span class="hljs-params">()</span><span class="hljs-type">const</span> </span>&#123; <span class="hljs-keyword">return</span> ma; &#125;<br><span class="hljs-keyword">private</span>:<br>  <span class="hljs-type">int</span> ma;<br>&#125;;<br> <br><span class="hljs-function">Test <span class="hljs-title">GetObject</span><span class="hljs-params">(Test t)</span></span><br><span class="hljs-function"></span>&#123;<br>  cout &lt;&lt; <span class="hljs-string">&quot;\n----------------GetObject1 \n&quot;</span>;<br>  <span class="hljs-type">int</span> val = t.<span class="hljs-built_in">getData</span>();<br>  <span class="hljs-function">Test <span class="hljs-title">tmp</span><span class="hljs-params">(val)</span></span>;<br>  cout &lt;&lt; <span class="hljs-string">&quot;\n----------------GetObject2 \n&quot;</span>;<br>  <span class="hljs-keyword">return</span> tmp;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>  Test t1;<span class="hljs-comment">//1、调用带整型参数的构造函数 </span><br>  Test t2;<span class="hljs-comment">//2、调用带整型参数的构造函数</span><br>  <br>  cout &lt;&lt; <span class="hljs-string">&quot;\n----------------main GetObject1 \n&quot;</span>;<br>  t2 = <span class="hljs-built_in">GetObject</span>(t1);<span class="hljs-comment">//函数调用</span><br>  cout &lt;&lt; <span class="hljs-string">&quot;\n----------------main GetObject2 \n&quot;</span>;<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>（1）实参传递给形参：调用 <code>Test(const Test&amp;)</code> 拿 t1 拷贝构造形参 t。<br>（2）调用 <code>Test(int)</code> 的构造，构造 tmp 对象。<br>（3）<code>return tmp;</code> tmp 和 t2 是两个不同函数栈帧上的对象，是不能直接进行赋值的 GetObject 函数完成调用时 tmp 对象作为局部对象就析构 ，为了把返回值带出来， 在 <code>return tmp;</code> 这里，首先要 在main 函数栈帧上构建一个临时对象，目的就是把 tmp 对象带出来。<br>（4）调用 <code>Test(const Test&amp;)</code>，tmp 拷贝构造 main 函数栈帧上的临时对象<br>（5）出 GetObject 作用域，tmp 析构。<br>（6）形参 t 对象析构。<br>（7）<code>operator =</code>，把 main 函数刚才构建的临时对象赋值给 t2，临时对象没名字，出了语句就要析构。<br>（8）把 main 函数刚才构建的临时对象析构。<br>（9）main 函数结束，t2 析构。<br>（10）t1 析构。</p>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308171025935.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>短短的代码调用了11个函数，可以优化。</p>
+<h2 id="3-三条对象优化规则"><a href="#3-三条对象优化规则" class="headerlink" title="3. 三条对象优化规则"></a>3. 三条对象优化规则</h2><ol>
+<li>函数参数传递过程中，对象优先按引用传递，这样可以省去一个形参t的拷贝构造调用，形参没有构建新的对象，出作用域也不用析构了，所以不要按值传！</li>
+<li>函数返回对象的时候，应该优先返回一个临时对象，而不要返回一个定义过的对象</li>
+<li>接收返回值是对象的函数调用的时候，优先按初始化的方式接收，不要按赋值的方式接收</li>
+</ol>
+<p>优化 1：<strong>没有 t1 的拷贝构造，形参 t 没有新的对象，出作用域也不用析构。</strong></p>
+<p>省去了形参t的拷贝构造和形参t的析构</p>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308171034781.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p> 优化 2：<strong>函数返回对象的时候，应该优先返回一个临时对象，而不要返回一个定义过的对象</strong></p>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308171035711.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>优化 3：<strong>接收返回值是对象的函数调用的时候，优先按初始化的方式接收，不要按赋值的方式接收</strong></p>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308171036229.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>函数返回值临时对象给 t2 初始化！用这个临时对象拷贝构造同类型的新对象 t2。<strong>C++ 编译器会进行优化，这个 main 函数栈帧上的临时对象都不产生了，直接构造 t2 对象。也就是 <code>return Test(val);</code> 直接构造 t2 对象了</strong>。</p>
+<p><code>Test t2= GetObject(t1);</code> 在汇编上，除了把 t1 的地址传进去，还把 t2 的地址也传进去了，也压到函数栈帧上，所以 <code>return Test(val);</code> 就可以取到 t2 的地址，就知道在哪块内存上构造一个名为 t2 的对象。</p>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308171039594.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="4-右值引用"><a href="#4-右值引用" class="headerlink" title="4. 右值引用"></a>4. 右值引用</h2><p>如果有的应用场景必须返回的是定义过的对象，也必须按赋值的方式来接收函数调用，那优化的后两条规则就用不成了。</p>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308171044277.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>解决办法：</p>
+<ul>
+<li>给该类添加一个右值引用拷贝构造函数，函数内部不做资源的分配，而是资源的转移，每当有通过右值（临时对象）来构建对象的时候，就调用右值引用拷贝构造函数。</li>
+</ul>
+<h3 id="1-详解"><a href="#1-详解" class="headerlink" title="1. 详解"></a>1. 详解</h3><ul>
+<li>左值：有名字或有内存</li>
+<li>右值：没名字（临时量）或没内存</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> a = <span class="hljs-number">10</span>;<br>    <span class="hljs-type">int</span> &amp;b = a;  <span class="hljs-comment">// ok</span><br>    <span class="hljs-type">int</span> &amp;c = <span class="hljs-number">10</span>;  <span class="hljs-comment">//error, 10是纯右值，不能拿普通引用引用它，可以拿常引用引用它</span><br>    <br>    <span class="hljs-type">const</span> <span class="hljs-type">int</span> &amp;c = <span class="hljs-number">10</span>;  <span class="hljs-comment">//ok，因为const做了这两件事：int tmp = 10; const int &amp;c= 10;</span><br>    <br>    <span class="hljs-type">int</span> &amp;&amp; d = <span class="hljs-number">10</span>; <span class="hljs-comment">//ok，右值引用，可以把一个右值绑定到右值引用上，底层汇编指令类似于int tmp = 10; int &amp;&amp;d = tmp;</span><br>    <br>    <span class="hljs-comment">//通过const方式不能改右值的值，通过&amp;&amp;右值引用是可以改右值的值的</span><br>    <br>    <span class="hljs-comment">//一个右值引用的变量，本身是一个左值，如int &amp;&amp; d = 10; d本身 是左值，类型是int，变量值是10，所以不能int &amp;&amp;f =d;</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>记住两句话：</p>
+<ul>
+<li>常量、数字、临时量、<strong>函数返回值</strong>都是右值，要引用它们就要用右值引用&amp;&amp;，将亡值也属于右值</li>
+<li>一个右值引用的变量，本身是一个左值</li>
+</ul>
+<h3 id="2-提高效率"><a href="#2-提高效率" class="headerlink" title="2. 提高效率"></a>2. 提高效率</h3><p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308171050183.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>我直接指向你的资源，再把你的指针置为空，你的资源相当于移动给我了</p>
+<p>下图中 tmpStr 匹到的就是右值引用的拷贝构造，因为函数返回值属于右值。</p>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308171051588.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><strong>CMyString 的重载加号运算符函数</strong></p>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308171052705.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="3-给容器里拷贝构造对象（笔试题）"><a href="#3-给容器里拷贝构造对象（笔试题）" class="headerlink" title="3. 给容器里拷贝构造对象（笔试题）"></a>3. 给容器里拷贝构造对象（笔试题）</h3><p>vector 提供了左值引用与右值引用的拷贝构造函数，传的是左值就调用左值引用的拷贝构造函数，传的是右值，就调用右值引用的拷贝构造函数。</p>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308171053392.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="5-move-移动语义"><a href="#5-move-移动语义" class="headerlink" title="5.  move 移动语义"></a>5.  move 移动语义</h2><p>move：移动语义，<strong>将 val 的类型强转右值引用类型继而可以通过右值引用使用该值，以用于移动语义。</strong></p>
+<p><code>std::move</code> 源码：<code>_Ty</code> 是未定的引用类型，<code>remove_reference_t</code> 用于移除<code>_Ty</code> 的引用类型。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">A</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">A</span>(<span class="hljs-type">int</span> data = <span class="hljs-number">10</span>) :<span class="hljs-built_in">ptr</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">int</span>(data)) &#123; cout &lt;&lt; <span class="hljs-string">&quot;A()&quot;</span> &lt;&lt; endl; &#125;<br>    ~<span class="hljs-built_in">A</span>() &#123;<br>        <span class="hljs-keyword">delete</span> ptr; ptr = <span class="hljs-literal">nullptr</span>; cout &lt;&lt; <span class="hljs-string">&quot;~A()&quot;</span> &lt;&lt; endl;<br>    &#125;<br>    <span class="hljs-built_in">A</span>(<span class="hljs-type">const</span> A&amp; src)<br>    &#123;<br>        cout &lt;&lt; <span class="hljs-string">&quot;A(const A&amp;)&quot;</span> &lt;&lt; endl;<br>        ptr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">int</span>(*src.ptr);<br>    &#125;<br>    <span class="hljs-built_in">A</span>(A&amp;&amp; src)<br>    &#123;<br>        cout &lt;&lt; <span class="hljs-string">&quot;A(A&amp;&amp;)&quot;</span> &lt;&lt; endl;<br>        ptr = src.ptr;<br>        src.ptr = <span class="hljs-literal">nullptr</span>;<br>    &#125;<br><span class="hljs-keyword">private</span>:<br>    <span class="hljs-type">int</span>* ptr;<br>&#125;;<br><br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    vector&lt;A&gt; vec;<br>    vec.<span class="hljs-built_in">reserve</span>(<span class="hljs-number">10</span>);<br><br>    cout &lt;&lt; <span class="hljs-string">&quot;--------------------begin&quot;</span> &lt;&lt; endl;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">2</span>; ++i) &#123;<br>        <span class="hljs-function">A <span class="hljs-title">a</span><span class="hljs-params">(i)</span></span>;<br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">        这里a是一个左值，因此vec.push_back(a)会调用左值的</span><br><span class="hljs-comment">        拷贝构造函数，用a拷贝构造vector底层数组中的对象</span><br><span class="hljs-comment">        */</span><br>        vec.<span class="hljs-built_in">push_back</span>(a);<br>    &#125;<br>    cout &lt;&lt; <span class="hljs-string">&quot;--------------------endl&quot;</span> &lt;&lt; endl;<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308171105811.png" srcset="/img/loading.gif" lazyload></p>
+<p>每次循环都需要首先构造 A,调用 A 的默认构造函数，然后 调用左值引用的拷贝构造函数，看上面的代码，<code>A a(i)</code> 在 for 循环中其实算是局部对象，在 <code>vec.push_back(a)</code> 完成后，a 对象调用析构函数。</p>
+<p>在 <code>vec.push_back(a)</code> 时，应该把对象 a 的资源直接移动给 vector 容器底层的对象，也就是调用右值引用参数的拷贝构造函数，怎么做到呢？这时候就用到了带移动语义的 <code>std::move</code> 函数，main 函数代码修改如下:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++">cout &lt;&lt; <span class="hljs-string">&quot;--------------------begin&quot;</span> &lt;&lt; endl;<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">2</span>; ++i)&#123;<br>  <span class="hljs-function">A <span class="hljs-title">a</span><span class="hljs-params">(i)</span></span>;<br> <br>  vec.<span class="hljs-built_in">push_back</span>(std::<span class="hljs-built_in">move</span>(a));<br>&#125;<br>cout &lt;&lt; <span class="hljs-string">&quot;--------------------endl&quot;</span> &lt;&lt; endl;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308171109450.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++">_EXPORT_STD <span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">_Ty</span>&gt;<br><span class="hljs-function">_NODISCARD _MSVC_INTRINSIC <span class="hljs-keyword">constexpr</span> <span class="hljs-type">remove_reference_t</span>&lt;_Ty&gt;&amp;&amp; <span class="hljs-title">move</span><span class="hljs-params">(_Ty&amp;&amp; _Arg)</span> <span class="hljs-keyword">noexcept</span> </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">static_cast</span>&lt;<span class="hljs-type">remove_reference_t</span>&lt;_Ty&gt;&amp;&amp;&gt;(_Arg);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>首先，函数参数 <code>T&amp;&amp;</code> 是一个指向模板类型参数的右值引用，通过引用折叠，此参数可以与任何类型的实参匹配（可以传递左值或右值，这是 <code>std::move</code> 主要使用的两种场景)。关于引用折叠如下：</p>
+<p><strong>公式一. <code>X&amp; &amp;</code>、<code>X&amp;&amp; &amp;</code>、<code>X&amp; &amp;&amp;</code> 都折叠成 <code>X&amp;</code>，用于处理左值。</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function">string <span class="hljs-title">s</span><span class="hljs-params">(<span class="hljs-string">&quot;hello&quot;</span>)</span></span>;<br>std::<span class="hljs-built_in">move</span>(s) =&gt; std::<span class="hljs-built_in">move</span>(string&amp; &amp;&amp;) =&gt; 折叠后 std::<span class="hljs-built_in">move</span>(string&amp; )<br>此时：T的类型为string&amp;<br><span class="hljs-keyword">typename</span> remove_reference&lt;T&gt;::type为string <br>整个std::move被实例化如下<br>string&amp;&amp; <span class="hljs-built_in">move</span>(string&amp; t) <span class="hljs-comment">//t为左值，移动后不能在使用t</span><br>&#123;<br>    <span class="hljs-comment">//通过static_cast将string&amp;强制转换为string&amp;&amp;</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">static_cast</span>&lt;string&amp;&amp;&gt;(t); <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>公式二、<code>X&amp;&amp; &amp;&amp;</code> 折叠成 <code>X&amp;&amp;</code>，用于处理右值。</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c++">std::<span class="hljs-built_in">move</span>(<span class="hljs-built_in">string</span>(<span class="hljs-string">&quot;hello&quot;</span>)) =&gt; std::<span class="hljs-built_in">move</span>(string&amp;&amp;)<br><span class="hljs-comment">//此时：T的类型为string </span><br><span class="hljs-comment">//     remove_reference&lt;T&gt;::type为string </span><br><span class="hljs-comment">//整个std::move被实例如下</span><br>string&amp;&amp; <span class="hljs-built_in">move</span>(string&amp;&amp; t) <span class="hljs-comment">//t为右值</span><br>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">static_cast</span>&lt;string&amp;&amp;&gt;(t);  <span class="hljs-comment">//返回一个右值引用</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>简单来说，右值经过 <code>T&amp;&amp;</code> 传递类型保持不变还是右值，而左值经过 <code>T&amp;&amp;</code> 变为普通的左值引用</p>
+<p><code>remove_reference</code> 是通过类模板的部分特例化进行实现的，其实现代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//原始的，最通用的版本</span><br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt; <span class="hljs-keyword">struct</span> <span class="hljs-title class_">remove_reference</span>&#123;<br>    <span class="hljs-keyword">typedef</span> T type;  <span class="hljs-comment">//定义T的类型别名为type</span><br>&#125;;<br> <br><span class="hljs-comment">//部分版本特例化，将用于左值引用和右值引用</span><br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt; <span class="hljs-keyword">struct</span> <span class="hljs-title class_">remove_reference</span>&lt;T&amp;&gt; <span class="hljs-comment">//左值引用</span><br>&#123; <span class="hljs-keyword">typedef</span> T type; &#125;<br> <br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span> <span class="hljs-title class_">T</span>&gt; <span class="hljs-keyword">struct</span> <span class="hljs-title class_">remove_reference</span>&lt;T&amp;&amp;&gt; <span class="hljs-comment">//右值引用</span><br>&#123; <span class="hljs-keyword">typedef</span> T type; &#125;   <br>  <br><span class="hljs-comment">//举例如下,下列定义的a、b、c三个变量都是int类型</span><br><span class="hljs-type">int</span> i;<br>remove_refrence&lt;<span class="hljs-keyword">decltype</span>(<span class="hljs-number">42</span>)&gt;::type a;             <span class="hljs-comment">//使用原版本，</span><br>remove_refrence&lt;<span class="hljs-keyword">decltype</span>(i)&gt;::type  b;             <span class="hljs-comment">//左值引用特例版本</span><br>remove_refrence&lt;<span class="hljs-keyword">decltype</span>(std::<span class="hljs-built_in">move</span>(i))&gt;::type  b;  <span class="hljs-comment">//右值引用特例版本 </span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>std::move</code>实现：</p>
+<p>首先，通过右值引用传递模板实现，利用引用折叠原理将右值经过 <code>T&amp;&amp;</code> 传递类型保持不变还是右值，而左值经过 <code>T&amp;&amp;</code> 变为普通的左值引用，以保证模板可以传递任意实参，且保持类型不变。然后我们通过 <code>static_cast&lt;&gt;</code> 进行强制类型转换返回 <code>T&amp;&amp;</code> 右值引用，而 <code>static_cast</code> 之所以能使用类型转换，是通过 <code>remove_refrence::type</code> 模板移除 <code>T&amp;&amp;</code>，<code>T&amp;</code> 的引用，获取具体类型 T。 </p>
+</blockquote>
+<p><code>std::move</code> 函数可以以非常简单的方式将左值引用转换为右值引用</p>
+<ul>
+<li>C++ 标准库使用比如 <code>vector::push_back</code> 等这类函数时,会对参数的对象进行复制,连数据也会复制.这就会造成对象内存的额外创建, 本来原意是想把参数 <code>push_back</code> 进去就行了,通 <code>std::move</code>，可以避免不必要的拷贝操作。</li>
+<li><code>std::move</code> 是将对象的状态或者所有权从一个对象转移到另一个对象，只是转移，没有内存的搬迁或者内存拷贝所以可以提高利用效率,改善性能.。</li>
+<li>对指针类型的标准库对象并不需要这么做.</li>
+</ul>
+<p>使用 <code>std::move</code> 后，左值的内容将会被转移，如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">//摘自https://zh.cppreference.com/w/cpp/utility/move</span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;utility&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    std::string str = <span class="hljs-string">&quot;Hello&quot;</span>;<br>    std::vector&lt;std::string&gt; v;<br>    <span class="hljs-comment">//调用常规的拷贝构造函数，新建字符数组，拷贝数据</span><br>    v.<span class="hljs-built_in">push_back</span>(str);<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;After copy, str is \&quot;&quot;</span> &lt;&lt; str &lt;&lt; <span class="hljs-string">&quot;\&quot;\n&quot;</span>;<br>    <span class="hljs-comment">//调用移动构造函数，掏空str，掏空后，最好不要使用str</span><br>    v.<span class="hljs-built_in">push_back</span>(std::<span class="hljs-built_in">move</span>(str));<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;After move, str is \&quot;&quot;</span> &lt;&lt; str &lt;&lt; <span class="hljs-string">&quot;\&quot;\n&quot;</span>;<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;The contents of the vector are \&quot;&quot;</span> &lt;&lt; v[<span class="hljs-number">0</span>]<br>                                         &lt;&lt; <span class="hljs-string">&quot;\&quot;, \&quot;&quot;</span> &lt;&lt; v[<span class="hljs-number">1</span>] &lt;&lt; <span class="hljs-string">&quot;\&quot;\n&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308171158831.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="6-forward-完美转义"><a href="#6-forward-完美转义" class="headerlink" title="6. forward 完美转义"></a>6. forward 完美转义</h2><p><code>std::forward</code> 通常是用于完美转发的，它会将输入的参数原封不动地传递到下一个函数中，这个“原封不动”指的是，如果输入的参数是左值，那么传递给下一个函数的参数的也是左值；如果输入的参数是右值，那么传递给下一个函数的参数的也是右值。一个经典的完美转发的场景是</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span>... Args&gt;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">forward</span><span class="hljs-params">(Args&amp;&amp;... args)</span> </span>&#123;<br>    <span class="hljs-built_in">f</span>(std::forward&lt;Args&gt;(args)...);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>需要注意的有 2 点：</p>
+<ul>
+<li>输入参数的类型是 <code>Args&amp;&amp;...</code> ， &amp;&amp; 的作用是引用折叠</li>
+<li><code>std::forward</code> 的模板参数必须是 <code>&lt;Args&gt;</code>，而不能是 <code>&lt;Args...&gt;</code>，这是由于我们不能对 Args 进行解包之后传递给 <code>std::forward</code>，而解包的过程必须在调用 <code>std::forward</code> 之后.</li>
+</ul>
+<p>其实现代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs c++">	<span class="hljs-comment">// FUNCTION TEMPLATE forward</span><br><span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> _Ty&gt;</span><br><span class="hljs-function">	_NODISCARD <span class="hljs-keyword">constexpr</span> _Ty&amp;&amp; <span class="hljs-title">forward</span><span class="hljs-params">(<span class="hljs-type">remove_reference_t</span>&lt;_Ty&gt;&amp; _Arg)</span> <span class="hljs-keyword">noexcept</span></span><br><span class="hljs-function">	</span>&#123;	<span class="hljs-comment">// forward an lvalue as either an lvalue or an rvalue</span><br>	<span class="hljs-keyword">return</span> (<span class="hljs-built_in">static_cast</span>&lt;_Ty&amp;&amp;&gt;(_Arg));<br>	&#125;<br> <br><span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> _Ty&gt;</span><br><span class="hljs-function">	_NODISCARD <span class="hljs-keyword">constexpr</span> _Ty&amp;&amp; <span class="hljs-title">forward</span><span class="hljs-params">(<span class="hljs-type">remove_reference_t</span>&lt;_Ty&gt;&amp;&amp; _Arg)</span> <span class="hljs-keyword">noexcept</span></span><br><span class="hljs-function">	</span>&#123;	<span class="hljs-comment">// forward an rvalue as an rvalue</span><br>	<span class="hljs-built_in">static_assert</span>(!is_lvalue_reference_v&lt;_Ty&gt;, <span class="hljs-string">&quot;bad forward call&quot;</span>);<br>	<span class="hljs-keyword">return</span> (<span class="hljs-built_in">static_cast</span>&lt;_Ty&amp;&amp;&gt;(_Arg));<br>	&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>std::remove_reference_t</code> 是一个模板类的类型别名，用于去掉 T 的引用属性。</p>
+<p><strong>实例：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;utility&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span><br> <br><span class="hljs-keyword">struct</span> <span class="hljs-title class_">A</span> &#123;<br>  <span class="hljs-type">int</span> value;<br>  <span class="hljs-built_in">A</span>(<span class="hljs-type">int</span> value=<span class="hljs-number">0</span>) : <span class="hljs-built_in">value</span>(value) &#123;<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;construct&quot;</span> &lt;&lt; std::endl;<br>  &#125;<br> <br>   <span class="hljs-built_in">A</span>(<span class="hljs-type">const</span> A&amp;a) : <span class="hljs-built_in">value</span>(a.value) &#123;<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;A(const A&amp;a):&quot;</span> &lt;&lt; a.value  &lt;&lt; std::endl;<br>  &#125;<br> <br>   <span class="hljs-built_in">A</span>(<span class="hljs-type">const</span> A&amp;&amp;a) : <span class="hljs-built_in">value</span>(a.value) &#123;<br>     std::cout &lt;&lt; <span class="hljs-string">&quot;A(const A&amp;&amp;a):&quot;</span> &lt;&lt; a.value &lt;&lt; std::endl;<br>   &#125;<br> <br>  ~<span class="hljs-built_in">A</span>() &#123;<br>    std::cout &lt;&lt; <span class="hljs-string">&quot;deconstruct&quot;</span> &lt;&lt; std::endl;<br>  &#125;<br>&#125;;<br> <br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">test</span><span class="hljs-params">(A&amp;&amp; a, <span class="hljs-type">double</span> b)</span> </span>&#123;<br>  std::cout &lt;&lt; <span class="hljs-string">&quot;完美转发 右值引用： &quot;</span> &lt;&lt; a.value &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; b &lt;&lt; std::endl;<br>&#125;<br> <br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">test</span><span class="hljs-params">(A&amp; a, <span class="hljs-type">double</span> b)</span> </span>&#123;<br>  std::cout &lt;&lt; <span class="hljs-string">&quot;完美转发 左值引用： &quot;</span> &lt;&lt; a.value &lt;&lt; <span class="hljs-string">&quot; &quot;</span>&lt;&lt; b &lt;&lt; std::endl;<br>&#125;<br> <br><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">class</span>... Args&gt;<br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">test_forward</span><span class="hljs-params">(Args&amp;&amp;... args)</span> </span>&#123;<br>  <span class="hljs-built_in">test</span>(std::forward&lt;Args&gt;(args)...);<br>&#125;<br> <br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>  <span class="hljs-function">A <span class="hljs-title">a</span><span class="hljs-params">(<span class="hljs-number">1</span>)</span></span>;<br>  <span class="hljs-type">float</span> b = <span class="hljs-number">2.1</span>;<br>  <span class="hljs-built_in">test_forward</span>(a, b);<br> <br>  <span class="hljs-built_in">test_forward</span>(std::<span class="hljs-built_in">move</span>(a), b);<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><code>test_forward</code> 第一个参数通过 forward 完美转发到 <code>void test(A&amp; a, double b)</code> 以及 <code>void test(A&amp;&amp; a, double b)；</code></p>
+<p>首先传入左值 <code>test_forward(a,b)</code>  -&gt; 调用 <code>void test(A&amp; a, double b)</code>。</p>
+<p>之后传入传入左值 <code>test_forward(std::move(a),b)</code>  -&gt;调用 <code>void test(A&amp;&amp; a, double b)</code>。</p>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308171201247.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>08.C++ 优化</div>
+      <div>http://example.com/2023/08/17/03.C++进阶部分/08.C++ 优化/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yakumo</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>August 17, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/08/17/03.C++%E8%BF%9B%E9%98%B6%E9%83%A8%E5%88%86/09.C++%20%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" title="09.C++ 智能指针">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">09.C++ 智能指针</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/08/09/02.C++%20%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/07.C++%20STL/" title="07.C++ STL">
+                        <span class="hidden-mobile">07.C++ STL</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
