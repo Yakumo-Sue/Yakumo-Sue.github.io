@@ -16,16 +16,16 @@
   <meta name="author" content="Yakumo">
   <meta name="keywords" content="C++,NodeJs,UE">
   
-    <meta name="description" content="学习笔记：前端、独立游戏开发、绘画技巧、写作、历史神话......">
+    <meta name="description" content="设计模式：是软件设计中常见问题的典型解决方案。它们就像能根据需求进行调整的预制蓝图，可用于解决代码中反复出现的设计问题。 设计模式与方法或库的使用方式不同，你很难直接在自己的程序中套用某个设计模式。模式并不是一段特定的代码，而是解决特定问题的一般性概念。你可以根据模式来实现符合自己程序实际所需的解决方案。 “每一个模式描述了一个在我们周围不断重复发生的问题，以及该问题的解决方案的核心。这样，你就能">
 <meta property="og:type" content="article">
 <meta property="og:title" content="00.C++ 设计模式概述">
 <meta property="og:url" content="http://example.com/2023/08/21/04.C++%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/00.C++%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%A6%82%E8%BF%B0/index.html">
 <meta property="og:site_name" content="八云家的记事簿 | 迦勒底亚斯 | Finis Chaldea | フィニス・カルデア">
-<meta property="og:description" content="学习笔记：前端、独立游戏开发、绘画技巧、写作、历史神话......">
+<meta property="og:description" content="设计模式：是软件设计中常见问题的典型解决方案。它们就像能根据需求进行调整的预制蓝图，可用于解决代码中反复出现的设计问题。 设计模式与方法或库的使用方式不同，你很难直接在自己的程序中套用某个设计模式。模式并不是一段特定的代码，而是解决特定问题的一般性概念。你可以根据模式来实现符合自己程序实际所需的解决方案。 “每一个模式描述了一个在我们周围不断重复发生的问题，以及该问题的解决方案的核心。这样，你就能">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/img/Blog-Logo/C++-design.png">
 <meta property="article:published_time" content="2023-08-21T07:13:10.937Z">
-<meta property="article:modified_time" content="2023-08-21T07:17:14.930Z">
+<meta property="article:modified_time" content="2023-08-30T00:21:44.226Z">
 <meta property="article:author" content="Yakumo">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="设计模式">
@@ -241,7 +241,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          0 字
+          636 字
         
       </span>
     
@@ -253,7 +253,7 @@
         
         
           <!-- compatible with older versions-->
-          1 分钟
+          6 分钟
         
       </span>
     
@@ -299,7 +299,41 @@
             
               <div class="markdown-body">
                 
-                
+                <p><strong>设计模式</strong>：是软件设计中常见问题的典型解决方案。它们就像能根据需求进行调整的预制蓝图，可用于解决代码中反复出现的设计问题。</p>
+<p>设计模式与方法或库的使用方式不同，你很难直接在自己的程序中套用某个设计模式。模式并不是一段特定的代码，而是解决特定问题的一般性概念。你可以根据模式来实现符合自己程序实际所需的解决方案。</p>
+<p>“每一个模式描述了一个在我们周围不断重复发生的问题，以及该问题的解决方案的核心。这样，你就能一次又一次地使用该方案而不必做重复劳动”。 ——Christopher Alexander</p>
+<p><strong>作用：</strong></p>
+<ul>
+<li>提高思维能力、编程能力和设计能力。</li>
+<li>使程序<strong>设计更加标准化</strong>、代码编制<strong>更加工程化</strong>，使软件开发效率大大提高，从而<strong>缩短软件的开发周期</strong>。</li>
+<li>使设计的代码<strong>可重用性高、可读性强、可靠性高、灵活性好、可维护性强</strong>。</li>
+</ul>
+<h2 id="7-种开发原则"><a href="#7-种开发原则" class="headerlink" title="7 种开发原则"></a>7 种开发原则</h2><blockquote>
+<ol>
+<li>开闭原则</li>
+<li>里氏替换原则</li>
+<li>依赖倒置原则</li>
+<li>单一职责原则</li>
+<li>接口隔离职责</li>
+<li>迪米特法则</li>
+<li>合成复用原则</li>
+</ol>
+</blockquote>
+<h3 id="1-开闭原则"><a href="#1-开闭原则" class="headerlink" title="1. 开闭原则"></a>1. 开闭原则</h3><p><strong>定义：</strong></p>
+<ul>
+<li>Open Closed Principle, OCP</li>
+<li>软件实体应当<strong>对扩展开发，对修改关闭</strong>。即：当应用的需求改变时，在不修改软件的实体的源代码或者二进制代码的前提下，可以扩展模块的功能，使其满足新的需求。</li>
+</ul>
+<p><strong>作用：</strong></p>
+<ul>
+<li><p>对软件测试的影响：<br>  测试时<strong>只需要对扩展的代码进行测试</strong>就可以了，因为原有的测试代码仍然能够正常运行。</p>
+</li>
+<li><p>提高代码的<strong>可复用</strong>性<br>  粒度越小，被复用的可能性就越大；在面向对象的程序设计中，根据原子和抽象编程可以提高代码的可复用性。</p>
+</li>
+<li><p>提高软件的<strong>可维护</strong>性<br>  稳定性高和延续性强，从而易于扩展和维护。</p>
+</li>
+</ul>
+<h3 id="2-里氏替换原则"><a href="#2-里氏替换原则" class="headerlink" title="2. 里氏替换原则"></a>2. 里氏替换原则</h3>
                 
               </div>
             
