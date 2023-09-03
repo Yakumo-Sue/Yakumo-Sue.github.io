@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "92f3f232d6a9b884",
+        "id": "7c5c1e0202ef99c1",
         "type": "tabs",
         "children": [
           {
-            "id": "d5ce916de554185b",
+            "id": "8c854a010a305b23",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/_posts/02.C++ 基础部分/00-3.C++ STL 基础.md",
+                "file": "source/_posts/00.读书笔记/01.计算机科学导论 - 读书笔记/第一章 - 绪论.md",
                 "mode": "source",
                 "source": false
               }
@@ -48,7 +48,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#define",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -101,7 +101,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/_posts/02.C++ 基础部分/00-3.C++ STL 基础.md",
+                "file": "source/_posts/00.读书笔记/01.计算机科学导论 - 读书笔记/第一章 - 绪论.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/_posts/02.C++ 基础部分/00-3.C++ STL 基础.md",
+                "file": "source/_posts/00.读书笔记/01.计算机科学导论 - 读书笔记/第一章 - 绪论.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -141,7 +141,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/_posts/02.C++ 基础部分/00-3.C++ STL 基础.md"
+                "file": "source/_posts/00.读书笔记/01.计算机科学导论 - 读书笔记/第一章 - 绪论.md"
               }
             }
           },
@@ -173,11 +173,13 @@
       "file-tree-alternative:File Tree Alternative Plugin": false
     }
   },
-  "active": "d5ce916de554185b",
+  "active": "4d5bd2ab514818f1",
   "lastOpenFiles": [
-    "source/_posts/02.C++ 基础部分/00-2.C++ 核心编程.md",
+    "source/_posts/00.读书笔记/01.计算机科学导论 - 读书笔记",
+    "source/_posts/00.读书笔记/01.计算机科学导论 - 读书笔记/第一章 - 绪论.md",
     "source/_posts/02.C++ 基础部分/00-1.C++ 基本语法.md",
     "source/_posts/02.C++ 基础部分/00-3.C++ STL 基础.md",
+    "source/_posts/02.C++ 基础部分/00-2.C++ 核心编程.md",
     "source/_posts/02.C++ 基础部分/01.理解 C++ 内核.md",
     "source/_posts/02.C++ 基础部分/02.C++ 基础精讲.md",
     "source/_posts/00.C++面试题/01.C++ 面试题.md",
@@ -216,8 +218,6 @@
     "source/_posts/03.Linux 学习笔记/06. 进程间通信pipe、fifo、mmap.md",
     "source/_posts/03.Linux 学习笔记/05-2. 进程回收 wait、waitpid.md",
     "source/_posts/03.Linux 学习笔记/05-1. 进程控制 fork、exec 函数族.md",
-    "source/_posts/03.Linux 学习笔记/03-3. 进程控制块概念、阻塞、非阻塞概念.md",
-    "source/_posts/03.Linux 学习笔记/04-3. 重定向.md",
     "themes/fluid/source/img/Post-Banner/01.blogs/1310700.jpg",
     "themes/fluid/source/img/Blog-Logo/biology_logo.jpg",
     "themes/fluid/source/img/Blog-Logo/C++_Logo.png",

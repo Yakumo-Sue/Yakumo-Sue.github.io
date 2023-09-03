@@ -1,16 +1,20 @@
 {
   "recentFiles": [
     {
+      "basename": "第一章 - 绪论",
+      "path": "source/_posts/00.读书笔记/01.计算机科学导论 - 读书笔记/第一章 - 绪论.md"
+    },
+    {
+      "basename": "00-1.C++ 基本语法",
+      "path": "source/_posts/02.C++ 基础部分/00-1.C++ 基本语法.md"
+    },
+    {
       "basename": "00-3.C++ STL 基础",
       "path": "source/_posts/02.C++ 基础部分/00-3.C++ STL 基础.md"
     },
     {
       "basename": "00-2.C++ 核心编程",
       "path": "source/_posts/02.C++ 基础部分/00-2.C++ 核心编程.md"
-    },
-    {
-      "basename": "00-1.C++ 基本语法",
-      "path": "source/_posts/02.C++ 基础部分/00-1.C++ 基本语法.md"
     },
     {
       "basename": "01.理解 C++ 内核",
