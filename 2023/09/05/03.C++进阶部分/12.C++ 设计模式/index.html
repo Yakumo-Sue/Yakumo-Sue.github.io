@@ -1,0 +1,974 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/Blog-Logo/logo.png">
+  <link rel="icon" href="/img/Blog-Logo/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Yakumo">
+  <meta name="keywords" content="C++,NodeJs,UE">
+  
+    <meta name="description" content="本节分为六部分：  单例模式 工厂模式 代理模式 装饰器模式 适配器模式 观察者模式  1. 单例模式数学与逻辑学 中，singleton 定义为：有且仅有一个元素的集合。 单例模式最初的定义出现在《设计模式》（艾迪生维斯理，1994）：保证一个类仅有一个实例，并提供一个访问它的全局访问点。 动机对于系统中的某些类来说，只有一个实例很重要： 例如：一个系统中可以存在多个打印任务，但是只能有一个正在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="12.C++ 设计模式">
+<meta property="og:url" content="http://example.com/2023/09/05/03.C++%E8%BF%9B%E9%98%B6%E9%83%A8%E5%88%86/12.C++%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html">
+<meta property="og:site_name" content="八云家的记事簿 | 迦勒底亚斯 | Finis Chaldea | フィニス・カルデア">
+<meta property="og:description" content="本节分为六部分：  单例模式 工厂模式 代理模式 装饰器模式 适配器模式 观察者模式  1. 单例模式数学与逻辑学 中，singleton 定义为：有且仅有一个元素的集合。 单例模式最初的定义出现在《设计模式》（艾迪生维斯理，1994）：保证一个类仅有一个实例，并提供一个访问它的全局访问点。 动机对于系统中的某些类来说，只有一个实例很重要： 例如：一个系统中可以存在多个打印任务，但是只能有一个正在">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/img/Blog-Logo/C++_Logo.png">
+<meta property="article:published_time" content="2023-09-05T12:15:17.932Z">
+<meta property="article:modified_time" content="2023-09-05T12:15:17.932Z">
+<meta property="article:author" content="Yakumo">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="设计模式">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/Blog-Logo/C++_Logo.png">
+  
+  
+  
+  <title>12.C++ 设计模式 - 八云家的记事簿 | 迦勒底亚斯 | Finis Chaldea | フィニス・カルデア</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":80,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 80vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>八云家的记事簿</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>目录</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>链接</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/Post-Banner/01.blogs/1314358.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="12.C++ 设计模式"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        Yakumo
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-09-05 12:15" pubdate>
+          Tuesday, September 5th 2023, 12:15 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          <!-- compatible with older versions-->
+          18k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          <!-- compatible with older versions-->
+          151 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">12.C++ 设计模式</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>本节分为六部分：</p>
+<ol>
+<li>单例模式</li>
+<li>工厂模式</li>
+<li>代理模式</li>
+<li>装饰器模式</li>
+<li>适配器模式</li>
+<li>观察者模式</li>
+</ol>
+<h2 id="1-单例模式"><a href="#1-单例模式" class="headerlink" title="1. 单例模式"></a>1. 单例模式</h2><p><code>数学与逻辑学</code> 中，<code>singleton</code> 定义为：<strong>有且仅有一个元素的集合</strong>。</p>
+<p>单例模式最初的定义出现在《设计模式》（艾迪生维斯理，1994）：<strong>保证一个类仅有一个实例，并提供一个访问它的全局访问点</strong>。</p>
+<h3 id="动机"><a href="#动机" class="headerlink" title="动机"></a>动机</h3><p>对于系统中的某些类来说，只有一个实例很重要：</p>
+<p>例如：一个系统中可以存在多个打印任务，但是只能有一个正在工作的任务；一个系统只能有一个窗口管理器或文件系统；一个系统只能有一个计时工具或 ID (序号)生成器。</p>
+<p>如在 Windows 中就只能打开一个任务管理器。如果不使用机制对窗口对象进行唯一化，将弹出多个窗口，如果这些窗口显示的内容完全一致，则是重复对象，浪费内存资源；如果这些窗口显示的内容不一致，则意味着在某一瞬间系统有多个状态，与实际不符，也会给用户带来误解，不知道哪一个才是真实的状态。</p>
+<p>因此有时&#x3D;&#x3D;确保系统中某个对象的唯一性&#x3D;&#x3D;即<code>一个类只能有一个实例</code>非常重要。</p>
+<h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><p>根据定义，显然单例模式的要点有三个：</p>
+<ul>
+<li>某个类只能有一个实例</li>
+<li>它必须自行创建这个实例</li>
+<li>它必须自行向整个系统提供这个实例、</li>
+</ul>
+<p>具体实现条件：</p>
+<ol>
+<li><strong>构造函数私有化</strong>，这样用户就不能够随意定义该类的对象。</li>
+<li>类定义中含有一个该类的静态私有对象。</li>
+<li>该类 <strong>提供了一个静态的公有函数</strong> 用于创建或者获取它本身的静态四有对象。</li>
+</ol>
+<h3 id="1-饿汉式单例模式"><a href="#1-饿汉式单例模式" class="headerlink" title="1. 饿汉式单例模式"></a>1. 饿汉式单例模式</h3><p><strong>饿汉式单例模式</strong>，顾名思义，就是程序启动时就实例化了该对象，并没有推迟到第一次使用该对象时再进行实例化；如果运行过程中没有使用到，该实例对象就被浪费掉了。</p>
+<p><strong>实现：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Singleton</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-type">static</span> Singleton* <span class="hljs-title">getInstance</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">return</span> &amp;instance;<br>	&#125;<br><br><span class="hljs-keyword">private</span>:<br>	<span class="hljs-comment">// 静态实例化类</span><br>	<span class="hljs-type">static</span> Singleton instance;<br>	<span class="hljs-comment">// 私有化构造</span><br>	<span class="hljs-built_in">Singleton</span>() &#123; cout &lt;&lt; <span class="hljs-string">&quot;私有化构造调用！！&quot;</span> &lt;&lt; endl; &#125;<br>	<span class="hljs-comment">// 删除赋值重载和拷贝构造</span><br>	<span class="hljs-built_in">Singleton</span>(<span class="hljs-type">const</span> Singleton&amp;) = <span class="hljs-keyword">delete</span>;<br>	Singleton&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> Singleton&amp;) = <span class="hljs-keyword">delete</span>;<br>&#125;;<br><br><span class="hljs-comment">// 外部提供 instance 实例</span><br>Singleton Singleton::instance;<br></code></pre></td></tr></table></figure>
+
+<p><strong>使用结果：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	Singleton* a1 = Singleton::<span class="hljs-built_in">getInstance</span>();<br>	Singleton* a2 = Singleton::<span class="hljs-built_in">getInstance</span>();<br>	Singleton* a3 = Singleton::<span class="hljs-built_in">getInstance</span>();<br><br>	cout &lt;&lt; a1 &lt;&lt; endl;<br>	cout &lt;&lt; a2 &lt;&lt; endl;<br>	cout &lt;&lt; a3 &lt;&lt; endl;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>根据定义我们知道，<code>a1</code>、<code>a2</code>、<code>a3</code>打印出来应该是<code>同一个地址</code>！</p>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202309050926353.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="2-懒汉式单例模式"><a href="#2-懒汉式单例模式" class="headerlink" title="2. 懒汉式单例模式"></a>2. 懒汉式单例模式</h3><p><strong>通过创建静态对象，c++11是线程安全的</strong></p>
+<p>对象的实例化，延迟到第一次使用它的时候。在开发过程中，用的是懒汉模式，这样尽可能延迟对象的创建。</p>
+<p>在 C++11 中，考虑线程安全的懒汉式单例：static 是线程安全的，不用考虑加锁。</p>
+<blockquote>
+<p>只有有人调用的时候，才会进行构造。</p>
+</blockquote>
+<p><strong>实现：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// 懒汉式单例模式</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Singleton</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-type">static</span> Singleton* <span class="hljs-title">getInstance</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-comment">// 判断实例是否为空</span><br>		<span class="hljs-keyword">if</span> (instance == <span class="hljs-literal">nullptr</span>)<br>		&#123;<br>			<span class="hljs-comment">// 创建实例</span><br>			instance = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Singleton</span>();<br>		&#125;<br>		<span class="hljs-comment">// 有实例了则直接返回</span><br>		<span class="hljs-keyword">return</span> instance;<br>	&#125;<br><br><span class="hljs-keyword">private</span>:<br>	<span class="hljs-type">static</span> Singleton* instance;<br>	<span class="hljs-comment">// 私有化构造</span><br>	<span class="hljs-built_in">Singleton</span>() &#123; cout &lt;&lt; <span class="hljs-string">&quot;私有化构造调用！！&quot;</span> &lt;&lt; endl; &#125;<br>	<span class="hljs-comment">// 删除赋值重载和拷贝构造</span><br>	<span class="hljs-built_in">Singleton</span>(<span class="hljs-type">const</span> Singleton&amp;) = <span class="hljs-keyword">delete</span>;<br>	Singleton&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> Singleton&amp;) = <span class="hljs-keyword">delete</span>;<br>&#125;;<br><span class="hljs-comment">// 初始化实例为 nullptr</span><br>Singleton* Singleton::instance = <span class="hljs-literal">nullptr</span>;<br></code></pre></td></tr></table></figure>
+
+<p><strong>使用：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	Singleton* a1 = Singleton::<span class="hljs-built_in">getInstance</span>();<br>	Singleton* a2 = Singleton::<span class="hljs-built_in">getInstance</span>();<br>	Singleton* a3 = Singleton::<span class="hljs-built_in">getInstance</span>();<br><br>	cout &lt;&lt; a1 &lt;&lt; endl;<br>	cout &lt;&lt; a2 &lt;&lt; endl;<br>	cout &lt;&lt; a3 &lt;&lt; endl;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202309050935326.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>虽然运行结果没有问题，<br>但是，这个代码是&#x3D;&#x3D;有问题&#x3D;&#x3D;的：<br><code>线程不安全</code>！</p>
+<p>对于<code>if (instance == nullptr)</code> 、<code>instance = new Singleton()</code>这两句来说，如果处在&#x3D;&#x3D;多线程&#x3D;&#x3D;环境下：</p>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202309050935964.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>发现这种情况下，会执行<strong>多次对象的构造</strong>。</p>
+<h4 id="线程安全版本实现"><a href="#线程安全版本实现" class="headerlink" title="线程安全版本实现"></a><strong>线程安全版本实现</strong></h4><p>为了避免上述问题，改进代码，加入<code>线程互斥锁（mutex）</code>：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;mutex&gt;</span></span><br>std::mutex mtx;<br><br><span class="hljs-comment">// 懒汉式单例模式（线程安全版本）</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Singleton</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-type">static</span> Singleton* <span class="hljs-title">getInstance</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-comment">// 判断实例是否为空</span><br>		<span class="hljs-keyword">if</span> (instance == <span class="hljs-literal">nullptr</span>)<br>		&#123;<br>			<span class="hljs-comment">// 加锁</span><br>			<span class="hljs-function">lock_guard&lt;std::mutex&gt; <span class="hljs-title">lck</span><span class="hljs-params">(mtx)</span></span>;<br>			<span class="hljs-comment">// 再进行判断</span><br>			<span class="hljs-keyword">if</span> (instance == <span class="hljs-literal">nullptr</span>)<br>			&#123;<br>				<span class="hljs-comment">// 创建实例</span><br>				instance = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Singleton</span>();<br>			&#125;<br>		&#125;<br>		<span class="hljs-comment">// 有实例了则直接返回</span><br>		<span class="hljs-keyword">return</span> instance;<br>	&#125;<br><br><span class="hljs-keyword">private</span>:<br>	<span class="hljs-type">static</span> Singleton* instance;<br>	<span class="hljs-comment">// 私有化构造</span><br>	<span class="hljs-built_in">Singleton</span>() &#123; cout &lt;&lt; <span class="hljs-string">&quot;私有化构造调用！！&quot;</span> &lt;&lt; endl; &#125;<br>	<span class="hljs-comment">// 删除赋值重载和拷贝构造</span><br>	<span class="hljs-built_in">Singleton</span>(<span class="hljs-type">const</span> Singleton&amp;) = <span class="hljs-keyword">delete</span>;<br>	Singleton&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> Singleton&amp;) = <span class="hljs-keyword">delete</span>;<br>&#125;;<br><span class="hljs-comment">// 初始化实例为 nullptr</span><br>Singleton* Singleton::instance = <span class="hljs-literal">nullptr</span>;<br></code></pre></td></tr></table></figure>
+
+<p>注意：  </p>
+<p>为了避免<code>线程安全</code>问题：需要进行锁+<code>两次判断</code>；避免因为一个线程后续操作未完成，而使得后来的线程进入<code>if语句</code>。</p>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202309050942936.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="精简实现（优化线程安全版本）"><a href="#精简实现（优化线程安全版本）" class="headerlink" title="精简实现（优化线程安全版本）"></a>精简实现（优化线程安全版本）</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Singleton</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-type">static</span> Singleton* <span class="hljs-title">getInstance</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-type">static</span> Singleton instance;<br>		<span class="hljs-comment">// 有实例了则直接返回</span><br>		<span class="hljs-keyword">return</span> &amp;instance;<br>	&#125;<br><br><span class="hljs-keyword">private</span>:<br>	<span class="hljs-comment">// 私有化构造</span><br>	<span class="hljs-built_in">Singleton</span>() &#123; cout &lt;&lt; <span class="hljs-string">&quot;私有化构造调用！！&quot;</span> &lt;&lt; endl; &#125;<br>	<span class="hljs-comment">// 删除赋值重载和拷贝构造</span><br>	<span class="hljs-built_in">Singleton</span>(<span class="hljs-type">const</span> Singleton&amp;) = <span class="hljs-keyword">delete</span>;<br>	Singleton&amp; <span class="hljs-keyword">operator</span>=(<span class="hljs-type">const</span> Singleton&amp;) = <span class="hljs-keyword">delete</span>;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202309050944677.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>注意：  </p>
+<p>这个精简版之所以也是&#x3D;&#x3D;线程安全&#x3D;&#x3D;的，是因为，在底层对于<code>static静态局部变量的初始化</code>，编译器会自动&#x3D;&#x3D;加锁和解锁&#x3D;&#x3D;。  </p>
+<p>将上述代码在<code>Linux</code>通过<code>g++</code>编译，命令如下：  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">g++ -o 单例模式 单例模式.cpp -g<br></code></pre></td></tr></table></figure>
+
+<p>接下来启动<code>gdb</code>调试：  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">gdb 单例模式 -q<br></code></pre></td></tr></table></figure>
+
+<p>接下来输入<code>l</code>：（注意是&#x3D;&#x3D;英文L的小写&#x3D;&#x3D;）</p>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202309050947574.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>接着下断点：<code>b 10</code>：</p>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202309050947844.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>接着运行到断点处：<code>run</code>：</p>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202309050947811.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>接下来执行：<code>disassemble getinstance</code>：</p>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202309050948027.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>可以看到，底层的汇编是自动<code>加锁</code>、<code>解锁</code>的！</p>
+<h2 id="2-工厂模式"><a href="#2-工厂模式" class="headerlink" title="2. 工厂模式"></a>2. 工厂模式</h2><p><code>Factory Method</code> 用于定义一个用于创建产品的接口，由子类决定生产什么产品。</p>
+<blockquote>
+<p>主要是对 <strong>对象的创建</strong> 进行了一个封装。</p>
+</blockquote>
+<p><strong>意图</strong>：定义一个创建对象的接口，让其子类自己决定实例化哪一个工厂类，工厂模式使其创建过程延迟到子类进行。</p>
+<p><strong>主要解决</strong>：主要解决接口选择的问题。</p>
+<p><strong>优点：</strong></p>
+<ol>
+<li>用户只需要知道具体工厂的名称就可得到所要的产品，无须知道产品的具体创建过程。</li>
+<li>扩展性高，增加一个产品，著需要扩展一个工厂类即可，无需修改原工厂内容，满足 <strong>开闭原则</strong>。</li>
+<li>屏蔽产品的具体实现，调用者只关心产品的接口。</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<p>每次增加一个产品时，都需要增加一个具体类和对象实现工厂，使得系统中&#x3D;&#x3D;类的个数成倍增加&#x3D;&#x3D;，在一定程度上&#x3D;&#x3D;增加了系统的复杂度&#x3D;&#x3D;，同时也&#x3D;&#x3D;增加了系统具体类的依赖&#x3D;&#x3D;。</p>
+<h3 id="1-简单工厂（Simple-Factory）"><a href="#1-简单工厂（Simple-Factory）" class="headerlink" title="1. 简单工厂（Simple Factory）"></a>1. 简单工厂（Simple Factory）</h3><p><strong>实现：</strong></p>
+<p>首先是具体产品的<code>实现</code>和<code>继承关系</code>：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// 系列产品</span><br><span class="hljs-comment">// 基类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Car</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-built_in">Car</span>(string name): _name(name) &#123; &#125;<br>	<span class="hljs-comment">// 虚函数</span><br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br><br><span class="hljs-keyword">protected</span>:<br>	string _name;<br>&#125;;<br><span class="hljs-comment">// 派生类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Bmw</span> :<span class="hljs-keyword">public</span> Car<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-built_in">Bmw</span>(string name) :<span class="hljs-built_in">Car</span>(name) &#123;&#125;<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;获取了一辆宝马汽车：&quot;</span> &lt;&lt; _name &lt;&lt; endl;<br>	&#125;<br>&#125;;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Audi</span> :<span class="hljs-keyword">public</span> Car<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-built_in">Audi</span>(string name) :<span class="hljs-built_in">Car</span>(name) &#123;&#125;<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;获取了一辆奥迪汽车：&quot;</span> &lt;&lt; _name &lt;&lt; endl;<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><strong>简单工厂实现：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// 产品枚举</span><br><span class="hljs-keyword">enum</span> <span class="hljs-title class_">CarType</span><br>&#123;<br>	BMW,<br>	AUDI<br>&#125;;<br><span class="hljs-comment">// 简单工厂类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SimpleFactory</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-comment">// 用户想要创建一个对象，只需要知道名称就可以了</span><br>	<span class="hljs-function">Car* <span class="hljs-title">createCar</span><span class="hljs-params">(CarType ct)</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">switch</span> (ct)<br>		&#123;<br>		<span class="hljs-keyword">case</span> BMW:<br>			<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Bmw</span>(<span class="hljs-string">&quot;x86&quot;</span>);<br>		<span class="hljs-keyword">case</span> AUDI:<br>			<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Audi</span>(<span class="hljs-string">&quot;a8&quot;</span>);<br>		<span class="hljs-keyword">default</span>:<br>			cerr &lt;&lt; <span class="hljs-string">&quot;传入参数错误：&quot;</span> &lt;&lt; ct &lt;&lt; endl;<br>			<span class="hljs-keyword">break</span>;<br>		&#125;<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><strong>使用：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-comment">// 智能指针</span><br>	<span class="hljs-function">unique_ptr&lt;SimpleFactory&gt; <span class="hljs-title">fac</span><span class="hljs-params">(<span class="hljs-keyword">new</span> SimpleFactory())</span></span>;<br>	<span class="hljs-function">unique_ptr&lt;Car&gt; <span class="hljs-title">p1</span><span class="hljs-params">(fac-&gt;createCar(BMW))</span></span>;<br>	<span class="hljs-function">unique_ptr&lt;Car&gt; <span class="hljs-title">p2</span><span class="hljs-params">(fac-&gt;createCar(AUDI))</span></span>;<br><br>	p1-&gt;<span class="hljs-built_in">show</span>();<br>	p2-&gt;<span class="hljs-built_in">show</span>();<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202309051017853.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>需要注意的是： </p>
+<p>为了更好地释放资源，这里使用了&#x3D;&#x3D;智能指针&#x3D;&#x3D;（需要加入头文件<code>#include &lt;memory&gt;</code>）；  </p>
+<p>也可以直接使用<code>new</code>的方法，代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	SimpleFactory* fac = <span class="hljs-keyword">new</span> <span class="hljs-built_in">SimpleFactory</span>();<br>	Car* p1 = fac-&gt;<span class="hljs-built_in">createCar</span>(BMW);<br>	Car* p2 = fac-&gt;<span class="hljs-built_in">createCar</span>(AUDI);<br><br>	p1-&gt;<span class="hljs-built_in">show</span>();<br>	p2-&gt;<span class="hljs-built_in">show</span>();<br><br>	<span class="hljs-keyword">delete</span> fac;<br>	<span class="hljs-keyword">delete</span> p1;<br>	<span class="hljs-keyword">delete</span> p2;<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>使用普通指针（<code>new</code>）的时候就需要注意一定记得<code>delete</code>！</p>
+<h4 id="不足之处！"><a href="#不足之处！" class="headerlink" title="不足之处！"></a>不足之处！</h4><p>可以看到，<code>简单工厂</code>可以做到，让用户创建对象的时候&#x3D;&#x3D;只需要知道对象的名称&#x3D;&#x3D;（<code>BMW</code>、<code>AUDI</code>）就好，而不需要关心创建对象的细节（<code>BMW是如何建造的、型号是什么等等细节</code>）。</p>
+<p>当然缺点也很明显：</p>
+<p>每当想要&#x3D;&#x3D;扩展对象&#x3D;&#x3D;的时候（增加<code>BENZ</code>的对象）就需要在<code>SimpleFactory</code>类中添加代码，增加<code>switch</code>后面的<code>case</code>选项。这样一来，就需要修改源代码。<code>灵活性</code>非常的差！！！</p>
+<p>那么，能不能做到&#x3D;&#x3D;添加对象&#x3D;&#x3D;的时候，不对现有代码进行修改呢？（也就是开发软件时候需要遵守的&#x3D;&#x3D;开-闭原则&#x3D;&#x3D;）</p>
+<blockquote>
+<p>tips：  </p>
+<p>什么是&#x3D;&#x3D;开-闭原则&#x3D;&#x3D;呢？<br>对<code>扩展</code>开放、对<code>修改</code>关闭；<br>也就是说，可以添加代码，但是添加代码的时候不能够对现有的代码进行修改。</p>
+</blockquote>
+<h3 id="2-工厂方式（Factory-Method）"><a href="#2-工厂方式（Factory-Method）" class="headerlink" title="2. 工厂方式（Factory Method）"></a>2. 工厂方式（Factory Method）</h3><p>&#x3D;&#x3D;工厂方法&#x3D;&#x3D;的思想就是定义一个<code>Factory</code>基类，基类中定义了一个<code>纯虚函数</code>（创建产品）；之后定义派生类（具体产品的工厂）负责创建对应的产品。</p>
+<p>可以做到<code>不同的产品在不同的工厂里面创建</code>，能够<code>对现有工厂以及产品的修改关闭</code>。</p>
+<p><strong>工厂方法实现：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// 工厂方式</span><br><span class="hljs-comment">// 基类（包含纯虚函数，不能实例化对象）</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Factory</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-comment">// 纯虚函数</span><br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> Car* <span class="hljs-title">createCar</span><span class="hljs-params">(string name)</span> </span>= <span class="hljs-number">0</span>;<br>&#125;;<br><span class="hljs-comment">// 宝马汽车工厂，负责生产宝马汽车</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">BmwFac</span> : <span class="hljs-keyword">public</span> Factory<br>&#123;<br>	<span class="hljs-function">Car* <span class="hljs-title">createCar</span><span class="hljs-params">(string name)</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Bmw</span>(name);<br>	&#125;<br>&#125;;<br><span class="hljs-comment">// 奥迪汽车工厂，负责生产奥迪汽车</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">AudiFac</span> : <span class="hljs-keyword">public</span> Factory<br>&#123;<br>	<span class="hljs-function">Car* <span class="hljs-title">createCar</span><span class="hljs-params">(string name)</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Audi</span>(name);<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><strong>使用：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-function">unique_ptr&lt;Factory&gt; <span class="hljs-title">bmwfty</span><span class="hljs-params">(<span class="hljs-keyword">new</span> BmwFac())</span></span>;<br>	<span class="hljs-function">unique_ptr&lt;Factory&gt; <span class="hljs-title">audifty</span><span class="hljs-params">(<span class="hljs-keyword">new</span> AudiFac())</span></span>;<br>	<span class="hljs-function">unique_ptr&lt;Car&gt; <span class="hljs-title">p1</span><span class="hljs-params">(bmwfty-&gt;createCar(<span class="hljs-string">&quot;X6&quot;</span>))</span></span>;<br>	<span class="hljs-function">unique_ptr&lt;Car&gt; <span class="hljs-title">p2</span><span class="hljs-params">(audifty-&gt;createCar(<span class="hljs-string">&quot;A8&quot;</span>))</span></span>;<br><br>	p1-&gt;<span class="hljs-built_in">show</span>();<br>	p2-&gt;<span class="hljs-built_in">show</span>();<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202309051026712.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>注意：</p>
+<p>可以看到这一次的代码和之前简单工厂的不同：</p>
+<ul>
+<li>简单工厂：<code>unique_ptr&lt;SimpleFactory&gt; fac(new SimpleFactory())；</code></li>
+<li>工厂方法：<code>unique_ptr&lt;Factory&gt; bmwfty(new BmwFac())；</code></li>
+</ul>
+<p>也就是说，工厂方法是用基类指针实例化派生类对象，这也是动态多态发生的条件。这样的话，就能够实现多态了！</p>
+<h4 id="不足之处！-1"><a href="#不足之处！-1" class="headerlink" title="不足之处！"></a>不足之处！</h4><p>工厂方法解决了简单工厂的问题（无法对修改关闭），但是它也有自己的局限：<br>试想一下，宝马工厂里面只是售卖成品汽车吗？<br>应该不是吧，作为一家成熟的工厂，除了汽车之外，还有一系列配套的零件、产品：比如说：轮胎、车灯、真皮豪华座椅等等。也就是说，跟汽车相关联的有一整个产品簇。</p>
+<p>但是我们的宝马工厂 BmwFac 里面只有一个 createCar 方法，如果想要添加产品的话，就需要增加新的类。但是这些产品其实都应该在一个 BmwFac 工厂里面。这才是现实的逻辑，另外，工厂类太多，会不好维护。</p>
+<p>于是乎，<strong>抽象工厂</strong> 应运而生</p>
+<h3 id="3-抽象工厂（Abstract-Factory）"><a href="#3-抽象工厂（Abstract-Factory）" class="headerlink" title="3. 抽象工厂（Abstract Factory）"></a>3. 抽象工厂（Abstract Factory）</h3><p>思想：  </p>
+<p>把有关联关系的，属于一个<code>产品簇</code>的所有产品创建的接口函数，放在一个抽象工厂里面<code>AbstractFactory</code>，派生类（<code>具体产品的工厂</code>）应该负责创建该产品簇里面所有的产品。</p>
+<p><strong>产品类：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// 系列产品1：汽车</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Car</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-built_in">Car</span>(string name) :_name(name) &#123;&#125;<br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br><span class="hljs-keyword">protected</span>:<br>	string _name;<br>&#125;;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Bmw</span> :<span class="hljs-keyword">public</span> Car<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-built_in">Bmw</span>(string name) :<span class="hljs-built_in">Car</span>(name) &#123;&#125;<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;获取了一辆宝马汽车：&quot;</span> &lt;&lt; _name &lt;&lt; endl;<br>	&#125;<br>&#125;;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Audi</span> :<span class="hljs-keyword">public</span> Car<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-built_in">Audi</span>(string name) :<span class="hljs-built_in">Car</span>(name) &#123;&#125;<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;获取了一辆奥迪汽车：&quot;</span> &lt;&lt; _name &lt;&lt; endl;<br>	&#125;<br>&#125;;<br><span class="hljs-comment">// 系列产品2：车灯</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Light</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>&#125;;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">BmwLight</span> : <span class="hljs-keyword">public</span> Light<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span> </span>&#123; cout &lt;&lt; <span class="hljs-string">&quot;BMW light!&quot;</span> &lt;&lt; endl; &#125;<br>&#125;;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">AudiLight</span> : <span class="hljs-keyword">public</span> Light<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span> </span>&#123; cout &lt;&lt; <span class="hljs-string">&quot;Audi light!&quot;</span> &lt;&lt; endl; &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><strong>抽象工厂实现：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// 工厂方法 =&gt; 抽象工厂(对有一组关联关系的产品簇提供产品对象的统一创建)</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">AbstractFactory</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-comment">// 工厂方法 创建汽车</span><br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> Car* <span class="hljs-title">createCar</span><span class="hljs-params">(string name)</span> </span>= <span class="hljs-number">0</span>;<br>	<span class="hljs-comment">// 工厂方法 创建汽车关联的产品，车灯</span><br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> Light* <span class="hljs-title">createCarLight</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>&#125;;<br><span class="hljs-comment">// 宝马工厂</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">BMWFactory</span> : <span class="hljs-keyword">public</span> AbstractFactory<br>&#123;<br>	<span class="hljs-function">Car* <span class="hljs-title">createCar</span><span class="hljs-params">(string name)</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Bmw</span>(name);<br>	&#125;<br>	<span class="hljs-function">Light* <span class="hljs-title">createCarLight</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">BmwLight</span>();<br>	&#125;<br>&#125;;<br><span class="hljs-comment">// 高低工厂</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">AudiFactory</span> : <span class="hljs-keyword">public</span> AbstractFactory<br>&#123;<br>	<span class="hljs-function">Car* <span class="hljs-title">createCar</span><span class="hljs-params">(string name)</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Audi</span>(name);<br>	&#125;<br>	<span class="hljs-function">Light* <span class="hljs-title">createCarLight</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">AudiLight</span>();<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><strong>使用：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-function">unique_ptr&lt;AbstractFactory&gt; <span class="hljs-title">bmwfty</span><span class="hljs-params">(<span class="hljs-keyword">new</span> BMWFactory())</span></span>;<br>	<span class="hljs-function">unique_ptr&lt;AbstractFactory&gt; <span class="hljs-title">audifty</span><span class="hljs-params">(<span class="hljs-keyword">new</span> AudiFactory())</span></span>;<br>	<span class="hljs-function">unique_ptr&lt;Car&gt; <span class="hljs-title">p1</span><span class="hljs-params">(bmwfty-&gt;createCar(<span class="hljs-string">&quot;X6&quot;</span>))</span></span>;<br>	<span class="hljs-function">unique_ptr&lt;Car&gt; <span class="hljs-title">p2</span><span class="hljs-params">(audifty-&gt;createCar(<span class="hljs-string">&quot;A8&quot;</span>))</span></span>;<br>	<span class="hljs-function">unique_ptr&lt;Light&gt; <span class="hljs-title">l1</span><span class="hljs-params">(bmwfty-&gt;createCarLight())</span></span>;<br>	<span class="hljs-function">unique_ptr&lt;Light&gt; <span class="hljs-title">l2</span><span class="hljs-params">(audifty-&gt;createCarLight())</span></span>;<br><br>	p1-&gt;<span class="hljs-built_in">show</span>();<br>	l1-&gt;<span class="hljs-built_in">show</span>();<br><br>	p2-&gt;<span class="hljs-built_in">show</span>();<br>	l2-&gt;<span class="hljs-built_in">show</span>();<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202309051033639.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="3-代理模式"><a href="#3-代理模式" class="headerlink" title="3. 代理模式"></a>3. 代理模式</h2><p>为其他对象提供一种代理以控制这个对象的访问。</p>
+<p>在某些情况下，一个对象不适合或者不能直接引用另一个对象，而代理对象可以在客户端和目标对象之间起到中介的作用。</p>
+<blockquote>
+<p><strong>代理模式</strong> 属于 <strong>结构型模式</strong></p>
+</blockquote>
+<p><strong>组成：</strong></p>
+<ul>
+<li><strong>抽象角色</strong>：通过接口或抽象类声明实现真实角色实现的业务方法。</li>
+<li><strong>真实角色</strong>：实现抽象角色，定义真实角色所需实现的业务逻辑，供代理角色调用。</li>
+<li><strong>代理角色</strong>：实现抽象角色，是真实角色的代理，通过真实角色的业务逻辑方法来实现抽象方法，并可以附加自己的操作（访问权限）。</li>
+</ul>
+<p><strong>优点：</strong></p>
+<ol>
+<li>职责清晰：真实的角色就是实现实际的业务逻辑，不用关心其他非本职的事务，通过后期的代理来完成事务，附带的结果就是编程简洁清晰。</li>
+<li>代理对象可以在客户端和目标对象之间起到中介作用，<strong>保护了目标对象</strong>。</li>
+<li>高扩展性。</li>
+</ol>
+<p><strong>实现：</strong></p>
+<p>了解了代理模式的定义和优点以后，我们来模拟这样一个场景：</p>
+<blockquote>
+<p>我们在网上观看电影的时候，一般都会借助一些视频网站（腾讯视频、优酷、爱奇艺等）；在这些网站观看电影的时候，都会遇到这样的情况：</p>
+<p>一些电影可以观看，一些电影（评分高的、刚上映的等）就观看不了，提示要充值VIP才能观看；更有甚者，充了VIP也看不了，还需要买券观看。</p>
+</blockquote>
+<p>抛开其他不谈，这个观看视频的权限是如何实现的呢？其实就和我们今天要讲的代理模式息息相关。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// 抽象类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">VideoSite</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">freemovie</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">vipmovie</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">ticketmovie</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>&#125;;<br><span class="hljs-comment">// 委托类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">YangVideoSite</span> : <span class="hljs-keyword">public</span> VideoSite<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">freemovie</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;观看免费电影&quot;</span> &lt;&lt; endl;<br>	&#125;<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">vipmovie</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;观看vip电影&quot;</span> &lt;&lt; endl;<br>	&#125;<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ticketmovie</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;用券观看电影&quot;</span> &lt;&lt; endl;<br>	&#125;<br>&#125;;<br><span class="hljs-comment">// 免费游客对应代理类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">FreeVideoSitepProxy</span> : <span class="hljs-keyword">public</span> VideoSite<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">freemovie</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		video.<span class="hljs-built_in">freemovie</span>();<br>	&#125;<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">vipmovie</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;您只是普通游客，需要升级成VIP，才能观看VIP电影&quot;</span> &lt;&lt; endl;<br>	&#125;<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ticketmovie</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;您目前没有电影券，需要购买券才能观看电影&quot;</span> &lt;&lt; endl;<br>	&#125;<br><span class="hljs-keyword">private</span>:<br>	YangVideoSite video;<br>&#125;;<br><span class="hljs-comment">// Vip 会员对应代理</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">VipVideoSiteProxy</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-comment">// 构造函数</span><br>	<span class="hljs-built_in">VipVideoSiteProxy</span>() &#123; pvideo = <span class="hljs-keyword">new</span> <span class="hljs-built_in">YangVideoSite</span>(); &#125;<br>	<span class="hljs-comment">// 析构</span><br>	~<span class="hljs-built_in">VipVideoSiteProxy</span>() &#123; <span class="hljs-keyword">delete</span> pvideo; &#125;<br>	<span class="hljs-comment">// 权限</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">freemovie</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		pvideo-&gt;<span class="hljs-built_in">freemovie</span>();<br>	&#125;<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">vipmovie</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		pvideo-&gt;<span class="hljs-built_in">vipmovie</span>();<br>	&#125;<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">ticketmovie</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;您目前没有电影券，需要购买券才能观看电影&quot;</span> &lt;&lt; endl;<br>	&#125;<br><br><span class="hljs-keyword">private</span>:<br>	YangVideoSite* pvideo;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><strong>理解：</strong></p>
+<p>可以看到，代码中的委托类 <code>YangVideoSite</code> 就是上面提到的真实角色。它拥有了该网站所有视频的观看权限。</p>
+<p>每一个代理类都有一个委托类的数据成员。代理类通过委托类来访问视频网站。并且，可以根据当前代理的用户的身份（普通游客、VIP会员），来限制其访问的内容。</p>
+<p>为了模拟在视频网站上浏览视频的全部情景，可以再设计一个函数，专门用来观看电影（免费电影、VIP电影、用券观看的电影）：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">watchMovie</span><span class="hljs-params">(unique_ptr&lt;VideoSite&gt;&amp; ptr)</span></span><br><span class="hljs-function"></span>&#123;<br>	ptr-&gt;<span class="hljs-built_in">freemovie</span>();<br>	ptr-&gt;<span class="hljs-built_in">vipmovie</span>();<br>	ptr-&gt;<span class="hljs-built_in">ticketmovie</span>();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>使用：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-function">unique_ptr&lt;VideoSite&gt; <span class="hljs-title">p1</span><span class="hljs-params">(<span class="hljs-keyword">new</span> FreeVideoSiteProxy())</span></span>;<br>	<span class="hljs-function">unique_ptr&lt;VideoSite&gt; <span class="hljs-title">p2</span><span class="hljs-params">(<span class="hljs-keyword">new</span> VipVideoSiteProxy())</span></span>;<br><br>	<span class="hljs-built_in">watchMovie</span>(p1);<br>	cout &lt;&lt; <span class="hljs-string">&quot;----------------------------&quot;</span> &lt;&lt; endl;<br>	<span class="hljs-built_in">watchMovie</span>(p2);<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202309051153416.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="4-装饰器模式"><a href="#4-装饰器模式" class="headerlink" title="4. 装饰器模式"></a>4. 装饰器模式</h2><p>装饰器模式（<code>Decorator Pattern</code>）允许向一个现有的对象添加新的功能，同时又不改变其结构。</p>
+<p>这种类型的设计模式属于 <strong>结构型模式</strong>，它是作为现有的类的一个包装。</p>
+<blockquote>
+<p><strong>意图：</strong></p>
+<p>动态地给一个对象添加一些额外的职责。就增加功能来说，装饰器模式相比生成子类更为灵活。</p>
+<p><strong>何时使用：</strong></p>
+<p>在不想增加很多子类的情况下扩展类。</p>
+<p><strong>如何解决：</strong></p>
+<p>将具体功能制作划分，同时继承装饰器模式。</p>
+</blockquote>
+<p><strong>优点：</strong></p>
+<p><code>装饰类</code>和<code>被装饰类</code>可以独立发展，不会相互耦合，装饰器模式是继承的一个替代模式，装饰器模式可以动态地扩展实现一个类的功能。</p>
+<p><strong>缺点：</strong></p>
+<p>多层装饰比较&#x3D;&#x3D;复杂&#x3D;&#x3D;。</p>
+<p><strong>代码实现：</strong></p>
+<p>拿汽车来举例子：</p>
+<p>现在的汽车越来越智能化了，<strong>定速巡航</strong>、<strong>自动刹车</strong>、<strong>车道偏离</strong>等功能都逐渐进入人们的生活，为我们带来了更为便利的出行。</p>
+<p>假设上述提到的定速巡航、自动刹车、车道偏离三个功能就是我们想要为汽车<strong>装饰</strong>的功能，汽车默认的功能配置有：基本配置。</p>
+<p>得到具体的汽车（宝马、奥迪、奔驰）后，我们可以选择性地增加装饰功能。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// 基类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Car</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>&#125;;<br><span class="hljs-comment">// 派生类</span><br><span class="hljs-comment">// 三个实体的汽车类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Bmw</span> :<span class="hljs-keyword">public</span> Car<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;这是一辆宝马汽车，配置有：基本配置&quot;</span>;<br>	&#125;<br>&#125;;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Audi</span> :<span class="hljs-keyword">public</span> Car<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;这是一辆奥迪汽车，配置有：基本配置&quot;</span>;<br>	&#125;<br>&#125;;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Benz</span> :<span class="hljs-keyword">public</span> Car<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;这是一辆奔驰汽车，配置有：基本配置&quot;</span>;<br>	&#125;<br>&#125;;<br><br><span class="hljs-comment">// 装饰器1 定速巡航</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Decorator01</span> : <span class="hljs-keyword">public</span> Car<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-comment">// 初始化构造</span><br>	<span class="hljs-built_in">Decorator01</span>(Car* p) :<span class="hljs-built_in">pCar</span>(p) &#123; &#125;<br>	<span class="hljs-comment">// 功能展示</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		pCar-&gt;<span class="hljs-built_in">show</span>();<br>		cout &lt;&lt; <span class="hljs-string">&quot;, 定速巡航&quot;</span>;<br>	&#125;<br><br><span class="hljs-keyword">private</span>:<br>	Car* pCar;<br>&#125;;<br><span class="hljs-comment">// 装饰器2 自动刹车</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Decorator02</span> :<span class="hljs-keyword">public</span> Car<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-built_in">Decorator02</span>(Car* p) :<span class="hljs-built_in">pCar</span>(p) &#123;&#125;<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		pCar-&gt;<span class="hljs-built_in">show</span>();<br>		cout &lt;&lt; <span class="hljs-string">&quot;，自动刹车&quot;</span>;<br>	&#125;<br><span class="hljs-keyword">private</span>:<br>	Car* pCar;<br>&#125;;<br><span class="hljs-comment">// 装饰器3 定速巡航</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Decorator03</span> :<span class="hljs-keyword">public</span> Car<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-built_in">Decorator03</span>(Car* p) :<span class="hljs-built_in">pCar</span>(p) &#123;&#125;<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">show</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		pCar-&gt;<span class="hljs-built_in">show</span>();<br>		cout &lt;&lt; <span class="hljs-string">&quot;，车道偏离&quot;</span>;<br>	&#125;<br><span class="hljs-keyword">private</span>:<br>	Car* pCar;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><strong>使用：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	<span class="hljs-comment">// 给 宝马添加了新功能1</span><br>	Car* p1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Decorator01</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Bmw</span>());<br>	<span class="hljs-comment">// 继续添加</span><br>	p1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Decorator02</span>(p1);<br>	p1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Decorator03</span>(p1);<br>	p1-&gt;<span class="hljs-built_in">show</span>();<br>	cout &lt;&lt; endl;<br><br>	<span class="hljs-comment">// 奥迪</span><br>	Car* p2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Decorator02</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Audi</span>());<br>	p2-&gt;<span class="hljs-built_in">show</span>();<br>	cout &lt;&lt; endl;<br><br>	<span class="hljs-comment">// 奔驰</span><br>	Car* p3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Decorator03</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Benz</span>());<br>	p3-&gt;<span class="hljs-built_in">show</span>();<br>	cout &lt;&lt; endl;<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202309051533090.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="5-适配器模式"><a href="#5-适配器模式" class="headerlink" title="5. 适配器模式"></a>5. 适配器模式</h2><p><strong>适配器模式（Adapter Pattern）</strong>：是所谓两个不兼容的接口之间的桥梁。</p>
+<p>这种类型的设计模式属于&#x3D;&#x3D;结构型模式&#x3D;&#x3D;。</p>
+<blockquote>
+<p><strong>意图：</strong></p>
+<p>将一个类的&#x3D;&#x3D;接口&#x3D;&#x3D;转换成为客户希望的另一个&#x3D;&#x3D;接口&#x3D;&#x3D;。<br>适配器模式使得原本由于<strong>接口不兼容</strong>而不能一起工作的那些类可以一起工作。</p>
+<p><strong>主要解决：</strong></p>
+<p>软件系统中，常常要将一些 “现存的对象” 放到新的环境中，而新环境中的接口实现有对象无法满足的。</p>
+</blockquote>
+<p><strong>优点：</strong></p>
+<ol>
+<li>可以让任何两个没有关联的类一起工作；</li>
+<li>提高了类的复用；</li>
+<li>增加了类的透明度；</li>
+<li>灵活性好。</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<p>过多地使用适配器，会让系统非常&#x3D;&#x3D;零乱&#x3D;&#x3D;，不易整体进行把握。比如：明明看到调用的是 A 接口，其实内部被适配成了 B 接口的实现，一个系统如果太多出现这种情况，无异于一场灾难。因此如果不是很有必要，可以不使用适配器，而是直接对系统进行&#x3D;&#x3D;重构&#x3D;&#x3D;。</p>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">VGA</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">play</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>&#125;;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">TV01</span> :<span class="hljs-keyword">public</span> VGA<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">play</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;通过VGA接口连接投影仪，进行视频播放&quot;</span> &lt;&lt; endl;<br>	&#125;<br>&#125;;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Computer</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">playVideo</span><span class="hljs-params">(VGA* pVGA)</span></span><br><span class="hljs-function">	</span>&#123;<br>		pVGA-&gt;<span class="hljs-built_in">play</span>();<br>	&#125;<br>&#125;;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">HDMI</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">play</span><span class="hljs-params">()</span> </span>= <span class="hljs-number">0</span>;<br>&#125;;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">TV02</span> : <span class="hljs-keyword">public</span> HDMI<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">play</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;通过HDMI接口连接投影仪，进行视频播放&quot;</span> &lt;&lt; endl;<br>	&#125;<br>&#125;;<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">VGAtoHDMIAdapter</span> : VGA<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-built_in">VGAtoHDMIAdapter</span>(HDMI* p) :<span class="hljs-built_in">pHdmi</span>(p) &#123;&#125;<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">play</span><span class="hljs-params">()</span></span><br><span class="hljs-function">	</span>&#123;<br>		pHdmi-&gt;<span class="hljs-built_in">play</span>();<br>	&#125;<br><br><span class="hljs-keyword">private</span>:<br>	HDMI* pHdmi;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><strong>使用：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	Computer com;<br>	com.<span class="hljs-built_in">playVideo</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">TV01</span>());<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202309051550134.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>接下来是<code>HDMI</code>接口的投影仪和<code>VGA</code>接口的电脑：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	Computer com;<br>	com.<span class="hljs-built_in">playVideo</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">TV02</span>());<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>可以看到，编译器给我们报错了，提示说：  </p>
+<p><code>无法将参数 1 从“TV02 *”转换为“VGA *”</code>；  这就说明了&#x3D;&#x3D;接口不匹配&#x3D;&#x3D;的时候，直接使用，是会出错的。</p>
+<p>接下来为了使用新的设备，使用适配器：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	Computer com;<br>	com.<span class="hljs-built_in">playVideo</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">VGAtoHDMIAdapter</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">TV02</span>()));<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202309051552687.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="6-观察者模式"><a href="#6-观察者模式" class="headerlink" title="6. 观察者模式"></a>6. 观察者模式</h2><p>&#x3D;&#x3D;观察者模式&#x3D;&#x3D;（<code>Observer Pattern</code>），也叫我们熟知的&#x3D;&#x3D;发布-订阅模式&#x3D;&#x3D;。</p>
+<p>它是一种 <strong>行为型模式</strong>。</p>
+<p>观察者模式主要关注的是对象的&#x3D;&#x3D;一对多&#x3D;&#x3D;的关系，  也就是多个对象依赖于一个对象，当该对象的<code>状态发生改变</code>时，其他对象都能够<code>收到相应的通知</code>。</p>
+<blockquote>
+<p><strong>意图：</strong></p>
+<p>定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新。</p>
+<p><strong>主要解决：</strong>  </p>
+<p>一个对象状态改变给其他对象通知的问题，而且要考虑到易用和低耦合，保证高度的协作。</p>
+<p><strong>如何解决：</strong>  </p>
+<p>使用面向对象技术，可以将这种关系弱化。</p>
+</blockquote>
+<p><strong>优点：</strong></p>
+<ol>
+<li>观察者和被观察者是抽象耦合的；</li>
+<li>建立了一套触发机制。</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>如果一个被观察者对象有很多的直接和间接的观察者的话，通知所有的观察者需要花费很长的时间；</li>
+<li>如果在观察者和被观察者目标之间有循环依赖的话，观察目标会触发他们之间的循环调用，可能会导致系统崩溃；</li>
+<li>观察者模式没有相应的机制让观察者知道所观察的目标对象是怎么发生变化的，而仅仅是知道观察目标发生了变化。</li>
+</ol>
+<p><strong>代码实现：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;string&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;unordered_map&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;list&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Observer</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-comment">// 处理消息的接口</span><br>	<span class="hljs-function"><span class="hljs-keyword">virtual</span> <span class="hljs-type">void</span> <span class="hljs-title">handle</span><span class="hljs-params">(<span class="hljs-type">int</span> msgid)</span> </span>= <span class="hljs-number">0</span>;<br>&#125;;<br><span class="hljs-comment">// 第一个观察者实例</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Observer1</span> :<span class="hljs-keyword">public</span> Observer<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">handle</span><span class="hljs-params">(<span class="hljs-type">int</span> msgid)</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">switch</span> (msgid)<br>		&#123;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br>			cout &lt;&lt; <span class="hljs-string">&quot;Observer1 recv 1 msg!&quot;</span> &lt;&lt; endl;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:<br>			cout &lt;&lt; <span class="hljs-string">&quot;Observer1 recv 2 msg!&quot;</span> &lt;&lt; endl;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">default</span>:<br>			cout &lt;&lt; <span class="hljs-string">&quot;Observer1 recv unkown msg!&quot;</span> &lt;&lt; endl;<br>			<span class="hljs-keyword">break</span>;<br>		&#125;<br>	&#125;<br>&#125;;<br><span class="hljs-comment">// 第二个观察者实例</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Observer2</span> :<span class="hljs-keyword">public</span> Observer<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">handle</span><span class="hljs-params">(<span class="hljs-type">int</span> msgid)</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">switch</span> (msgid)<br>		&#123;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>:<br>			cout &lt;&lt; <span class="hljs-string">&quot;Observer2 recv 2 msg!&quot;</span> &lt;&lt; endl;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">default</span>:<br>			cout &lt;&lt; <span class="hljs-string">&quot;Observer2 recv unkown msg!&quot;</span> &lt;&lt; endl;<br>			<span class="hljs-keyword">break</span>;<br>		&#125;<br>	&#125;<br>&#125;;<br><span class="hljs-comment">// 第三个观察者实例</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Observer3</span> :<span class="hljs-keyword">public</span> Observer<br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">handle</span><span class="hljs-params">(<span class="hljs-type">int</span> msgid)</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">switch</span> (msgid)<br>		&#123;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>:<br>			cout &lt;&lt; <span class="hljs-string">&quot;Observer3 recv 1 msg!&quot;</span> &lt;&lt; endl;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">case</span> <span class="hljs-number">3</span>:<br>			cout &lt;&lt; <span class="hljs-string">&quot;Observer3 recv 3 msg!&quot;</span> &lt;&lt; endl;<br>			<span class="hljs-keyword">break</span>;<br>		<span class="hljs-keyword">default</span>:<br>			cout &lt;&lt; <span class="hljs-string">&quot;Observer3 recv unkown msg!&quot;</span> &lt;&lt; endl;<br>			<span class="hljs-keyword">break</span>;<br>		&#125;<br>	&#125;<br>&#125;;<br><br><span class="hljs-comment">// 主题类</span><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Subject</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>	<span class="hljs-comment">// 给主题对象增加观察者对象</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">addObserver</span><span class="hljs-params">(Observer* obser, <span class="hljs-type">int</span> msgid)</span></span><br><span class="hljs-function">	</span>&#123;<br>		_subMap[msgid].<span class="hljs-built_in">push_back</span>(obser);<br>	&#125;<br>	<span class="hljs-comment">// 主题发生改变，通知相应的观察者处理事件</span><br>	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dispatch</span><span class="hljs-params">(<span class="hljs-type">int</span> msgid)</span></span><br><span class="hljs-function">	</span>&#123;<br>		<span class="hljs-keyword">auto</span> it = _subMap.<span class="hljs-built_in">find</span>(msgid);<br>		<span class="hljs-keyword">if</span> (it != _subMap.<span class="hljs-built_in">end</span>())<br>		&#123;<br>			<span class="hljs-keyword">for</span> (Observer* obs : it-&gt;second)<br>			&#123;<br>				obs-&gt;<span class="hljs-built_in">handle</span>(msgid);<br>			&#125;<br>		&#125;<br>	&#125;<br><span class="hljs-keyword">private</span>:<br>	unordered_map&lt;<span class="hljs-type">int</span>, list&lt;Observer*&gt;&gt; _subMap;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p><strong>解读：</strong></p>
+<p>我们可以看到&#x3D;&#x3D;主题类&#x3D;&#x3D;（<code>Subject</code>）的数据成员是一个&#x3D;&#x3D;unordered_map&#x3D;&#x3D;。使用这个是因为我们不需要数据是有序的，为了<code>提高增删查的速率</code>，使用了<code>无序</code>map。</p>
+<p>使用map的好处是，它作为一个<code>键值对</code>，可以存储我们想要的数据类型：（消息类型，订阅此消息类型的观察者们）。</p>
+<p>因为同样的消息类型，可能有多个观察者，所以，<code>unordered_map</code>的第二个参数我们使用了&#x3D;&#x3D;list&#x3D;&#x3D;，来存储订阅此消息类型的所有观察者。</p>
+<p>并且，在&#x3D;&#x3D;主题类&#x3D;&#x3D;（<code>Subject</code>）的成员方法<code>addObserver</code>中，我们使用了一个&#x3D;&#x3D;中括号运算符&#x3D;&#x3D;（<code>[]</code>）重载的特性：</p>
+<p>如果当前容器中存有相应的<code>msgid</code>键的话，就直接添加对应的值（<code>Obser</code>）；<br>如果当前容器中没有相应的<code>msgid</code>键的话，就直接添加该键，并且添加一个默认的值。</p>
+<p>这一行代码也可以用下面的代码代替：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">auto</span> it = _subMap.<span class="hljs-built_in">find</span>(msgid);<br><span class="hljs-keyword">if</span> (it != _subMap.<span class="hljs-built_in">end</span>())<br>&#123;<br>	it-&gt;second.<span class="hljs-built_in">push_back</span>(obser);<br>&#125;<br><span class="hljs-keyword">else</span><br>&#123;<br>	list&lt;Observer*&gt; lis;<br>	lis.<span class="hljs-built_in">push_back</span>(obser);<br>	_subMap.<span class="hljs-built_in">insert</span>(&#123; msgid, lis &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>使用：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	Subject sub;<br>	Observer* p1 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Observer1</span>();<br>	Observer* p2 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Observer2</span>();<br>	Observer* p3 = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Observer3</span>();<br><br>	sub.<span class="hljs-built_in">addObserver</span>(p1, <span class="hljs-number">1</span>);<br>	sub.<span class="hljs-built_in">addObserver</span>(p1, <span class="hljs-number">2</span>);<br>	sub.<span class="hljs-built_in">addObserver</span>(p2, <span class="hljs-number">2</span>);<br>	sub.<span class="hljs-built_in">addObserver</span>(p3, <span class="hljs-number">1</span>);<br>	sub.<span class="hljs-built_in">addObserver</span>(p3, <span class="hljs-number">3</span>);<br><br>	<span class="hljs-type">int</span> msgid = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span> (;;)<br>	&#123;<br>		cout &lt;&lt; <span class="hljs-string">&quot;请输入消息id：&quot;</span>;<br>		cin &gt;&gt; msgid;<br>		<span class="hljs-keyword">if</span> (msgid == <span class="hljs-number">-1</span>)<br>			<span class="hljs-keyword">break</span>;<br>		sub.<span class="hljs-built_in">dispatch</span>(msgid);<br>	&#125;<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="print-no-link">#设计模式</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>12.C++ 设计模式</div>
+      <div>http://example.com/2023/09/05/03.C++进阶部分/12.C++ 设计模式/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Yakumo</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>September 5, 2023</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/09/01/00.%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/01.%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E5%AF%BC%E8%AE%BA%20-%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E7%AC%AC%E4%B8%80%E7%AB%A0%20-%20%E7%BB%AA%E8%AE%BA/" title="第一章 - 绪论">
+                        <span class="hidden-mobile">第一章 - 绪论</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
