@@ -16,16 +16,16 @@
   <meta name="author" content="Yakumo">
   <meta name="keywords" content="C++,NodeJs,UE">
   
-    <meta name="description" content="概述">
+    <meta name="description" content="在我们日常生活中我们已经在不知不觉中学会了许多算法，并习惯将它们应用到日常生活中了。 例一：查阅字典。在字典里，每个汉字都对应一个拼音，而字典是按照拼音字母顺序排列的。假设我们需要查找一个拼音首字母为 r 的字。  翻开字典约一半的页数，查看该页的首字母是什么，假设首字母为 m。 由于在拼音字母表中 r 位于 m 之后，所以排除字典前半部分，查找范围缩小到后半部分。 不断重复步骤 1. 和 步骤">
 <meta property="og:type" content="article">
 <meta property="og:title" content="01.数据结构与算法概述">
-<meta property="og:url" content="http://example.com/2023/08/30/06.C++%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/01.%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:url" content="http://example.com/2023/09/19/06.C++%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/01.%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E6%A6%82%E8%BF%B0/index.html">
 <meta property="og:site_name" content="八云家的记事簿 | 迦勒底亚斯 | Finis Chaldea | フィニス・カルデア">
-<meta property="og:description" content="概述">
+<meta property="og:description" content="在我们日常生活中我们已经在不知不觉中学会了许多算法，并习惯将它们应用到日常生活中了。 例一：查阅字典。在字典里，每个汉字都对应一个拼音，而字典是按照拼音字母顺序排列的。假设我们需要查找一个拼音首字母为 r 的字。  翻开字典约一半的页数，查看该页的首字母是什么，假设首字母为 m。 由于在拼音字母表中 r 位于 m 之后，所以排除字典前半部分，查找范围缩小到后半部分。 不断重复步骤 1. 和 步骤">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/img/Blog-Logo/algorithm.png">
-<meta property="article:published_time" content="2023-08-30T00:35:48.488Z">
-<meta property="article:modified_time" content="2023-08-30T00:44:14.556Z">
+<meta property="article:published_time" content="2023-09-19T07:18:43.385Z">
+<meta property="article:modified_time" content="2023-09-19T07:18:43.385Z">
 <meta property="article:author" content="Yakumo">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="数据结构">
@@ -229,8 +229,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-30 00:35" pubdate>
-          Wednesday, August 30th 2023, 12:35 am
+        <time datetime="2023-09-19 07:18" pubdate>
+          Tuesday, September 19th 2023, 7:18 am
         </time>
       </span>
     
@@ -242,7 +242,7 @@
         <i class="iconfont icon-chart"></i>
         
           <!-- compatible with older versions-->
-          2 字
+          1.1k 字
         
       </span>
     
@@ -254,7 +254,7 @@
         
         
           <!-- compatible with older versions-->
-          1 分钟
+          9 分钟
         
       </span>
     
@@ -300,7 +300,84 @@
             
               <div class="markdown-body">
                 
-                <p>概述</p>
+                <p>在我们日常生活中<strong>我们已经在不知不觉中学会了许多算法，并习惯将它们应用到日常生活中了</strong>。</p>
+<p><strong>例一：查阅字典</strong>。在字典里，每个汉字都对应一个拼音，而字典是按照拼音字母顺序排列的。假设我们需要查找一个拼音首字母为 r 的字。</p>
+<ol>
+<li>翻开字典约一半的页数，查看该页的首字母是什么，假设首字母为 m。</li>
+<li>由于在拼音字母表中 r 位于 m 之后，所以排除字典前半部分，查找范围缩小到后半部分。</li>
+<li>不断重复步骤 <code>1.</code> 和 步骤 <code>2.</code> ，直至找到拼音首字母为 r 的页码为止。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202309121047957.png" srcset="/img/loading.gif" lazyload alt="Step - 1"></p>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202309121048051.png" srcset="/img/loading.gif" lazyload alt="Step - 2"></p>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202309121048681.png" srcset="/img/loading.gif" lazyload alt="Step - 3"></p>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202309121049862.png" srcset="/img/loading.gif" lazyload alt="Step - 4"></p>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202309121049927.png" srcset="/img/loading.gif" lazyload alt="Step - 5"></p>
+<h2 id="1-算法是什么"><a href="#1-算法是什么" class="headerlink" title="1. 算法是什么"></a>1. 算法是什么</h2><h3 id="1-1-算法定义"><a href="#1-1-算法定义" class="headerlink" title="1.1 算法定义"></a>1.1 算法定义</h3><p>「算法 algorithm」是在有限时间内解决特定问题的一组指令或操作步骤，它具有以下特性。</p>
+<ul>
+<li>问题是明确的，包含清晰的输入和输出定义。</li>
+<li>具有可行性，能够在有限步骤、时间和内存空间下完成。</li>
+<li>各步骤都有确定的含义，相同的输入和运行条件下，输出始终相同。</li>
+</ul>
+<h3 id="1-2-数据结构定义"><a href="#1-2-数据结构定义" class="headerlink" title="1.2 数据结构定义"></a>1.2 数据结构定义</h3><p>「数据结构 data structure」是计算机中组织和存储数据的方式，具有以下设计目标。</p>
+<ul>
+<li>空间占用尽量减少，节省计算机内存。</li>
+<li>数据操作尽可能快速，涵盖数据访问、添加、删除、更新等。</li>
+<li>提供简洁的数据表示和逻辑信息，以便使得算法高效运行。</li>
+</ul>
+<p><strong>数据结构设计是一个充满权衡的过程</strong>。如果想要在某方面取得提升，往往需要在另一方面作出妥协。下面举两个例子：</p>
+<ul>
+<li>链表相较于数组，在数据添加和删除操作上更加便捷，但牺牲了数据访问速度。</li>
+<li>图相较于链表，提供了更丰富的逻辑信息，但需要占用更大的内存空间。</li>
+</ul>
+<h3 id="1-3-数据结构和算法的关系"><a href="#1-3-数据结构和算法的关系" class="headerlink" title="1.3 数据结构和算法的关系"></a>1.3 数据结构和算法的关系</h3><p>如图所示，数据结构与算法高度相关、紧密结合，具体表现以下三个方面：</p>
+<ul>
+<li>数据结构是算法的基石。数据结构为算法提供了结构化存储的数据，以及用于操作数据的方法。</li>
+<li>算法是数据结构发挥作用的舞台。数据结构本身仅存储数据信息，结合算法才能解决特定问题。</li>
+<li>算法通常可以基于不同的数据结构进行实现，并往往有对应最优的数据结构，但最终执行效率可能相差很大。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202309121053506.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><strong>算法复杂度</strong>：时间和空间复杂度，衡量算法效率，算法在执行过程中，随着数据规模n的增长，算法执行所花费的时间和空间的增长速度。 </p>
+<p>常见的时间复杂度：</p>
+<table>
+<thead>
+<tr>
+<th align="center">大 O 计法</th>
+<th>应用实例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">O(1)</td>
+<td>数组随机访问、哈希表</td>
+</tr>
+<tr>
+<td align="center">O($log_n$)</td>
+<td>二分搜索、二叉树调整、AVL、红黑树查找</td>
+</tr>
+<tr>
+<td align="center">O(n)</td>
+<td>线性搜索</td>
+</tr>
+<tr>
+<td align="center">O($nlog_n$)</td>
+<td>堆排序、快速排序、归并排序</td>
+</tr>
+<tr>
+<td align="center">O($n^2$)</td>
+<td>冒泡排序、选择排序、插入排序</td>
+</tr>
+<tr>
+<td align="center">O($2^n$)</td>
+<td>子树集</td>
+</tr>
+<tr>
+<td align="center">O(n!)</td>
+<td>排列树</td>
+</tr>
+<tr>
+<td align="center">常见算法的时间复杂度关系：O(1) &lt; O($log_n$) &lt; O(n) &lt; O($nlog_n$) &lt; O($n^2$) &lt; O($2^n$) &lt; O(n!) &lt; O($n^n$)</td>
+<td></td>
+</tr>
+</tbody></table>
 
                 
               </div>
@@ -330,7 +407,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>01.数据结构与算法概述</div>
-      <div>http://example.com/2023/08/30/06.C++数据结构与算法/01.数据结构与算法概述/</div>
+      <div>http://example.com/2023/09/19/06.C++数据结构与算法/01.数据结构与算法概述/</div>
     </div>
     <div class="license-meta">
       
@@ -342,7 +419,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 30, 2023</div>
+          <div>September 19, 2023</div>
         </div>
       
       
@@ -374,18 +451,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/09/01/02.C++%20%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/00-2.C++%20%E6%A0%B8%E5%BF%83%E7%BC%96%E7%A8%8B/" title="00-2.C++ 核心编程">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">00-2.C++ 核心编程</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/28/05.C++%E9%A1%B9%E7%9B%AE%E7%AC%94%E8%AE%B0/02.C++%20%E5%86%85%E5%AD%98%E6%B1%A0%E5%89%96%E6%9E%90/%E5%AE%9E%E7%8E%B0%E7%AC%94%E8%AE%B0/" title="C++ 内存池剖析">
-                        <span class="hidden-mobile">C++ 内存池剖析</span>
+                      <a href="/2023/09/19/03.C++%E8%BF%9B%E9%98%B6%E9%83%A8%E5%88%86/12.C++%20%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="12.C++ 设计模式">
+                        <span class="hidden-mobile">12.C++ 设计模式</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
