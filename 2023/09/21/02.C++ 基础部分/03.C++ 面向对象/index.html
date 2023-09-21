@@ -19,13 +19,13 @@
     <meta name="description" content="本节分为 7 大类：  类和对象、this 指针 构造函数和析构函数 深拷贝和浅拷贝 类和对象代码应用实践 构造函数的初始化列表 类的各种成员方法及区别 指向类成员的指针  1. 类和对象、this 指针C 语言是面向过程的，关注的是过程。分析出求解问题的步骤，通过函数调用逐步解决问题。 C++ 是基于面向对象的，关注的是对象，将一件事情拆分成不同的对象，靠对象之间的交互完成。 1. 类的引入C语">
 <meta property="og:type" content="article">
 <meta property="og:title" content="03.C++ 面向对象">
-<meta property="og:url" content="http://example.com/2023/08/04/02.C++%20%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/03.C++%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/index.html">
+<meta property="og:url" content="http://example.com/2023/09/21/02.C++%20%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/03.C++%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/index.html">
 <meta property="og:site_name" content="八云家的记事簿 | 迦勒底亚斯 | Finis Chaldea | フィニス・カルデア">
 <meta property="og:description" content="本节分为 7 大类：  类和对象、this 指针 构造函数和析构函数 深拷贝和浅拷贝 类和对象代码应用实践 构造函数的初始化列表 类的各种成员方法及区别 指向类成员的指针  1. 类和对象、this 指针C 语言是面向过程的，关注的是过程。分析出求解问题的步骤，通过函数调用逐步解决问题。 C++ 是基于面向对象的，关注的是对象，将一件事情拆分成不同的对象，靠对象之间的交互完成。 1. 类的引入C语">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/img/Blog-Logo/C++_Logo.png">
-<meta property="article:published_time" content="2023-08-04T06:09:27.166Z">
-<meta property="article:modified_time" content="2023-08-09T09:14:03.254Z">
+<meta property="article:published_time" content="2023-09-21T03:10:20.022Z">
+<meta property="article:modified_time" content="2023-09-21T03:10:20.022Z">
 <meta property="article:author" content="Yakumo">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary_large_image">
@@ -227,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-04 06:09" pubdate>
-          Friday, August 4th 2023, 6:09 am
+        <time datetime="2023-09-21 03:10" pubdate>
+          Thursday, September 21st 2023, 3:10 am
         </time>
       </span>
     
@@ -453,9 +453,9 @@
 <h2 id="4-类和对象代码应用实践"><a href="#4-类和对象代码应用实践" class="headerlink" title="4. 类和对象代码应用实践"></a>4. 类和对象代码应用实践</h2><p><strong>实现：循环队列</strong></p>
 <p>当队列空时，条件就是 <code>front = rear</code>，当队列满时，我们修改其条件，保留一个元素空间。也就是说，队列满时，数组中还有一个空闲单元。 如下图所示，我们就认为此队列已经满了</p>
 <p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308080817183.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>由于 rear 可能比 front 大，也可能比 front 小，所以尽管它们只相差一个位置时就是满的情况，但也可能是相差整整一圈。所以若队列的最大尺寸QueueSize，那么队列满的条件是 <code>(rear+1) %QueueSize == front</code> (取模“%的目的就是为了整合 rear 与 front 大小为一个问题)。</p>
+<p>由于 rear 可能比 front 大，也可能比 front 小，所以尽管它们只相差一个位置时就是满的情况，但也可能是相差整整一圈。所以若队列的最大尺寸QueueSize，那么队列满的条件是 <code>(rear+1) % QueueSize == front</code> (取模“%的目的就是为了整合 rear 与 front 大小为一个问题)。</p>
 <p>比如：QueueSize &#x3D; 5，当 front&#x3D;0，而 rear&#x3D;4, (4+1) %5 &#x3D; 0，所以此时队列满。再比如，front &#x3D; 2而rear &#x3D;1。(1 + 1) %5 &#x3D; 2，所以此时 队列也是满的。而对于下图, front &#x3D; 2而rear&#x3D; 0, (0+1) %5 &#x3D; 1，1!&#x3D;2,所以此时队列并没有满。</p>
-<p>另外，当 <code>rear &gt; front</code> 时，此时队列的长度为 <code>rear—front</code>。但当rear &lt; front时，队列长度分为两段，一段是 <code>QueueSize-front</code>，另一段是0 + rear，加在一起，队列长度为 <code>rear-front + QueueSize</code></p>
+<p>另外，当 <code>rear &gt; front</code> 时，此时队列的长度为 <code>rear — front</code>。但当rear &lt; front时，队列长度分为两段，一段是 <code>QueueSize-front</code>，另一段是0 + rear，加在一起，队列长度为 <code>rear-front + QueueSize</code></p>
 <p>因此通用的计算队列长度公式为：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">(rear — front + QueueSize) % QueueSize<br></code></pre></td></tr></table></figure>
 
@@ -548,7 +548,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>03.C++ 面向对象</div>
-      <div>http://example.com/2023/08/04/02.C++ 基础部分/03.C++ 面向对象/</div>
+      <div>http://example.com/2023/09/21/02.C++ 基础部分/03.C++ 面向对象/</div>
     </div>
     <div class="license-meta">
       
@@ -560,7 +560,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 4, 2023</div>
+          <div>September 21, 2023</div>
         </div>
       
       
@@ -592,9 +592,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/08/02.C++%20%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/04.C++%20%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF/" title="04.C++ 函数模板">
+                      <a href="/2023/09/21/02.C++%20%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/02.C++%20%E5%9F%BA%E7%A1%80%E7%B2%BE%E8%AE%B2/" title="02.C++ 基础精讲">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">04.C++ 函数模板</span>
+                        <span class="hidden-mobile">02.C++ 基础精讲</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -602,8 +602,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/01/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E6%B5%81%E7%A8%8B/" title="博客部署流程">
-                        <span class="hidden-mobile">博客部署流程</span>
+                      <a href="/2023/09/21/02.C++%20%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/05.C++%20%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/" title="05.C++ 运算符重载">
+                        <span class="hidden-mobile">05.C++ 运算符重载</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

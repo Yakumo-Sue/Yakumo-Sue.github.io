@@ -19,13 +19,13 @@
     <meta name="description" content="本节分为七个部分：  学习复数类 Complex 模拟实现 C++ 的 string 类 string 字符串对象的迭代器 vector 容器的迭代器 iterator 实现 什么是容器的迭代器失效问题 new 和 delete 重载实现的对象池 深入理解 new 和 delete 的原理  什么是运算符重载 运算符重载实质还是一个 函数。通过重载运算符，可以让类在一些场景下使用起来更加方便。 语">
 <meta property="og:type" content="article">
 <meta property="og:title" content="05.C++ 运算符重载">
-<meta property="og:url" content="http://example.com/2023/08/09/02.C++%20%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/05.C++%20%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/index.html">
+<meta property="og:url" content="http://example.com/2023/09/21/02.C++%20%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/05.C++%20%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/index.html">
 <meta property="og:site_name" content="八云家的记事簿 | 迦勒底亚斯 | Finis Chaldea | フィニス・カルデア">
 <meta property="og:description" content="本节分为七个部分：  学习复数类 Complex 模拟实现 C++ 的 string 类 string 字符串对象的迭代器 vector 容器的迭代器 iterator 实现 什么是容器的迭代器失效问题 new 和 delete 重载实现的对象池 深入理解 new 和 delete 的原理  什么是运算符重载 运算符重载实质还是一个 函数。通过重载运算符，可以让类在一些场景下使用起来更加方便。 语">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/img/Blog-Logo/C++_Logo.png">
-<meta property="article:published_time" content="2023-08-09T00:38:38.325Z">
-<meta property="article:modified_time" content="2023-08-10T08:58:14.056Z">
+<meta property="article:published_time" content="2023-09-21T03:10:20.022Z">
+<meta property="article:modified_time" content="2023-09-21T03:10:20.022Z">
 <meta property="article:author" content="Yakumo">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary_large_image">
@@ -227,8 +227,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-08-09 00:38" pubdate>
-          Wednesday, August 9th 2023, 12:38 am
+        <time datetime="2023-09-21 03:10" pubdate>
+          Thursday, September 21st 2023, 3:10 am
         </time>
       </span>
     
@@ -430,7 +430,7 @@
 <p>这些参数确定插入的元素数量及其初始化值：</p>
 <p>也说明了进行插入操作会导致之后的迭代器失效。</p>
 <p>修改代码：</p>
-<p>erase 解决代码：**</p>
+<p><strong>erase 解决代码：</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>	vector&lt;<span class="hljs-type">int</span>&gt; vec;<br>	<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++)<br>	&#123;<br>		vec.<span class="hljs-built_in">push_back</span>(i);<br>	&#125;<br><br>	<span class="hljs-comment">// 把 vec 容器中的所有偶数删除</span><br>	<span class="hljs-keyword">auto</span> it = vec.<span class="hljs-built_in">begin</span>();<br>	<span class="hljs-keyword">while</span> (it != vec.<span class="hljs-built_in">end</span>())<br>	&#123;<br>		<span class="hljs-keyword">if</span> ((*it) % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>)<br>		&#123;<br>			<span class="hljs-comment">// 重新赋值</span><br>			it = vec.<span class="hljs-built_in">erase</span>(it);<br>		&#125;<br>		<span class="hljs-keyword">else</span><br>		&#123;<br>			it++;<br>		&#125;<br>	&#125;<br><br>	<span class="hljs-comment">// 输出查看</span><br>	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> it : vec)<br>	&#123;<br>		cout &lt;&lt; it &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>	&#125;<br><br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><img src="https://raw.githubusercontent.com/Yakumo-Sue/PicGo/main/images202308101516128.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
@@ -526,7 +526,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>05.C++ 运算符重载</div>
-      <div>http://example.com/2023/08/09/02.C++ 基础部分/05.C++ 运算符重载/</div>
+      <div>http://example.com/2023/09/21/02.C++ 基础部分/05.C++ 运算符重载/</div>
     </div>
     <div class="license-meta">
       
@@ -538,7 +538,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>August 9, 2023</div>
+          <div>September 21, 2023</div>
         </div>
       
       
@@ -570,9 +570,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/08/09/02.C++%20%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/06.C++%20%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/" title="06.C++ 继承与多态">
+                      <a href="/2023/09/21/02.C++%20%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/03.C++%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" title="03.C++ 面向对象">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">06.C++ 继承与多态</span>
+                        <span class="hidden-mobile">03.C++ 面向对象</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -580,8 +580,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/08/08/02.C++%20%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/04.C++%20%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF/" title="04.C++ 函数模板">
-                        <span class="hidden-mobile">04.C++ 函数模板</span>
+                      <a href="/2023/09/21/02.C++%20%E5%9F%BA%E7%A1%80%E9%83%A8%E5%88%86/06.C++%20%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/" title="06.C++ 继承与多态">
+                        <span class="hidden-mobile">06.C++ 继承与多态</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
