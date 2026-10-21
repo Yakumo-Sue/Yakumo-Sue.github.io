@@ -8,7 +8,7 @@ html #navbar { display: flex !important; visibility: visible !important; opacity
 .yakumo-wide-shell { max-width: 1300px; }
 #board.yakumo-list-board > .container { max-width: 1240px; }
 #board .about-avatar img { background: #eaf4f3; object-fit: contain; padding: 20px; border: 5px solid #fff; }
-#board .yakumo-main-column { flex: 0 0 min(85vh, 66.666667%); max-width: min(85vh, 66.666667%); min-width: 0; padding: 0 18px 0 24px; }
+#board .yakumo-main-column { min-width: 0; padding: 0 18px 0 24px; }
 #board .yakumo-sidebar-column { padding: 0 24px 0 10px; }
 .yakumo-sidebar { display: flex; flex-direction: column; gap: 18px; padding-top: 4px; color: var(--text-color); }
 .yakumo-side-card { padding: 23px; border: 1px solid rgba(112,147,149,.12); background: var(--board-bg-color, #fff); border-radius: 10px; box-shadow: 0 5px 25px rgba(32,61,72,.035); }
@@ -58,20 +58,13 @@ html #navbar { display: flex !important; visibility: visible !important; opacity
 #board .index-card { padding: 16px 0; margin-bottom: 18px; border-bottom: 1px solid rgba(112,147,149,.14); }
 #board .index-header { font-size: 1.32rem; white-space: normal; }
 #board .index-img img { height: 170px; object-fit: cover; }
-#board-ctn { width: 85vh; max-width: 100%; }
-.container-fluid > .row.nomargin-x > .side-col:first-child { display: none !important; }
-.container-fluid > .row.nomargin-x > .col-lg-8 { flex: 0 0 74%; max-width: 74%; padding-left: 3%; }
-.container-fluid > .row.nomargin-x > .side-col:last-child { flex: 0 0 26%; max-width: 26%; padding: 28px 24px 0 4px; }
-.container-fluid > .row.nomargin-x > .side-col:last-child .sidebar { margin-left: 0 !important; }
 [data-user-color-scheme='dark'] .yakumo-side-card { background: #252c35; border-color: #3b4650; }
 [data-user-color-scheme='dark'] { --yakumo-accent: #83c5c5; --yakumo-muted: #a8b7c0; --yakumo-soft: #263d40; }
 [data-user-color-scheme='dark'] .yakumo-avatar, [data-user-color-scheme='dark'] .yakumo-profile-link, [data-user-color-scheme='dark'] .yakumo-quote { background: #263d40; }
 @media (max-width: 991px) {
-  #board .yakumo-main-column { flex: 0 0 100%; max-width: 100%; padding: 0 15px; }
+  #board .yakumo-main-column { padding: 0 15px; }
   #board .yakumo-sidebar-column { padding: 0 15px; }
   .yakumo-sidebar-column .yakumo-sidebar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 22px; }
-  .container-fluid > .row.nomargin-x > .col-lg-8 { flex: 0 0 100%; max-width: 100%; padding-left: 0; }
-  .container-fluid > .row.nomargin-x > .side-col:last-child { display: none !important; }
 }
 @media (max-width: 600px) {
   .yakumo-sidebar-column .yakumo-sidebar { display: flex; }
