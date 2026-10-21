@@ -1,2 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>八云手记</title><link>https://yakumo-sue.github.io</link><description>关于技术、阅读、生活，以及一切微小而美好的事。当前为示例文章。</description><language>zh-CN</language><atom:link href="https://yakumo-sue.github.io/feed.xml" rel="self" type="application/rss+xml"/><item><title>Hello, World：在这里，开始记录</title><link>https://yakumo-sue.github.io/#post/hello-world</link><guid isPermaLink="true">https://yakumo-sue.github.io/#post/hello-world</guid><pubDate>Tue, 20 Oct 2026 16:00:00 GMT</pubDate><category>随想</category><description>示例手记 · 给想法一个落脚的地方，给日常留一点回声。这是这本手记的第一篇，也是一段慢慢生长的开始。</description></item><item><title>搭一座数字花园，让知识慢慢生长</title><link>https://yakumo-sue.github.io/#post/digital-garden</link><guid isPermaLink="true">https://yakumo-sue.github.io/#post/digital-garden</guid><pubDate>Sun, 18 Oct 2026 16:00:00 GMT</pubDate><category>技术手记</category><description>示例手记 · 收藏不是拥有，连接才是开始。从零散的笔记到可以持续生长的知识网络，试着搭建属于自己的数字花园。</description></item><item><title>阅读的意义，是让世界再宽一点</title><link>https://yakumo-sue.github.io/#post/reading-notes</link><guid isPermaLink="true">https://yakumo-sue.github.io/#post/reading-notes</guid><pubDate>Thu, 15 Oct 2026 16:00:00 GMT</pubDate><category>读书札记</category><description>示例手记 · 读完一本书，不一定要记住每一页。那些让我们停下来、重新看待日常的片刻，也许已经足够珍贵。</description></item><item><title>秋日散步：把生活调回慢速</title><link>https://yakumo-sue.github.io/#post/autumn-walk</link><guid isPermaLink="true">https://yakumo-sue.github.io/#post/autumn-walk</guid><pubDate>Sun, 11 Oct 2026 16:00:00 GMT</pubDate><category>生活碎片</category><description>示例手记 · 不戴耳机，不设目的地，沿着熟悉的街道走一会儿。原来平常的日子里，也藏着许多没有被注意过的风景。</description></item><item><title>写一点 CSS，也留一点呼吸感</title><link>https://yakumo-sue.github.io/#post/css-space</link><guid isPermaLink="true">https://yakumo-sue.github.io/#post/css-space</guid><pubDate>Wed, 07 Oct 2026 16:00:00 GMT</pubDate><category>技术手记</category><description>示例手记 · 一个舒服的页面，往往从合适的行距、克制的色彩和恰到好处的留白开始。记下几个关于阅读体验的小练习。</description></item><item><title>允许自己，拥有一些未完成</title><link>https://yakumo-sue.github.io/#post/unfinished</link><guid isPermaLink="true">https://yakumo-sue.github.io/#post/unfinished</guid><pubDate>Sun, 27 Sep 2026 16:00:00 GMT</pubDate><category>随想</category><description>示例手记 · 草稿箱里的半篇文章，读到一半的书，还有尚未找到答案的问题。未完成，有时也意味着仍然存在可能。</description></item><item><title>一张书桌，一小片专注的天地</title><link>https://yakumo-sue.github.io/#post/desk-notes</link><guid isPermaLink="true">https://yakumo-sue.github.io/#post/desk-notes</guid><pubDate>Sat, 19 Sep 2026 16:00:00 GMT</pubDate><category>生活碎片</category><description>示例手记 · 不需要很大的空间，只需要让眼前少一点杂乱，给正在做的事多一点认真。关于整理书桌的几则小记。</description></item><item><title>重读一本书，遇见不同的自己</title><link>https://yakumo-sue.github.io/#post/rereading</link><guid isPermaLink="true">https://yakumo-sue.github.io/#post/rereading</guid><pubDate>Fri, 11 Sep 2026 16:00:00 GMT</pubDate><category>读书札记</category><description>示例手记 · 同一本书，不同的时间，会读出不一样的答案。重读的乐趣，也许在于发现自己悄悄改变的目光。</description></item></channel></rss>
+<?xml version='1.0' encoding='utf-8'?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>八云家的记事簿</title>
+    <link>https://yakumo-sue.github.io/</link>
+    <description>关于技术、阅读、生活，以及一切微小而美好的事。</description>
+    <language>zh-CN</language>
+    <atom:link href="https://yakumo-sue.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello, World：在这里，开始记录</title>
+      <link>https://yakumo-sue.github.io/#post/hello-world</link>
+      <guid isPermaLink="true">https://yakumo-sue.github.io/#post/hello-world</guid>
+      <pubDate>Tue, 20 Oct 2026 16:00:00 GMT</pubDate>
+      <category>随想</category>
+      <description>给想法一个落脚的地方，给日常留一点回声。这是这本手记的第一篇，也是一段慢慢生长的开始。</description>
+    </item>
+  </channel>
+</rss>
