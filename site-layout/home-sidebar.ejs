@@ -1,4 +1,4 @@
-<% if (is_home() || ['archive', 'categories', 'category', 'tags', 'tag'].includes(page.layout)) { %>
+<% if (is_home()) { %>
   <template id="yakumo-sidebar-template"><%- partial('inject/postRight/yakumo-sidebar') %></template>
   <script>
     (() => {

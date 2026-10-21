@@ -1,3 +1,4 @@
+<% if (is_home()) { %>
 <aside class="yakumo-sidebar" aria-label="博客信息">
   <section class="yakumo-side-card yakumo-profile">
     <div class="yakumo-avatar" aria-hidden="true">
@@ -18,6 +19,20 @@
     <h2 class="yakumo-side-title">✦ 小站公告</h2>
     <p>欢迎来到这间数字小屋。<br>愿文字能留住一点日常，也为你带来一点灵感。</p>
     <small>初次见面，请多关照 ☺</small>
+  </section>
+
+  <section class="yakumo-side-card yakumo-calendar" aria-label="文章日历" data-posts="<%= JSON.stringify(site.posts.toArray().map(function (post) { return { date: post.date.format('YYYY-MM-DD'), url: url_for(post.path), title: post.title }; })) %>">
+    <div class="yakumo-calendar-header">
+      <h2 class="yakumo-side-title">▦ 记录日历</h2>
+      <div class="yakumo-calendar-nav">
+        <button type="button" class="yakumo-calendar-prev" aria-label="上个月">‹</button>
+        <span class="yakumo-calendar-month" aria-live="polite"></span>
+        <button type="button" class="yakumo-calendar-next" aria-label="下个月">›</button>
+      </div>
+    </div>
+    <div class="yakumo-calendar-weekdays" aria-hidden="true"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
+    <div class="yakumo-calendar-days" role="grid" aria-label="文章发表日期"></div>
+    <small>标记日期有文章，点击即可阅读。</small>
   </section>
 
   <section class="yakumo-side-card">
@@ -42,3 +57,4 @@
   <section class="yakumo-quote"><span aria-hidden="true">“</span><p>在平凡的日子里，<br>发现不平凡的微光。</p><small>A NOTE TO SELF</small></section>
   <a class="yakumo-rss" href="<%= url_for('/feed.xml') %>">◌ 通过 RSS 订阅手记</a>
 </aside>
+<% } %>
