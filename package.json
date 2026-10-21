@@ -1,0 +1,28 @@
+{
+  "name": "yakumo-journal",
+  "version": "1.0.0",
+  "private": true,
+  "description": "八云家的记事簿，Hexo + Fluid",
+  "hexo": {"version": "8.1.2"},
+  "scripts": {
+    "build": "hexo clean && hexo generate",
+    "build:site": "npm run build && node tooling/copy-public.mjs",
+    "server": "hexo server",
+    "new": "hexo new"
+  },
+  "dependencies": {
+    "hexo": "^8.1.2",
+    "hexo-generator-archive": "^2.0.0",
+    "hexo-generator-category": "^2.0.0",
+    "hexo-generator-feed": "^3.0.0",
+    "hexo-generator-tag": "^2.0.0",
+    "hexo-renderer-ejs": "^2.0.0",
+    "hexo-renderer-marked": "^7.0.0",
+    "hexo-renderer-stylus": "^3.0.1",
+    "hexo-server": "^3.0.0",
+    "nunjucks": "^3.2.4"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

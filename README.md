@@ -1,12 +1,49 @@
 # 八云家的记事簿
 
-中文个人博客，记录技术、阅读、生活与灵感。由 Sites 版本迁移到 GitHub Pages。
+基于 [Hexo](https://hexo.io/) 与 [Fluid](https://github.com/fluid-dev/hexo-theme-fluid) 的博客。主题以 Git 子模块固定在 `themes/fluid` 的 v1.9.9，站点的改动留在项目根目录，主题源码保持上游目录结构。
 
-- 网站：[https://yakumo-sue.github.io](https://yakumo-sue.github.io)
-- 静态站点文件：`dist/`
-- 文章数据：`dist/posts.js`，目前仅保留《Hello, World：在这里，开始记录》。
-- GitHub Pages 发布内容：`gh-pages` 分支，由 `.github/workflows/deploy.yml` 从 `dist/` 同步。
+## 写一篇文章
 
-所有页面为静态 HTML/CSS/JavaScript，无构建依赖。封面是为此博客生成的山湖图像。左侧迦勒底纹章素材取自 [Evacion/anynamelang](https://github.com/Evacion/anynamelang/blob/main/assets/chaldea_logo.png)，相关权利归原权利方所有。更新文章后，同步修改 `dist/feed.xml` 的 RSS 条目。
+1. 在 `source/_posts/` 新建一个 `.md` 文件，也可以运行 `npm run new -- "文章标题"`。
+2. 在文件开头写好标题、日期、分类和标签：
 
-旧 Hexo 站点已经在当前版本中替换，之前的源代码仍可从 Git 历史查看和恢复。
+   ```yaml
+   ---
+   title: 新文章标题
+   date: 2026-10-21 20:00:00
+   updated: 2026-10-21 20:00:00
+   categories: [随想]
+   tags: [记录]
+   description: 一句话摘要
+   ---
+   ```
+
+3. 在第二条 `---` 后写 Markdown。提交到 `main` 后，GitHub Actions 会运行 Hexo 并将 `public/` 的静态页面发布到 `gh-pages`。
+
+## 本地预览
+
+```bash
+git clone --recurse-submodules https://github.com/Yakumo-Sue/Yakumo-Sue.github.io.git
+cd Yakumo-Sue.github.io
+npm ci
+npm run server
+```
+
+浏览器打开 `http://localhost:4000/`。生成静态文件使用 `npm run build`，输出在 `public/`。
+
+## 目录
+
+| 路径 | 作用 |
+| --- | --- |
+| `source/_posts/*.md` | 博客文章的 Markdown 源文件 |
+| `source/about/index.md` | 关于页面 |
+| `source/img/` | 徽标和封面图 |
+| `_config.yml` | Hexo 站点配置 |
+| `_config.fluid.yml` | Fluid 主题配置，覆盖主题默认值 |
+| `themes/fluid/` | Fluid 官方主题 Git 子模块，固定 v1.9.9 |
+| `site-layout/`、`scripts/`、`source/css/` | 右侧栏与本站样式定制 |
+| `tooling/` | 给私有预览站复制构建结果的辅助脚本 |
+| `.github/workflows/deploy.yml` | 从 Markdown 构建并部署 GitHub Pages |
+| `public/` | 自动生成的静态文件，不提交到 `main` |
+
+更新主题时运行 `git -C themes/fluid fetch --tags`、`git -C themes/fluid checkout <新版本标签>`，随后提交子模块指针。右侧栏与站点样式不直接修改上游主题。

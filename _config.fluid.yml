@@ -1,0 +1,52 @@
+favicon: /img/chaldea-logo.png
+apple_touch_icon: /img/chaldea-logo.png
+custom_css: /css/yakumo.css
+navbar:
+  blog_title: 八云家的记事簿
+  menu:
+    - { key: home, link: /, icon: "iconfont icon-home-fill", name: 首页 }
+    - { key: archive, link: /archives/, icon: "iconfont icon-archive-fill", name: 归档 }
+    - { key: category, link: /categories/, icon: "iconfont icon-category-fill", name: 分类 }
+    - { key: tag, link: /tags/, icon: "iconfont icon-tags-fill", name: 标签 }
+    - { key: about, link: /about/, icon: "iconfont icon-user-fill", name: 关于 }
+index:
+  banner_img: /img/mountain-lake.webp
+  banner_img_height: 62
+  banner_mask_alpha: 0.45
+  slogan:
+    enable: true
+    text: 关于技术、阅读、生活，以及一切微小而美好的事。
+post:
+  banner_img: /img/mountain-lake.webp
+  banner_img_height: 40
+  default_index_img: /img/mountain-lake.webp
+  category_bar:
+    enable: false
+  toc:
+    enable: true
+    placement: right
+  copyright:
+    enable: false
+archive:
+  banner_img: /img/mountain-lake.webp
+  banner_img_height: 36
+category:
+  banner_img: /img/mountain-lake.webp
+  banner_img_height: 36
+tag:
+  banner_img: /img/mountain-lake.webp
+  banner_img_height: 36
+about:
+  banner_img: /img/mountain-lake.webp
+  banner_img_height: 36
+  avatar: /img/chaldea-logo.png
+  name: 八云
+  intro: 一个收集灵感、慢慢写字的人。
+  icons:
+    - { class: "iconfont icon-github-fill", link: "https://github.com/Yakumo-Sue", tip: "GitHub" }
+links:
+  enable: false
+page404:
+  banner_img: /img/mountain-lake.webp
+footer:
+  content: '© 2026 八云家的记事簿 · <a href="/feed.xml">RSS 订阅</a> · 基于 <a href="https://hexo.io" target="_blank" rel="nofollow noopener">Hexo</a> 与 <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">Fluid</a>'

@@ -1,0 +1,18 @@
+<% if (!is_post() && page.layout !== '404' && page.layout !== 'page') { %>
+  <template id="yakumo-sidebar-template"><%- partial('inject/postRight/yakumo-sidebar') %></template>
+  <script>
+    (() => {
+      const row = document.querySelector('#board > .container > .row');
+      const column = row && row.querySelector(':scope > .col-12.col-md-10.m-auto');
+      const template = document.getElementById('yakumo-sidebar-template');
+      if (!row || !column || !template) return;
+      column.classList.remove('col-md-10', 'm-auto');
+      column.classList.add('col-lg-8', 'yakumo-main-column');
+      const side = document.createElement('div');
+      side.className = 'col-12 col-lg-4 yakumo-sidebar-column';
+      side.appendChild(template.content.cloneNode(true));
+      row.appendChild(side);
+      template.remove();
+    })();
+  </script>
+<% } %>
