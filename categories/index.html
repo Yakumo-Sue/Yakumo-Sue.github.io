@@ -546,6 +546,9 @@
       const column = row && row.querySelector(':scope > .col-12.col-md-10.m-auto');
       const template = document.getElementById('yakumo-sidebar-template');
       if (!row || !column || !template) return;
+      const board = row.closest('#board');
+      board.classList.add('yakumo-list-board');
+      board.parentElement.classList.add('yakumo-wide-shell');
       column.classList.remove('col-md-10', 'm-auto');
       column.classList.add('col-lg-8', 'yakumo-main-column');
       const side = document.createElement('div');
