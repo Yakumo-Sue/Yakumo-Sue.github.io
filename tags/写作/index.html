@@ -452,6 +452,10 @@
 
 
 
+  
+<script src="/js/yakumo-calendar.js"></script>
+
+
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
@@ -459,74 +463,6 @@
 
 
   
-  <template id="yakumo-sidebar-template"><aside class="yakumo-sidebar" aria-label="博客信息">
-  <section class="yakumo-side-card yakumo-profile">
-    <div class="yakumo-avatar" aria-hidden="true">
-      <svg viewBox="0 0 64 64" fill="none"><path d="M5 49 24 21l9 14 9-11 17 25H5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m14 36 10-15 8 12m8-6 2-3 5 7" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="47" cy="14" r="4" fill="currentColor"/></svg>
-    </div>
-    <h2>八云</h2>
-    <small>LIFE IS A JOURNEY</small>
-    <p>一个收集灵感、慢慢写字的人。<br>在这里，与日常温柔相遇。</p>
-    <div class="yakumo-stats">
-      <a href="/archives/"><strong>1</strong><span>文章</span></a>
-      <a href="/categories/"><strong>1</strong><span>分类</span></a>
-      <a href="/tags/"><strong>3</strong><span>标签</span></a>
-    </div>
-    <a class="yakumo-profile-link" href="/about/">关于我 <span aria-hidden="true">→</span></a>
-  </section>
-
-  <section class="yakumo-side-card">
-    <h2 class="yakumo-side-title">✦ 小站公告</h2>
-    <p>欢迎来到这间数字小屋。<br>愿文字能留住一点日常，也为你带来一点灵感。</p>
-    <small>初次见面，请多关照 ☺</small>
-  </section>
-
-  <section class="yakumo-side-card">
-    <h2 class="yakumo-side-title">▤ 文章分类</h2>
-    <ul class="yakumo-category-list">
-      
-        <li><a href="/categories/%E9%9A%8F%E6%83%B3/"><span>随想</span><small>1</small></a></li>
-      
-    </ul>
-  </section>
-
-  <section class="yakumo-side-card">
-    <h2 class="yakumo-side-title"># 标签漫游</h2>
-    <div class="yakumo-tag-list">
-      
-        <a href="/tags/%E5%8D%9A%E5%AE%A2/"># 博客</a>
-      
-        <a href="/tags/%E5%86%99%E4%BD%9C/"># 写作</a>
-      
-        <a href="/tags/%E6%97%A5%E5%B8%B8/"># 日常</a>
-      
-      <a class="yakumo-all-tags" href="/tags/">全部标签 →</a>
-    </div>
-  </section>
-
-  <section class="yakumo-quote"><span aria-hidden="true">“</span><p>在平凡的日子里，<br>发现不平凡的微光。</p><small>A NOTE TO SELF</small></section>
-  <a class="yakumo-rss" href="/feed.xml">◌ 通过 RSS 订阅手记</a>
-</aside>
-</template>
-  <script>
-    (() => {
-      const row = document.querySelector('#board > .container > .row');
-      const column = row && row.querySelector(':scope > .col-12.col-md-10.m-auto');
-      const template = document.getElementById('yakumo-sidebar-template');
-      if (!row || !column || !template) return;
-      const board = row.closest('#board');
-      board.classList.add('yakumo-list-board');
-      board.parentElement.classList.add('yakumo-wide-shell');
-      column.classList.remove('col-md-10', 'm-auto');
-      column.classList.add('col-lg-8', 'yakumo-main-column');
-      const side = document.createElement('div');
-      side.className = 'col-12 col-lg-4 yakumo-sidebar-column';
-      side.appendChild(template.content.cloneNode(true));
-      row.appendChild(side);
-      template.remove();
-    })();
-  </script>
-
 
 
   <noscript>

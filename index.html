@@ -515,6 +515,10 @@
 
 
 
+  
+<script src="/js/yakumo-calendar.js"></script>
+
+
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
@@ -522,7 +526,8 @@
 
 
   
-  <template id="yakumo-sidebar-template"><aside class="yakumo-sidebar" aria-label="博客信息">
+  <template id="yakumo-sidebar-template">
+<aside class="yakumo-sidebar" aria-label="博客信息">
   <section class="yakumo-side-card yakumo-profile">
     <div class="yakumo-avatar" aria-hidden="true">
       <svg viewBox="0 0 64 64" fill="none"><path d="M5 49 24 21l9 14 9-11 17 25H5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m14 36 10-15 8 12m8-6 2-3 5 7" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="47" cy="14" r="4" fill="currentColor"/></svg>
@@ -542,6 +547,20 @@
     <h2 class="yakumo-side-title">✦ 小站公告</h2>
     <p>欢迎来到这间数字小屋。<br>愿文字能留住一点日常，也为你带来一点灵感。</p>
     <small>初次见面，请多关照 ☺</small>
+  </section>
+
+  <section class="yakumo-side-card yakumo-calendar" aria-label="文章日历" data-posts="[{&#34;date&#34;:&#34;2026-10-21&#34;,&#34;url&#34;:&#34;/posts/hello-world/&#34;,&#34;title&#34;:&#34;Hello, World：在这里，开始记录&#34;}]">
+    <div class="yakumo-calendar-header">
+      <h2 class="yakumo-side-title">▦ 记录日历</h2>
+      <div class="yakumo-calendar-nav">
+        <button type="button" class="yakumo-calendar-prev" aria-label="上个月">‹</button>
+        <span class="yakumo-calendar-month" aria-live="polite"></span>
+        <button type="button" class="yakumo-calendar-next" aria-label="下个月">›</button>
+      </div>
+    </div>
+    <div class="yakumo-calendar-weekdays" aria-hidden="true"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
+    <div class="yakumo-calendar-days" role="grid" aria-label="文章发表日期"></div>
+    <small>标记日期有文章，点击即可阅读。</small>
   </section>
 
   <section class="yakumo-side-card">
@@ -570,6 +589,7 @@
   <section class="yakumo-quote"><span aria-hidden="true">“</span><p>在平凡的日子里，<br>发现不平凡的微光。</p><small>A NOTE TO SELF</small></section>
   <a class="yakumo-rss" href="/feed.xml">◌ 通过 RSS 订阅手记</a>
 </aside>
+
 </template>
   <script>
     (() => {

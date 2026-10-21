@@ -1,6 +1,5 @@
 /* Site accents and a Fluid compatible two-column layout. */
 :root { --yakumo-accent: #287f85; --yakumo-soft: #eaf4f3; --yakumo-muted: #65767d; }
-body { background: #f7f9fa; }
 #navbar .navbar-brand { display: inline-flex; align-items: center; gap: 10px; font-size: 1.16rem; letter-spacing: .04em; }
 #navbar .navbar-brand::before { content: ''; width: 29px; height: 29px; flex: 0 0 auto; background: url('/img/chaldea-logo.png') center / contain no-repeat; filter: invert(1); }
 #navbar.navbar-light .navbar-brand::before { filter: none; }
@@ -27,6 +26,21 @@ body { background: #f7f9fa; }
 .yakumo-stats span { color: #98a6aa; font-size: 10px; }
 .yakumo-profile-link { display: block; padding: 8px; background: var(--yakumo-soft); border-radius: 5px; color: var(--yakumo-accent); font-size: 12px; }
 .yakumo-side-title { margin: 0 0 15px; font-size: 14px; font-weight: 600; color: var(--text-color); }
+.yakumo-calendar-header { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 15px; }
+.yakumo-calendar-header .yakumo-side-title { margin: 0; white-space: nowrap; }
+.yakumo-calendar-nav { display: flex; align-items: center; gap: 4px; white-space: nowrap; font-size: 11px; color: var(--yakumo-muted); }
+.yakumo-calendar-nav button { width: 22px; height: 24px; padding: 0; border: 0; border-radius: 4px; background: transparent; color: var(--text-color); font-size: 19px; line-height: 1; cursor: pointer; }
+.yakumo-calendar-nav button:hover, .yakumo-calendar-nav button:focus-visible { background: var(--yakumo-soft); color: var(--yakumo-accent); }
+.yakumo-calendar-month { min-width: 65px; text-align: center; }
+.yakumo-calendar-weekdays, .yakumo-calendar-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); text-align: center; }
+.yakumo-calendar-weekdays { margin-bottom: 6px; color: var(--yakumo-muted); font-size: 11px; }
+.yakumo-calendar-days { row-gap: 3px; }
+.yakumo-calendar-day { position: relative; display: grid; place-items: center; min-height: 30px; border-radius: 50%; color: var(--yakumo-muted); font-size: 11px; }
+.yakumo-calendar-day.is-today { background: var(--yakumo-soft); color: var(--yakumo-accent); font-weight: 700; }
+.yakumo-calendar-day.has-post { color: var(--yakumo-accent); font-weight: 700; }
+.yakumo-calendar-day.has-post::after { position: absolute; bottom: 1px; width: 3px; height: 3px; border-radius: 50%; background: currentColor; content: ''; }
+.yakumo-calendar-day.has-post:hover, .yakumo-calendar-day.has-post:focus-visible { background: var(--yakumo-soft); }
+.yakumo-calendar > small { display: block; margin-top: 12px; }
 .yakumo-category-list { margin: 0; padding: 0; list-style: none; }
 .yakumo-category-list li + li { margin-top: 10px; }
 .yakumo-category-list a { display: flex; align-items: center; justify-content: space-between; color: var(--yakumo-muted); font-size: 12px; }
@@ -49,6 +63,7 @@ body { background: #f7f9fa; }
 .container-fluid > .row.nomargin-x > .side-col:last-child .sidebar { margin-left: 0 !important; }
 .container-fluid > .row.nomargin-x > .side-col:last-child .yakumo-sidebar { margin-top: 19px; }
 [data-user-color-scheme='dark'] .yakumo-side-card { background: #252c35; border-color: #3b4650; }
+[data-user-color-scheme='dark'] { --yakumo-accent: #83c5c5; --yakumo-muted: #a8b7c0; --yakumo-soft: #263d40; }
 [data-user-color-scheme='dark'] .yakumo-avatar, [data-user-color-scheme='dark'] .yakumo-profile-link, [data-user-color-scheme='dark'] .yakumo-quote { background: #263d40; }
 @media (max-width: 991px) {
   #board .yakumo-main-column { padding: 0 15px; }
