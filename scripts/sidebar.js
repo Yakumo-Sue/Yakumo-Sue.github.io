@@ -9,5 +9,4 @@ hexo.extend.filter.register('theme_inject', function(injects) {
   // Register a reusable view without adding it to Fluid's postRight slot.
   hexo.theme.setView('inject/yakumo-sidebar.ejs', fs.readFileSync(sidebar, 'utf8'));
   injects.bodyEnd.file('yakumo-home-sidebar', path.join(hexo.base_dir, 'site-layout/home-sidebar.ejs'));
-  injects.head.file('yakumo-post-head', path.join(hexo.base_dir, 'site-layout/post-head.ejs'));
 });
