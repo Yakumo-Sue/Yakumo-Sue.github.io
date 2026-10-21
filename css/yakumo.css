@@ -1,0 +1,62 @@
+/* Site accents and a Fluid compatible two-column layout. */
+:root { --yakumo-accent: #287f85; --yakumo-soft: #eaf4f3; --yakumo-muted: #65767d; }
+body { background: #f7f9fa; }
+#navbar .navbar-brand { display: inline-flex; align-items: center; gap: 10px; font-size: 1.16rem; letter-spacing: .04em; }
+#navbar .navbar-brand::before { content: ''; width: 29px; height: 29px; flex: 0 0 auto; background: url('/img/chaldea-logo.png') center / contain no-repeat; filter: invert(1); }
+#navbar.navbar-light .navbar-brand::before { filter: none; }
+#board { border-radius: 12px; }
+#board > .container { max-width: 1160px; }
+#board .yakumo-main-column { min-width: 0; padding: 0 18px 0 24px; }
+#board .yakumo-sidebar-column { padding: 0 24px 0 10px; }
+.yakumo-sidebar { display: flex; flex-direction: column; gap: 18px; padding-top: 4px; color: var(--text-color); }
+.yakumo-side-card { padding: 23px; border: 1px solid rgba(112,147,149,.12); background: var(--board-bg-color, #fff); border-radius: 10px; box-shadow: 0 5px 25px rgba(32,61,72,.035); }
+.yakumo-profile { text-align: center; padding-top: 27px; }
+.yakumo-avatar { width: 74px; height: 74px; margin: 0 auto 12px; display: grid; place-items: center; border-radius: 50%; background: var(--yakumo-soft); color: #4e827d; }
+.yakumo-avatar svg { width: 49px; height: 49px; }
+.yakumo-profile h2 { margin: 0 0 2px; font-size: 19px; font-weight: 600; letter-spacing: .13em; }
+.yakumo-profile > small { letter-spacing: .23em; color: #919fa4; font-size: 9px; }
+.yakumo-side-card p { margin: 12px 0 0; color: var(--yakumo-muted); font-size: 12px; line-height: 1.9; }
+.yakumo-side-card > small { color: #99a6aa; font-size: 10px; }
+.yakumo-profile p { margin: 12px 0 17px; }
+.yakumo-stats { display: grid; grid-template-columns: repeat(3, 1fr); margin: 17px 0; }
+.yakumo-stats a { display: flex; flex-direction: column; border-right: 1px solid rgba(112,147,149,.18); line-height: 1.5; }
+.yakumo-stats a:last-child { border-right: 0; }
+.yakumo-stats strong { font-size: 19px; font-weight: 500; font-family: Georgia, serif; }
+.yakumo-stats span { color: #98a6aa; font-size: 10px; }
+.yakumo-profile-link { display: block; padding: 8px; background: var(--yakumo-soft); border-radius: 5px; color: var(--yakumo-accent); font-size: 12px; }
+.yakumo-side-title { margin: 0 0 15px; font-size: 14px; font-weight: 600; color: var(--text-color); }
+.yakumo-category-list { margin: 0; padding: 0; list-style: none; }
+.yakumo-category-list li + li { margin-top: 10px; }
+.yakumo-category-list a { display: flex; align-items: center; justify-content: space-between; color: var(--yakumo-muted); font-size: 12px; }
+.yakumo-category-list small { padding: 1px 8px; border-radius: 4px; background: rgba(110,150,150,.09); color: #819196; }
+.yakumo-tag-list { display: flex; flex-wrap: wrap; gap: 7px; }
+.yakumo-tag-list a { padding: 3px 8px; border: 1px solid rgba(112,147,149,.2); border-radius: 4px; color: var(--yakumo-muted); font-size: 11px; }
+.yakumo-tag-list .yakumo-all-tags { border: 0; color: var(--yakumo-accent); }
+.yakumo-quote { padding: 21px 23px; border-radius: 10px; background: var(--yakumo-soft); color: var(--yakumo-accent); }
+.yakumo-quote > span { display: block; height: 30px; font: 54px/1 Georgia, serif; opacity: .26; }
+.yakumo-quote p { margin: 5px 0 10px; font: 15px/1.9 'Noto Serif SC', 'Songti SC', serif; letter-spacing: .06em; }
+.yakumo-quote small { letter-spacing: .17em; font-size: 9px; opacity: .65; }
+.yakumo-rss { align-self: center; color: #819196; font-size: 11px; margin: 1px 0 4px; }
+.yakumo-sidebar a:hover { color: var(--yakumo-accent); }
+#board .index-card { padding: 16px 0; margin-bottom: 18px; border-bottom: 1px solid rgba(112,147,149,.14); }
+#board .index-header { font-size: 1.32rem; white-space: normal; }
+#board .index-img img { height: 170px; object-fit: cover; }
+.container-fluid > .row.nomargin-x > .side-col:first-child { display: none !important; }
+.container-fluid > .row.nomargin-x > .col-lg-8 { flex: 0 0 74%; max-width: 74%; padding-left: 3%; }
+.container-fluid > .row.nomargin-x > .side-col:last-child { flex: 0 0 26%; max-width: 26%; padding: 28px 24px 0 4px; }
+.container-fluid > .row.nomargin-x > .side-col:last-child .sidebar { margin-left: 0 !important; }
+.container-fluid > .row.nomargin-x > .side-col:last-child .yakumo-sidebar { margin-top: 19px; }
+[data-user-color-scheme='dark'] .yakumo-side-card { background: #252c35; border-color: #3b4650; }
+[data-user-color-scheme='dark'] .yakumo-avatar, [data-user-color-scheme='dark'] .yakumo-profile-link, [data-user-color-scheme='dark'] .yakumo-quote { background: #263d40; }
+@media (max-width: 991px) {
+  #board .yakumo-main-column { padding: 0 15px; }
+  #board .yakumo-sidebar-column { padding: 0 15px; }
+  .yakumo-sidebar-column .yakumo-sidebar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 22px; }
+  .container-fluid > .row.nomargin-x > .col-lg-8 { flex: 0 0 100%; max-width: 100%; padding-left: 0; }
+  .container-fluid > .row.nomargin-x > .side-col:last-child { display: none !important; }
+}
+@media (max-width: 600px) {
+  .yakumo-sidebar-column .yakumo-sidebar { display: flex; }
+  #navbar .navbar-brand { font-size: 1rem; }
+  #navbar .navbar-brand::before { width: 25px; height: 25px; }
+}
