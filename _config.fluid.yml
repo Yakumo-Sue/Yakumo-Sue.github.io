@@ -11,11 +11,14 @@ navbar:
     - { key: about, link: /about/, icon: "iconfont icon-user-fill", name: 关于 }
 index:
   banner_img: /img/mountain-lake.webp
-  banner_img_height: 62
+  banner_img_height: 100
   banner_mask_alpha: 0.45
   slogan:
     enable: true
     text: 关于技术、阅读、生活，以及一切微小而美好的事。
+scroll_down_arrow:
+  enable: true
+  banner_height_limit: 80
 post:
   banner_img: /img/mountain-lake.webp
   banner_img_height: 40
