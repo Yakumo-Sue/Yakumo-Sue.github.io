@@ -61,7 +61,6 @@
 .container-fluid > .row.nomargin-x > .col-lg-8 { flex: 0 0 74%; max-width: 74%; padding-left: 3%; }
 .container-fluid > .row.nomargin-x > .side-col:last-child { flex: 0 0 26%; max-width: 26%; padding: 28px 24px 0 4px; }
 .container-fluid > .row.nomargin-x > .side-col:last-child .sidebar { margin-left: 0 !important; }
-.container-fluid > .row.nomargin-x > .side-col:last-child .yakumo-sidebar { margin-top: 19px; }
 [data-user-color-scheme='dark'] .yakumo-side-card { background: #252c35; border-color: #3b4650; }
 [data-user-color-scheme='dark'] { --yakumo-accent: #83c5c5; --yakumo-muted: #a8b7c0; --yakumo-soft: #263d40; }
 [data-user-color-scheme='dark'] .yakumo-avatar, [data-user-color-scheme='dark'] .yakumo-profile-link, [data-user-color-scheme='dark'] .yakumo-quote { background: #263d40; }
