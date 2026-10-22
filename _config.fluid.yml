@@ -1,6 +1,6 @@
 favicon: /img/chaldea-logo.png
 apple_touch_icon: /img/chaldea-logo.png
-custom_css: /css/yakumo-layout.css
+custom_css: /css/yakumo-layout-v2.css
 custom_js: /js/yakumo-calendar.js
 navbar:
   blog_title: 八云家的记事簿
