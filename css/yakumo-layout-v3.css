@@ -66,7 +66,8 @@ main > .container.nopadding-x-md:not(.yakumo-wide-shell) #board > .container > .
 #board .index-img img { height: 170px; object-fit: cover; }
 #board-ctn { width: calc(120vh + 30px); max-width: 100%; }
 @media (min-width: 992px) {
-  #board .yakumo-sidebar-column { position: sticky; top: var(--yakumo-sidebar-top, 80px); align-self: flex-start; }
+  #board .yakumo-sidebar-column { position: relative; align-self: stretch; min-height: var(--yakumo-sidebar-natural-height, 0px); }
+  .yakumo-sidebar-column .yakumo-sidebar { position: sticky; top: var(--yakumo-sidebar-top, 80px); max-height: calc(100vh - var(--yakumo-sidebar-top, 80px) - 24px); overflow-y: auto; scrollbar-width: thin; }
   .container-fluid > .row.nomargin-x { justify-content: center; }
   .container-fluid > .row.nomargin-x > .side-col:first-child { display: none !important; }
   .container-fluid > .row.nomargin-x > .col-lg-8 { flex: 0 0 min(calc(120vh + 60px), calc(100% - 180px)); max-width: min(calc(120vh + 60px), calc(100% - 180px)); }
