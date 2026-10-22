@@ -5,11 +5,11 @@ html #navbar { display: flex !important; visibility: visible !important; opacity
 #navbar .navbar-brand::before { content: ''; width: 29px; height: 29px; flex: 0 0 auto; background: url('/img/chaldea-logo.png') center / contain no-repeat; filter: invert(1); }
 #navbar.navbar-light .navbar-brand::before { filter: none; }
 #board { border-radius: 12px; }
-.yakumo-wide-shell { max-width: 1300px; }
-#board.yakumo-list-board > .container { max-width: 1240px; }
+.yakumo-wide-shell { max-width: 1500px; }
+#board.yakumo-list-board > .container { max-width: 1450px; }
 #board .about-avatar img { background: #eaf4f3; object-fit: contain; padding: 20px; border: 5px solid #fff; }
-#board .yakumo-main-column { flex: 0 0 min(100vh, calc(100% - 300px)); max-width: min(100vh, calc(100% - 300px)); min-width: 0; padding: 0 18px 0 24px; }
-#board .yakumo-sidebar-column { flex: 1 1 300px; max-width: none; min-width: 0; padding: 0 24px 0 10px; }
+#board .yakumo-main-column { flex: 0 0 min(120vh, calc(100% - 260px)); max-width: min(120vh, calc(100% - 260px)); min-width: 0; padding: 0 18px 0 24px; }
+#board .yakumo-sidebar-column { flex: 1 1 260px; max-width: none; min-width: 0; padding: 0 24px 0 10px; }
 .yakumo-sidebar { display: flex; flex-direction: column; gap: 18px; padding-top: 4px; color: var(--text-color); }
 .yakumo-side-card { padding: 23px; border: 1px solid rgba(112,147,149,.12); background: var(--board-bg-color, #fff); border-radius: 10px; box-shadow: 0 5px 25px rgba(32,61,72,.035); }
 .yakumo-profile { text-align: center; padding-top: 27px; }
@@ -58,12 +58,12 @@ html #navbar { display: flex !important; visibility: visible !important; opacity
 #board .index-card { padding: 16px 0; margin-bottom: 18px; border-bottom: 1px solid rgba(112,147,149,.14); }
 #board .index-header { font-size: 1.32rem; white-space: normal; }
 #board .index-img img { height: 170px; object-fit: cover; }
-#board-ctn { width: calc(100vh + 30px); max-width: 100%; }
+#board-ctn { width: calc(120vh + 30px); max-width: 100%; }
 @media (min-width: 992px) {
   .container-fluid > .row.nomargin-x { justify-content: center; }
   .container-fluid > .row.nomargin-x > .side-col:first-child { display: none !important; }
-  .container-fluid > .row.nomargin-x > .col-lg-8 { flex: 0 0 min(calc(100vh + 60px), calc(100% - 240px)); max-width: min(calc(100vh + 60px), calc(100% - 240px)); }
-  .container-fluid > .row.nomargin-x > .side-col:last-child { flex: 0 0 240px; max-width: 240px; }
+  .container-fluid > .row.nomargin-x > .col-lg-8 { flex: 0 0 min(calc(120vh + 60px), calc(100% - 180px)); max-width: min(calc(120vh + 60px), calc(100% - 180px)); }
+  .container-fluid > .row.nomargin-x > .side-col:last-child { flex: 0 0 180px; max-width: 180px; }
 }
 [data-user-color-scheme='dark'] .yakumo-side-card { background: #252c35; border-color: #3b4650; }
 [data-user-color-scheme='dark'] { --yakumo-accent: #83c5c5; --yakumo-muted: #a8b7c0; --yakumo-soft: #263d40; }
