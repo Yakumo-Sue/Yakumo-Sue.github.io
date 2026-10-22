@@ -42,18 +42,18 @@
     
     <categories>
       
-      <category>技术手记</category>
+      <category>技术手记/00.博客搭建</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>GitHub Pages</tag>
-      
       <tag>Hexo</tag>
       
       <tag>Fluid</tag>
+      
+      <tag>GitHub Pages</tag>
       
       <tag>ChatGPT</tag>
       
