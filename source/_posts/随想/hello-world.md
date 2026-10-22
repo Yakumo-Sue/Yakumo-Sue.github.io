@@ -1,5 +1,6 @@
 ---
 title: 'Hello, World：在这里，开始记录'
+permalink: posts/hello-world/
 date: 2026-10-21 00:00:00
 updated: 2026-10-21 00:00:00
 categories: [随想]

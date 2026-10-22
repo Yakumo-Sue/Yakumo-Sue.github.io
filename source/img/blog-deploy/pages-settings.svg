@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="570" viewBox="0 0 1280 570" role="img" aria-label="GitHub Pages 发布来源设置示意：Deploy from a branch，gh-pages，根目录">
+<defs><linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#10263A"/><stop offset="1" stop-color="#193F4A"/></linearGradient><linearGradient id="sea" x1="0" x2="1"><stop stop-color="#54C8BF"/><stop offset="1" stop-color="#8AB9EF"/></linearGradient><filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#061521" flood-opacity=".18"/></filter><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#62BFC2" stroke-width="2"/></marker></defs>
+<rect x="0" y="0" width="1280" height="570" rx="0" fill="#F0F5F4" stroke="none" stroke-width="1"/>
+<text x="58" y="72" fill="#153B45" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="37" font-weight="700" text-anchor="start" letter-spacing="0">Settings → Pages → Build and deployment</text>
+<text x="58" y="110" fill="#66818A" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="500" text-anchor="start" letter-spacing="0">本站现有的 gh-pages 分支发布方案</text>
+<rect x="55" y="145" width="1170" height="358" rx="20" fill="#FFFFFF" stroke="none" stroke-width="1" filter="url(#shadow)"/>
+<text x="90" y="208" fill="#334E57" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="23" font-weight="650" text-anchor="start" letter-spacing="0">Source</text>
+<rect x="310" y="174" width="810" height="58" rx="10" fill="#E9F2F1" stroke="#C8DDDC" stroke-width="1"/>
+<text x="335" y="211" fill="#1D535A" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="25" font-weight="600" text-anchor="start" letter-spacing="0">Deploy from a branch</text>
+<text x="90" y="297" fill="#334E57" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="23" font-weight="650" text-anchor="start" letter-spacing="0">Branch</text>
+<rect x="310" y="259" width="490" height="58" rx="10" fill="#E9F2F1" stroke="#C8DDDC" stroke-width="1"/>
+<text x="335" y="297" fill="#1D535A" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="25" font-weight="600" text-anchor="start" letter-spacing="0">gh-pages</text>
+<rect x="824" y="259" width="296" height="58" rx="10" fill="#E9F2F1" stroke="#C8DDDC" stroke-width="1"/>
+<text x="849" y="297" fill="#1D535A" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="25" font-weight="600" text-anchor="start" letter-spacing="0">/(root)</text>
+<rect x="982" y="381" width="138" height="54" rx="10" fill="#2D8D88" stroke="none" stroke-width="1"/>
+<text x="1051" y="416" fill="#FFFFFF" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="23" font-weight="700" text-anchor="middle" letter-spacing="0">Save</text>
+<text x="90" y="411" fill="#596F77" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="23" font-weight="500" text-anchor="start" letter-spacing="0">先由 deploy.yml 创建 gh-pages 分支，再选分支和根目录。</text>
+<text x="59" y="545" fill="#517E84" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="500" text-anchor="start" letter-spacing="0">如果改用官方 upload-pages-artifact + deploy-pages，Source 应改选 GitHub Actions。</text>
+</svg>

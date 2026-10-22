@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="570" viewBox="0 0 1280 570" role="img" aria-label="本地个人访问令牌与工作流内置令牌对比">
+<defs><linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#10263A"/><stop offset="1" stop-color="#193F4A"/></linearGradient><linearGradient id="sea" x1="0" x2="1"><stop stop-color="#54C8BF"/><stop offset="1" stop-color="#8AB9EF"/></linearGradient><filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#061521" flood-opacity=".18"/></filter><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#62BFC2" stroke-width="2"/></marker></defs>
+<rect x="0" y="0" width="1280" height="570" rx="0" fill="url(#bg)" stroke="none" stroke-width="1"/>
+<text x="55" y="76" fill="#F4FAFA" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="40" font-weight="700" text-anchor="start" letter-spacing="0">两种令牌，各有自己的位置</text>
+<text x="55" y="114" fill="#B7D7D7" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="21" font-weight="500" text-anchor="start" letter-spacing="0">不要把任何真实令牌写进文章、仓库或截图</text>
+<rect x="55" y="150" width="570" height="316" rx="20" fill="#F7FAF9" stroke="none" stroke-width="1" filter="url(#shadow)"/>
+<rect x="77" y="173" width="526" height="56" rx="12" fill="#D8EDF1" stroke="none" stroke-width="1"/>
+<text x="100" y="210" fill="#194A52" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="28" font-weight="700" text-anchor="start" letter-spacing="0">本地推送 · PAT 可选</text>
+<text x="87" y="269" fill="#237E83" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="25" font-weight="650" text-anchor="start" letter-spacing="0">电脑 → GitHub 仓库</text>
+<circle cx="93" cy="313" r="5" fill="#4BB9B0"/>
+<text x="110" y="320" fill="#4F6C75" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="500" text-anchor="start" letter-spacing="0">GitHub CLI / 凭据管理器优先</text>
+<circle cx="93" cy="355" r="5" fill="#4BB9B0"/>
+<text x="110" y="362" fill="#4F6C75" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="500" text-anchor="start" letter-spacing="0">需 PAT 时：仅选博客仓库</text>
+<circle cx="93" cy="397" r="5" fill="#4BB9B0"/>
+<text x="110" y="404" fill="#4F6C75" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="500" text-anchor="start" letter-spacing="0">Contents 读写，设置过期时间</text>
+<rect x="655" y="150" width="570" height="316" rx="20" fill="#F7FAF9" stroke="none" stroke-width="1" filter="url(#shadow)"/>
+<rect x="677" y="173" width="526" height="56" rx="12" fill="#DDF1E9" stroke="none" stroke-width="1"/>
+<text x="700" y="210" fill="#194A52" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="28" font-weight="700" text-anchor="start" letter-spacing="0">自动构建 · GITHUB_TOKEN</text>
+<text x="687" y="269" fill="#237E83" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="25" font-weight="650" text-anchor="start" letter-spacing="0">Actions → gh-pages</text>
+<circle cx="693" cy="313" r="5" fill="#4BB9B0"/>
+<text x="710" y="320" fill="#4F6C75" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="500" text-anchor="start" letter-spacing="0">GitHub 每次运行自动生成</text>
+<circle cx="693" cy="355" r="5" fill="#4BB9B0"/>
+<text x="710" y="362" fill="#4F6C75" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="500" text-anchor="start" letter-spacing="0">工作流 permissions 指定写入权限</text>
+<circle cx="693" cy="397" r="5" fill="#4BB9B0"/>
+<text x="710" y="404" fill="#4F6C75" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="20" font-weight="500" text-anchor="start" letter-spacing="0">用 secrets.GITHUB_TOKEN 引用</text>
+<rect x="215" y="499" width="850" height="42" rx="12" fill="#2F6771" stroke="none" stroke-width="1"/>
+<text x="640" y="528" fill="#F2FBFA" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="600" text-anchor="middle" letter-spacing="0">提示：工作流的内建令牌不需要手工创建同名 Secret</text>
+</svg>

@@ -4,7 +4,7 @@
 
 ## 写一篇文章
 
-1. 在 `source/_posts/` 新建一个 `.md` 文件，也可以运行 `npm run new -- "文章标题"`。
+1. 在 `source/_posts/` 新建一个 `.md` 文件，可按主题放入 `随想/`、`技术手记/` 等子目录；也可以运行 `npm run new -- "文章标题"`。
 2. 在文件开头写好标题、日期、分类和标签：
 
    ```yaml
@@ -35,7 +35,7 @@ npm run server
 
 | 路径 | 作用 |
 | --- | --- |
-| `source/_posts/*.md` | 博客文章的 Markdown 源文件 |
+| `source/_posts/**/*.md` | 博客文章的 Markdown 源文件，可按主题分子目录 |
 | `source/about/index.md` | 关于页面 |
 | `source/img/` | 徽标和封面图 |
 | `_config.yml` | Hexo 站点配置 |
@@ -47,3 +47,5 @@ npm run server
 | `public/` | 自动生成的静态文件，不提交到 `main` |
 
 更新主题时运行 `git -C themes/fluid fetch --tags`、`git -C themes/fluid checkout <新版本标签>`，随后提交子模块指针。右侧栏与站点样式不直接修改上游主题。
+
+移动已有文章到子目录时，若要保持原网址，在文章 Front Matter 中指定 `permalink`。例如 `source/_posts/随想/hello-world.md` 使用 `permalink: posts/hello-world/`。
