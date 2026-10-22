@@ -8,7 +8,7 @@
 <text x="88" y="202" fill="#19767D" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="30" font-weight="700" text-anchor="start" letter-spacing="0">源码仓库 · main</text>
 <text x="875" y="202" fill="#19767D" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="30" font-weight="700" text-anchor="start" letter-spacing="0">构建与发布</text>
 <rect x="84" y="228" width="690" height="41" rx="8" fill="#F4F8F7" stroke="none" stroke-width="1"/>
-<text x="103" y="255" fill="#1A4F58" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="650" text-anchor="start" letter-spacing="0">source/_posts/随想/hello-world.md</text>
+<text x="103" y="255" fill="#1A4F58" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="650" text-anchor="start" letter-spacing="0">source/_posts/hello-world.md</text>
 <text x="755" y="255" fill="#779097" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" font-weight="400" text-anchor="end" letter-spacing="0">开篇文章，原链接不变</text>
 <rect x="84" y="276" width="690" height="41" rx="8" fill="#F4F8F7" stroke="none" stroke-width="1"/>
 <text x="103" y="303" fill="#1A4F58" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="650" text-anchor="start" letter-spacing="0">source/_posts/技术手记/*.md</text>

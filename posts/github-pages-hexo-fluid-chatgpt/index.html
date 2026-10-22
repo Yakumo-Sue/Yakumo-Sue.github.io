@@ -422,7 +422,7 @@
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">navbar:</span><br>  <span class="hljs-attr">blog_title:</span> <span class="hljs-string">我的博客</span><br><span class="hljs-attr">index:</span><br>  <span class="hljs-attr">banner_img:</span> <span class="hljs-string">/img/banner.webp</span><br>  <span class="hljs-attr">banner_img_height:</span> <span class="hljs-number">100</span><br><span class="hljs-attr">post:</span><br>  <span class="hljs-attr">toc:</span><br>    <span class="hljs-attr">enable:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-attr">placement:</span> <span class="hljs-string">right</span><br></code></pre></td></tr></table></figure>
 
 <p>把图片放在 <strong>source&#x2F;img&#x2F;banner.webp</strong>。这里的 <strong>_config.fluid.yml</strong> 是站点根目录的覆盖配置，<strong>themes&#x2F;fluid&#x2F;_config.yml</strong> 是主题自带默认值。Fluid 的关于页需另建 <strong>source&#x2F;about&#x2F;index.md</strong>，并在 Front Matter 中写 <strong>layout: about</strong>。</p>
-<h2 id="三、用-Markdown-写文章与放图片"><a href="#三、用-Markdown-写文章与放图片" class="headerlink" title="三、用 Markdown 写文章与放图片"></a>三、用 Markdown 写文章与放图片</h2><p>文章源码位于 <strong>source&#x2F;_posts&#x2F;</strong>。可以按主题分子目录，例如本站将开篇文章放在 <strong>source&#x2F;_posts&#x2F;随想&#x2F;hello-world.md</strong>，本文放在 <strong>source&#x2F;_posts&#x2F;技术手记&#x2F;</strong>。这只是源码组织方式；在 <strong>_config.yml</strong> 使用 <strong>posts&#x2F;:title&#x2F;</strong> 时，Hexo 的 <strong>:title</strong> 会包含相对于 _posts 的子目录。因此，若搬动旧文章但想保持原链接，请在文章头部指定 <strong>permalink</strong>。</p>
+<h2 id="三、用-Markdown-写文章与放图片"><a href="#三、用-Markdown-写文章与放图片" class="headerlink" title="三、用 Markdown 写文章与放图片"></a>三、用 Markdown 写文章与放图片</h2><p>文章源码位于 <strong>source&#x2F;_posts&#x2F;</strong>。本站的开篇文章保存在 <strong>source&#x2F;_posts&#x2F;hello-world.md</strong>，本文放在 <strong>source&#x2F;_posts&#x2F;技术手记&#x2F;</strong>，排错记录放在 <strong>source&#x2F;_posts&#x2F;随笔&#x2F;</strong>。这只是源码组织方式；在 <strong>_config.yml</strong> 使用 <strong>posts&#x2F;:title&#x2F;</strong> 时，Hexo 的 <strong>:title</strong> 会包含相对于 _posts 的子目录。因此，若搬动旧文章但想保持原链接，请在文章头部指定 <strong>permalink</strong>。</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">&#x27;Hello, World：在这里，开始记录&#x27;</span><br><span class="hljs-attr">date:</span> <span class="hljs-number">2026-10-21 00:00:00</span><br><span class="hljs-attr">permalink:</span> <span class="hljs-string">posts/hello-world/</span><br><span class="hljs-attr">categories:</span> [<span class="hljs-string">随想</span>]<br><span class="hljs-attr">tags:</span> [<span class="hljs-string">博客</span>, <span class="hljs-string">写作</span>, <span class="hljs-string">日常</span>]<br><span class="hljs-attr">description:</span> <span class="hljs-string">文章在首页显示的摘要</span><br><span class="hljs-meta">---</span><br></code></pre></td></tr></table></figure>
 
 <p>普通内容接在第二条分隔线后面。图片存入 <strong>source&#x2F;img&#x2F;</strong>，文章中用绝对路径引用，例如：</p>
@@ -548,6 +548,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/posts/hexo-cannot-get/" title="使用Hexo搭建博客后出现Cannot GET/问题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">使用Hexo搭建博客后出现Cannot GET/问题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

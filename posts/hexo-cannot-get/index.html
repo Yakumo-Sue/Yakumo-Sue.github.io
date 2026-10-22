@@ -1,0 +1,889 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/chaldea-logo.png">
+  <link rel="icon" href="/img/chaldea-logo.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="八云">
+  <meta name="keywords" content="八云, 博客, 记录, 阅读, 生活">
+  
+    <meta name="description" content="npm run server 提示启动成功，首页却出现 Cannot GET &#x2F;？从 Fluid 子模块、首页路由、文章与缓存逐步定位，并记录重新克隆后的实测结果。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Hexo搭建博客后出现Cannot GET&#x2F;问题">
+<meta property="og:url" content="https://yakumo-sue.github.io/posts/hexo-cannot-get/index.html">
+<meta property="og:site_name" content="八云家的记事簿">
+<meta property="og:description" content="npm run server 提示启动成功，首页却出现 Cannot GET &#x2F;？从 Fluid 子模块、首页路由、文章与缓存逐步定位，并记录重新克隆后的实测结果。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-10-22T04:30:00.000Z">
+<meta property="article:modified_time" content="2026-10-22T04:30:00.000Z">
+<meta property="article:author" content="八云">
+<meta property="article:tag" content="Fluid">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="故障排查">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>使用Hexo搭建博客后出现Cannot GET/问题 - 八云家的记事簿</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/yakumo-layout-v2.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yakumo-sue.github.io","root":"/","version":"1.9.9","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"expand_all":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"openkounter":{"server_url":"https://open-kounter.mintimate.cn","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.2"><link rel="alternate" href="/feed.xml" title="八云家的记事簿" type="application/rss+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 40vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>八云家的记事簿</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content (desktop) -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile grid menu overlay -->
+<div id="mobile-grid-menu" class="d-lg-none">
+  <div class="mobile-grid-menu-inner">
+    <div class="container">
+      <div class="row">
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-home-fill"></i>
+                  <span>首页</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/archives/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-archive-fill"></i>
+                  <span>归档</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/categories/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-category-fill"></i>
+                  <span>分类</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/tags/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-tags-fill"></i>
+                  <span>标签</span>
+                </div>
+              </a>
+            </div>
+          
+        
+          
+          
+          
+          
+            <div class="col-4 mobile-grid-cell">
+              <a href="/about/" target="_self">
+                <div class="mobile-grid-item">
+                  <i class="iconfont icon-user-fill"></i>
+                  <span>关于</span>
+                </div>
+              </a>
+            </div>
+          
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-search-btn">
+            <a href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-search"></i>
+                <span>搜索</span>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="col-4 mobile-grid-cell" id="mobile-color-toggle-btn"
+               data-label-light="开灯"
+               data-label-dark="关灯">
+            <a href="javascript:;" aria-label="Color Toggle">
+              <div class="mobile-grid-item">
+                <i class="iconfont icon-dark" id="mobile-color-toggle-icon"></i>
+                <span id="mobile-color-toggle-label">关灯</span>
+              </div>
+            </a>
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/mountain-lake.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="使用Hexo搭建博客后出现Cannot GET/问题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-10-22 12:30" pubdate>
+          2026年10月22日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          31 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">使用Hexo搭建博客后出现Cannot GET/问题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>终端已经显示 <strong>Hexo is running at <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a></strong>，浏览器却只剩下 <strong>Cannot GET &#x2F;</strong>。遇到这种情况，先别急着重装整个博客：服务进程启动成功，只能说明它开始接收请求，并不保证首页已经生成。</p>
+<p>本文结合 Hexo、Git 与 Fluid 的官方说明，以及本站的一次隔离复现，记录如何检查这个问题。<strong>这次在测试副本中确认的触发条件是 Fluid 主题子模块未初始化；读者电脑上的具体原因仍需按日志核对。</strong></p>
+<h2 id="一、先区分“服务没启动”和“没有首页”"><a href="#一、先区分“服务没启动”和“没有首页”" class="headerlink" title="一、先区分“服务没启动”和“没有首页”"></a>一、先区分“服务没启动”和“没有首页”</h2><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>优先检查</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>浏览器提示无法连接，终端没有启动成功日志</td>
+<td>进程是否退出、端口与访问地址</td>
+</tr>
+<tr>
+<td>终端报 EADDRINUSE</td>
+<td>4000 端口是否被另一进程占用</td>
+</tr>
+<tr>
+<td>浏览器显示 Cannot GET &#x2F;，请求返回 404</td>
+<td>首页路由、主题模板、生成器与生成错误</td>
+</tr>
+<tr>
+<td>首页正常，某一篇文章 404</td>
+<td>文章日期、permalink、草稿或隐藏设置</td>
+</tr>
+<tr>
+<td>页面能打开，图片或 CSS 丢失</td>
+<td>root、静态文件路径与主题资源</td>
+</tr>
+</tbody></table>
+<p>Hexo 的默认开发地址是 <strong><a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a></strong>。若端口冲突，可以运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm run server -- --port 4001<br></code></pre></td></tr></table></figure>
+
+<p>随后应访问 <strong><a target="_blank" rel="noopener" href="http://localhost:4001/">http://localhost:4001/</a></strong>。不要只改命令里的端口，却继续刷新旧地址。</p>
+<h2 id="二、从-GitHub-克隆时，把-Fluid-子模块一起取回"><a href="#二、从-GitHub-克隆时，把-Fluid-子模块一起取回" class="headerlink" title="二、从 GitHub 克隆时，把 Fluid 子模块一起取回"></a>二、从 GitHub 克隆时，把 Fluid 子模块一起取回</h2><p>本站把 Fluid 作为 Git 子模块放在 <strong>themes&#x2F;fluid&#x2F;</strong>，主仓库记录的是主题提交的位置，普通克隆不一定已经下载主题内容。最省事的完整克隆方式是：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> --recurse-submodules https://github.com/Yakumo-Sue/Yakumo-Sue.github.io.git<br><span class="hljs-built_in">cd</span> Yakumo-Sue.github.io<br>npm ci<br>npm run server<br></code></pre></td></tr></table></figure>
+
+<p>如果已经执行过普通 <strong>git clone</strong>，不用删除现有项目。在包含 <strong>package.json</strong> 和 <strong>_config.yml</strong> 的项目根目录运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">git submodule update --init --recursive<br>git submodule status<br>npm ci<br>npm run server<br></code></pre></td></tr></table></figure>
+
+<p>其中 <strong>–init</strong> 初始化尚未初始化的子模块，<strong>–recursive</strong> 继续处理嵌套子模块。初始化成功后，确认下面这些文件实际存在：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">themes/fluid/_config.yml<br>themes/fluid/layout/index.ejs<br>themes/fluid/scripts/generators/index-generator.js<br></code></pre></td></tr></table></figure>
+
+<p>只看到一个空的 <strong>themes&#x2F;fluid&#x2F;</strong> 文件夹，并不表示主题已完整安装。若 Git 下载失败，先处理终端中的网络、代理或访问错误，再重试；不要用创建空 index.html 的方式掩盖缺少主题的问题。</p>
+<h3 id="本站增加的启动检查"><a href="#本站增加的启动检查" class="headerlink" title="本站增加的启动检查"></a>本站增加的启动检查</h3><p>本站现在通过 <strong>preserver</strong> 和 <strong>prebuild</strong> 钩子运行 <strong>tooling&#x2F;ensure-fluid.mjs</strong>：主题完整时直接继续；主题缺失时调用 Git 初始化子模块；仍然失败则退出并显示修复命令。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;scripts&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;preserver&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;node tooling/ensure-fluid.mjs&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;server&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;hexo server&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;prebuild&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;node tooling/ensure-fluid.mjs&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;build&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;hexo clean &amp;&amp; hexo generate&quot;</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>这让遗漏 <strong>–recurse-submodules</strong> 更容易被发现。它需要本机已安装 Git，且网络能够访问主题仓库；失败时请阅读终端提示。直接执行 <strong>npx hexo server</strong> 不会经过 npm 的 <strong>preserver</strong> 钩子，因此日常预览优先使用 <strong>npm run server</strong>。</p>
+<h2 id="三、不要把“-posts-根目录必须有文章”当成通用原因"><a href="#三、不要把“-posts-根目录必须有文章”当成通用原因" class="headerlink" title="三、不要把“_posts 根目录必须有文章”当成通用原因"></a>三、不要把“_posts 根目录必须有文章”当成通用原因</h2><p>本站在修改之前，文章都放在 <strong>source&#x2F;_posts&#x2F;</strong> 的子目录中。重新从 GitHub 完整克隆、执行 <strong>npm ci</strong> 后，未提前生成 public，直接运行 <strong>npm run server</strong>，首页和两篇文章都返回了 <strong>HTTP 200</strong>。</p>
+<p>因此，在这套 Hexo 8.1.2 与 Fluid v1.9.9 的配置中，<strong>没有根目录 Markdown 并不会自动导致 Cannot GET &#x2F;</strong>。Hexo 支持带子目录的文章路径，官网命令说明也展示了 <strong>source&#x2F;_posts&#x2F;about&#x2F;me.md</strong> 这样的路径。</p>
+<p>这次仍将开篇文章移回根目录，便于管理；其他文章继续保留在子目录中：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs text">source/_posts/hello-world.md<br>source/_posts/技术手记/github-pages-hexo-fluid-chatgpt.md<br>source/_posts/随笔/hexo-cannot-get.md<br></code></pre></td></tr></table></figure>
+
+<p>文件夹名称不会自动成为分类。分类仍由文章 Front Matter 中的 <strong>categories</strong> 决定。搬动文章时，固定 <strong>permalink</strong> 可以保持旧链接，例如：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span> <span class="hljs-string">&#x27;Hello, World：在这里，开始记录&#x27;</span><br><span class="hljs-attr">permalink:</span> <span class="hljs-string">posts/hello-world/</span><br><span class="hljs-attr">date:</span> <span class="hljs-number">2026-10-21 00:00:00</span><br><span class="hljs-attr">categories:</span> [<span class="hljs-string">随想</span>]<br><span class="hljs-meta">---</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="四、检查首页配置与生成结果"><a href="#四、检查首页配置与生成结果" class="headerlink" title="四、检查首页配置与生成结果"></a>四、检查首页配置与生成结果</h2><p>先检查根目录 <strong>_config.yml</strong>，不要误改成主题目录下的同名文件。本站的关键配置如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">theme:</span> <span class="hljs-string">fluid</span><br><span class="hljs-attr">root:</span> <span class="hljs-string">/</span><br><span class="hljs-attr">index_generator:</span><br>  <span class="hljs-attr">path:</span> <span class="hljs-string">&#x27;&#x27;</span><br>  <span class="hljs-attr">per_page:</span> <span class="hljs-number">10</span><br>  <span class="hljs-attr">order_by:</span> <span class="hljs-string">date</span><br><span class="hljs-attr">per_page:</span> <span class="hljs-number">10</span><br><span class="hljs-attr">pagination_dir:</span> <span class="hljs-string">page</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>path: ‘’</strong> 表示在站点根路径生成首页；<strong>per_page: 10</strong> 表示首页列表每页最多十篇；<strong>order_by: date</strong> 是从早到晚，<strong>-date</strong> 则相反。项目页面如果部署在 <strong>&#x2F;my-blog&#x2F;</strong> 等子路径，应根据实际地址调整 root 和访问路径。</p>
+<p>接着停止正在运行的服务，再检查一次静态生成：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">npx hexo clean<br>npm run build<br></code></pre></td></tr></table></figure>
+
+<p>确认 <strong>public&#x2F;index.html</strong> 存在，同时阅读终端中最早出现的错误。检查路由和被识别到的文章也很有用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">npx hexo list route<br>npx hexo list post<br></code></pre></td></tr></table></figure>
+
+<p>如果没有首页路由，排查主题、首页生成器以及 <strong>index_generator.path</strong>。Fluid v1.9.9 自带首页生成逻辑，本站不需要为了这个问题再重复安装 <strong>hexo-generator-index</strong>。其他主题若依赖该插件，则应按其文档检查是否已安装。</p>
+<p>若路由存在，但某篇文章没有列出来，再检查 <strong>date</strong> 是否是未来时间、文章是否还在 <strong>_drafts</strong>、是否设置了隐藏，以及 YAML 是否有缩进或引号错误。不要只因为文件在磁盘上，就认定它已经参与本次生成。</p>
+<h2 id="五、开发模式与静态模式不要混用"><a href="#五、开发模式与静态模式不要混用" class="headerlink" title="五、开发模式与静态模式不要混用"></a>五、开发模式与静态模式不要混用</h2><p>日常写作使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm run server<br></code></pre></td></tr></table></figure>
+
+<p>它运行 <strong>hexo server</strong>，会处理内容并监听文件变化，通常不需要每次先执行 generate。若使用静态模式 <strong>–static</strong>，Hexo 只提供 <strong>public&#x2F;</strong> 里的文件，需要先生成：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm run build<br>npm run server -- --static<br></code></pre></td></tr></table></figure>
+
+<p>如果刚执行过 <strong>hexo clean</strong>，public 已被清理，立即启动静态模式就不能指望它自动补出首页。遇到缓存或内容未更新，可以停止服务、clean、重新构建，再启动；不要同时保留多个旧服务进程。</p>
+<h2 id="六、这次实际验证了什么"><a href="#六、这次实际验证了什么" class="headerlink" title="六、这次实际验证了什么"></a>六、这次实际验证了什么</h2><p>在 Linux、Node.js 24.19.0、npm 11.9.0 环境中，本次先用未修改的 GitHub 源码完成了对照检查：</p>
+<table>
+<thead>
+<tr>
+<th>条件</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>完整克隆主仓库和 Fluid，文章仅在 _posts 子目录</td>
+<td>npm run server 正常，首页和两篇文章均为 200</td>
+</tr>
+<tr>
+<td>在隔离副本中取消初始化 Fluid 子模块</td>
+<td>服务提示启动成功，首页为 404，正文显示 Cannot GET &#x2F;</td>
+</tr>
+<tr>
+<td>在缺少主题的副本中加入启动检查后执行 npm run server</td>
+<td>自动初始化 Fluid，首页与三篇文章均为 200，CSS 和首页脚本也正常返回</td>
+</tr>
+</tbody></table>
+<p>以上验证没有依赖提前生成的 public 首页。它能确认这套源码在该环境中的启动情况；如果另一台电脑仍有问题，优先保存终端日志、Node&#x2F;npm 版本、<strong>git submodule status</strong> 和失败 URL，再逐项比对。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/docs/server">Hexo：本地服务器与静态模式</a></li>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/docs/configuration">Hexo：配置说明</a></li>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/docs/commands">Hexo：命令、路由列表与清理缓存</a></li>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting">Hexo：故障排除</a></li>
+<li><a target="_blank" rel="noopener" href="https://git-scm.com/docs/git-submodule">Git：git submodule</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v11/using-npm/scripts">npm：scripts 与 pre&#x2F;post 钩子</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid/blob/v1.9.9/scripts/generators/index-generator.js">Fluid v1.9.9：首页生成器源码</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%9A%8F%E7%AC%94/" class="category-chain-item">随笔</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Hexo/" class="print-no-link">#Hexo</a>
+      
+        <a href="/tags/Fluid/" class="print-no-link">#Fluid</a>
+      
+        <a href="/tags/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/" class="print-no-link">#故障排查</a>
+      
+    </div>
+  
+</div>
+
+
+              
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/github-pages-hexo-fluid-chatgpt/" title="Github Page + Hexo + Fluid + ChatGPT 部署个人博客">
+                        <span class="hidden-mobile">Github Page + Hexo + Fluid + ChatGPT 部署个人博客</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+      © 2026 八云家的记事簿 · <a href="/feed.xml">RSS 订阅</a> · 基于 <a href="https://hexo.io" target="_blank" rel="nofollow noopener">Hexo</a> 与 <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">Fluid</a>
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    function isExpandAllEnabled() {
+      return CONFIG.toc && CONFIG.toc.expand_all === true;
+    }
+    function expandAllToc() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .tocbot-is-collapsed').removeClass('tocbot-is-collapsed');
+    }
+    function updateTocToggle($li, $childList) {
+      var $toggle = $li.children('.toc-toggle');
+      if ($toggle.length === 0) { return; }
+      var collapsed = $childList.hasClass('tocbot-is-collapsed');
+      $toggle
+        .toggleClass('toc-toggle-collapsed', collapsed)
+        .toggleClass('toc-toggle-expanded', !collapsed);
+    }
+    function bindTocToggle() {
+      if (!isExpandAllEnabled()) { return; }
+      jQuery('#toc-body .toc-list-item').each(function() {
+        var $li = jQuery(this);
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) {
+          if ($li.children('.toc-toggle').length === 0) {
+            $li.prepend('<span class="toc-toggle toc-toggle-placeholder" aria-hidden="true">›</span>');
+          }
+          return;
+        }
+
+        if ($li.children('.toc-toggle').length === 0) {
+          $li.prepend('<span class="toc-toggle toc-toggle-expanded" aria-hidden="true">›</span>');
+        }
+        updateTocToggle($li, $childList);
+      });
+      jQuery('#toc-body').off('click.tocToggle').on('click.tocToggle', '.toc-toggle', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var $li = jQuery(this).parent('.toc-list-item');
+        var $childList = $li.children('ol');
+        if ($childList.length === 0) { return; }
+        $childList.toggleClass('tocbot-is-collapsed');
+        updateTocToggle($li, $childList);
+      });
+      if (!window.__tocToggleObserver) {
+        window.__tocToggleObserver = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.type !== 'attributes' || mutation.attributeName !== 'class') { return; }
+            var $list = jQuery(mutation.target);
+            var $li = $list.parent('.toc-list-item');
+            if ($li.length === 0) { return; }
+            updateTocToggle($li, $list);
+          });
+        });
+        jQuery('#toc-body ol').each(function() {
+          window.__tocToggleObserver.observe(this, { attributes: true });
+        });
+      }
+    }
+    var tocConfig = Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc);
+    if (isExpandAllEnabled()) {
+      tocConfig.collapseDepth = 6;
+    }
+    window.tocbot.init(tocConfig);
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+    expandAllToc();
+    bindTocToggle();
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+        expandAllToc();
+        bindTocToggle();
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/yakumo-calendar.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
