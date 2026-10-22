@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="620" viewBox="0 0 1280 620" role="img" aria-label="博客源码目录与生成文件目录示意">
+<defs><linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#10263A"/><stop offset="1" stop-color="#193F4A"/></linearGradient><linearGradient id="sea" x1="0" x2="1"><stop stop-color="#54C8BF"/><stop offset="1" stop-color="#8AB9EF"/></linearGradient><filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#061521" flood-opacity=".18"/></filter><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#62BFC2" stroke-width="2"/></marker></defs>
+<rect x="0" y="0" width="1280" height="620" rx="0" fill="#F1F6F5" stroke="none" stroke-width="1"/>
+<text x="56" y="72" fill="#163944" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="42" font-weight="700" text-anchor="start" letter-spacing="0">一眼看懂博客目录</text>
+<text x="56" y="110" fill="#66828A" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="21" font-weight="500" text-anchor="start" letter-spacing="0">左侧提交到 main；右侧由构建流程生成</text>
+<rect x="55" y="145" width="755" height="420" rx="20" fill="#FFFFFF" stroke="none" stroke-width="1" filter="url(#shadow)"/>
+<rect x="845" y="145" width="380" height="420" rx="20" fill="#E4F0ED" stroke="none" stroke-width="1"/>
+<text x="88" y="202" fill="#19767D" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="30" font-weight="700" text-anchor="start" letter-spacing="0">源码仓库 · main</text>
+<text x="875" y="202" fill="#19767D" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="30" font-weight="700" text-anchor="start" letter-spacing="0">构建与发布</text>
+<rect x="84" y="228" width="690" height="41" rx="8" fill="#F4F8F7" stroke="none" stroke-width="1"/>
+<text x="103" y="255" fill="#1A4F58" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="650" text-anchor="start" letter-spacing="0">source/_posts/随想/hello-world.md</text>
+<text x="755" y="255" fill="#779097" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" font-weight="400" text-anchor="end" letter-spacing="0">开篇文章，原链接不变</text>
+<rect x="84" y="276" width="690" height="41" rx="8" fill="#F4F8F7" stroke="none" stroke-width="1"/>
+<text x="103" y="303" fill="#1A4F58" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="650" text-anchor="start" letter-spacing="0">source/_posts/技术手记/*.md</text>
+<text x="755" y="303" fill="#779097" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" font-weight="400" text-anchor="end" letter-spacing="0">教程文章</text>
+<rect x="84" y="324" width="690" height="41" rx="8" fill="#F4F8F7" stroke="none" stroke-width="1"/>
+<text x="103" y="351" fill="#1A4F58" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="650" text-anchor="start" letter-spacing="0">source/img/blog-deploy/*.svg</text>
+<text x="755" y="351" fill="#779097" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" font-weight="400" text-anchor="end" letter-spacing="0">文章配图</text>
+<rect x="84" y="372" width="690" height="41" rx="8" fill="#F4F8F7" stroke="none" stroke-width="1"/>
+<text x="103" y="399" fill="#1A4F58" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="650" text-anchor="start" letter-spacing="0">_config.yml  +  _config.fluid.yml</text>
+<text x="755" y="399" fill="#779097" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" font-weight="400" text-anchor="end" letter-spacing="0">站点与主题设置</text>
+<rect x="84" y="420" width="690" height="41" rx="8" fill="#F4F8F7" stroke="none" stroke-width="1"/>
+<text x="103" y="447" fill="#1A4F58" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="650" text-anchor="start" letter-spacing="0">themes/fluid/</text>
+<text x="755" y="447" fill="#779097" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" font-weight="400" text-anchor="end" letter-spacing="0">Fluid Git 子模块</text>
+<rect x="84" y="468" width="690" height="41" rx="8" fill="#F4F8F7" stroke="none" stroke-width="1"/>
+<text x="103" y="495" fill="#1A4F58" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="19" font-weight="650" text-anchor="start" letter-spacing="0">.github/workflows/deploy.yml</text>
+<text x="755" y="495" fill="#779097" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" font-weight="400" text-anchor="end" letter-spacing="0">自动部署工作流</text>
+<rect x="876" y="245" width="317" height="85" rx="12" fill="#FFFFFF" stroke="none" stroke-width="1"/>
+<text x="900" y="283" fill="#184853" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="27" font-weight="700" text-anchor="start" letter-spacing="0">public/</text>
+<text x="900" y="310" fill="#647D83" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="500" text-anchor="start" letter-spacing="0">Hexo 生成静态 HTML</text>
+<line x1="1010" y1="348" x2="1010" y2="382" stroke="#54B8B4" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="876" y="403" width="317" height="85" rx="12" fill="#FFFFFF" stroke="none" stroke-width="1"/>
+<text x="900" y="441" fill="#184853" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="27" font-weight="700" text-anchor="start" letter-spacing="0">GitHub Pages</text>
+<text x="900" y="468" fill="#647D83" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="500" text-anchor="start" letter-spacing="0">访问 username.github.io</text>
+<text x="875" y="531" fill="#6D858B" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="17" font-weight="500" text-anchor="start" letter-spacing="0">public/ 不提交到 main</text>
+</svg>

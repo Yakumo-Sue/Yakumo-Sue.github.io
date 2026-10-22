@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="GitHub Pages、Hexo、Fluid 与 ChatGPT 博客部署封面">
+<defs><linearGradient id="bg" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#10263A"/><stop offset="1" stop-color="#193F4A"/></linearGradient><linearGradient id="sea" x1="0" x2="1"><stop stop-color="#54C8BF"/><stop offset="1" stop-color="#8AB9EF"/></linearGradient><filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#061521" flood-opacity=".18"/></filter><marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#62BFC2" stroke-width="2"/></marker></defs>
+<rect x="0" y="0" width="1600" height="900" rx="0" fill="url(#bg)" stroke="none" stroke-width="1"/>
+<circle cx="1290" cy="135" r="330" fill="#4DC8BE" opacity=".08"/><circle cx="220" cy="800" r="450" fill="#83B7ED" opacity=".08"/>
+<path d="M0 770 L260 570 L430 700 L700 470 L970 720 L1240 490 L1600 750 L1600 900 L0 900Z" fill="#77B9BD" opacity=".08"/>
+<rect x="282" y="190" width="1036" height="590" rx="26" fill="#F7FAF9" stroke="none" stroke-width="1" filter="url(#shadow)"/>
+<rect x="282" y="190" width="1036" height="58" rx="26" fill="#DDECEB" stroke="none" stroke-width="1"/>
+<circle cx="322" cy="219" r="8" fill="#F19E93"/><circle cx="350" cy="219" r="8" fill="#E8C574"/><circle cx="378" cy="219" r="8" fill="#68C7B7"/>
+<text x="800" y="342" fill="#13333D" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="60" font-weight="700" text-anchor="middle" letter-spacing="0">从灵感到个人博客</text>
+<text x="800" y="399" fill="#39777E" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="31" font-weight="500" text-anchor="middle" letter-spacing="0">GitHub Pages × Hexo × Fluid × ChatGPT</text>
+<line x1="382" y1="467" x2="1218" y2="467" stroke="#B4D5D3" stroke-width="2" stroke-linecap="round"/>
+<rect x="364" y="508" width="190" height="150" rx="18" fill="#EAF4F3" stroke="#CEE5E3" stroke-width="2"/>
+<text x="459" y="566" fill="#22818A" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="29" font-weight="700" text-anchor="middle" letter-spacing="0">01</text>
+<text x="459" y="615" fill="#173C45" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="30" font-weight="650" text-anchor="middle" letter-spacing="0">写作</text>
+<line x1="560" y1="583" x2="584" y2="583" stroke="#6EBBC0" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="588" y="508" width="190" height="150" rx="18" fill="#EAF4F3" stroke="#CEE5E3" stroke-width="2"/>
+<text x="683" y="566" fill="#22818A" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="29" font-weight="700" text-anchor="middle" letter-spacing="0">02</text>
+<text x="683" y="615" fill="#173C45" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="30" font-weight="650" text-anchor="middle" letter-spacing="0">生成</text>
+<line x1="784" y1="583" x2="808" y2="583" stroke="#6EBBC0" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="812" y="508" width="190" height="150" rx="18" fill="#EAF4F3" stroke="#CEE5E3" stroke-width="2"/>
+<text x="907" y="566" fill="#22818A" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="29" font-weight="700" text-anchor="middle" letter-spacing="0">03</text>
+<text x="907" y="615" fill="#173C45" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="30" font-weight="650" text-anchor="middle" letter-spacing="0">美化</text>
+<line x1="1008" y1="583" x2="1032" y2="583" stroke="#6EBBC0" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow)"/>
+<rect x="1036" y="508" width="190" height="150" rx="18" fill="#EAF4F3" stroke="#CEE5E3" stroke-width="2"/>
+<text x="1131" y="566" fill="#22818A" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="29" font-weight="700" text-anchor="middle" letter-spacing="0">04</text>
+<text x="1131" y="615" fill="#173C45" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="30" font-weight="650" text-anchor="middle" letter-spacing="0">发布</text>
+<text x="800" y="724" fill="#59757D" font-family="Noto Sans CJK SC, Noto Sans SC, PingFang SC, Microsoft YaHei, sans-serif" font-size="23" font-weight="400" text-anchor="middle" letter-spacing="0">Markdown 作为源文件，自动构建为公开的静态站点</text>
+</svg>
