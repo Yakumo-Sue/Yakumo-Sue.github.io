@@ -5,8 +5,10 @@
   "description": "八云家的记事簿，Hexo + Fluid",
   "hexo": {"version": "8.1.2"},
   "scripts": {
+    "prebuild": "node tooling/ensure-fluid.mjs",
     "build": "hexo clean && hexo generate",
     "build:site": "npm run build && node tooling/copy-public.mjs",
+    "preserver": "node tooling/ensure-fluid.mjs",
     "server": "hexo server",
     "new": "hexo new"
   },

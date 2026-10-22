@@ -4,7 +4,7 @@
 
 ## 写一篇文章
 
-1. 在 `source/_posts/` 新建一个 `.md` 文件，可按主题放入 `随想/`、`技术手记/` 等子目录；也可以运行 `npm run new -- "文章标题"`。
+1. 在 `source/_posts/` 新建一个 `.md` 文件，可按主题放入 `随笔/`、`技术手记/` 等子目录；也可以运行 `npm run new -- "文章标题"`。开篇文章保存在 `source/_posts/hello-world.md`。
 2. 在文件开头写好标题、日期、分类和标签：
 
    ```yaml
@@ -31,6 +31,10 @@ npm run server
 
 浏览器打开 `http://localhost:4000/`。生成静态文件使用 `npm run build`，输出在 `public/`。
 
+如果之前使用普通 `git clone`，可先运行 `git submodule update --init --recursive` 补齐 Fluid。`npm run server` 和 `npm run build` 也会先检查主题，缺少子模块时尝试初始化；初始化失败会停止并提示原因。文章可以存放在 `_posts` 子目录中，根目录没有 Markdown 并不必然导致首页 404。
+
+首页按文章 `date` 从早到晚排列，每页最多 10 篇；不使用文章置顶来改变顺序。
+
 ## 目录
 
 | 路径 | 作用 |
@@ -48,4 +52,4 @@ npm run server
 
 更新主题时运行 `git -C themes/fluid fetch --tags`、`git -C themes/fluid checkout <新版本标签>`，随后提交子模块指针。右侧栏与站点样式不直接修改上游主题。
 
-移动已有文章到子目录时，若要保持原网址，在文章 Front Matter 中指定 `permalink`。例如 `source/_posts/随想/hello-world.md` 使用 `permalink: posts/hello-world/`。
+移动已有文章时，若要保持原网址，在文章 Front Matter 中指定 `permalink`。例如 `hello-world.md` 使用 `permalink: posts/hello-world/`。

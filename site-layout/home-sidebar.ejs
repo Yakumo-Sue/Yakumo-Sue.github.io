@@ -7,6 +7,7 @@
       const template = document.getElementById('yakumo-sidebar-template');
       if (!row || !column || !template) return;
       const board = row.closest('#board');
+      document.body.classList.add('yakumo-home');
       board.classList.add('yakumo-list-board');
       board.parentElement.classList.add('yakumo-wide-shell');
       column.classList.remove('col-md-10', 'm-auto');
@@ -18,4 +19,5 @@
       template.remove();
     })();
   </script>
+  <%- js('/js/yakumo-home.js') %>
 <% } %>

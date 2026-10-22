@@ -7,7 +7,6 @@ categories: [随想]
 tags: [博客, 写作, 日常]
 description: 给想法一个落脚的地方，给日常留一点回声。这是这本手记的第一篇，也是一段慢慢生长的开始。
 index_img: /img/mountain-lake.webp
-sticky: 1
 ---
 
 有些想法适合说给风听，有些瞬间值得写在纸上。于是，有了这个小小的地方。

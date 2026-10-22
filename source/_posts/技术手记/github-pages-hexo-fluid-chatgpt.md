@@ -105,7 +105,7 @@ post:
 
 ## 三、用 Markdown 写文章与放图片
 
-文章源码位于 **source/_posts/**。可以按主题分子目录，例如本站将开篇文章放在 **source/_posts/随想/hello-world.md**，本文放在 **source/_posts/技术手记/**。这只是源码组织方式；在 **_config.yml** 使用 **posts/:title/** 时，Hexo 的 **:title** 会包含相对于 _posts 的子目录。因此，若搬动旧文章但想保持原链接，请在文章头部指定 **permalink**。
+文章源码位于 **source/_posts/**。本站的开篇文章保存在 **source/_posts/hello-world.md**，本文放在 **source/_posts/技术手记/**，排错记录放在 **source/_posts/随笔/**。这只是源码组织方式；在 **_config.yml** 使用 **posts/:title/** 时，Hexo 的 **:title** 会包含相对于 _posts 的子目录。因此，若搬动旧文章但想保持原链接，请在文章头部指定 **permalink**。
 
 ~~~yaml
 ---
