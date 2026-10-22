@@ -3,7 +3,7 @@ title: 'Github Page + Hexo + Fluid + ChatGPT 部署个人博客'
 date: 2026-10-22 08:00:00
 updated: 2026-10-22 08:00:00
 permalink: posts/github-pages-hexo-fluid-chatgpt/
-categories: [技术手记]
+categories: [技术手记/00.博客搭建]
 tags: [GitHub Pages, Hexo, Fluid, ChatGPT, 部署]
 description: 从注册 GitHub、安装 Hexo 与 Fluid，到令牌权限、编写 deploy.yml、排查部署错误，一步步发布个人博客。
 index_img: /img/blog-deploy/cover.svg
