@@ -1,6 +1,6 @@
 favicon: /img/chaldea-logo.png
 apple_touch_icon: /img/chaldea-logo.png
-custom_css: /css/yakumo-layout-v4.css
+custom_css: /css/yakumo-layout-v5.css
 custom_js: /js/yakumo-calendar.js
 navbar:
   blog_title: 八云家的记事簿
@@ -43,7 +43,7 @@ tag:
 about:
   banner_img: /img/mountain-lake.webp
   banner_img_height: 36
-  avatar: /img/chaldea-logo.png
+  avatar: /img/endministrator-male.png
   name: 八云
   intro: 一个收集灵感、慢慢写字的人。
   icons:

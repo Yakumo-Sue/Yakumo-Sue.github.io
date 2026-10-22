@@ -53,3 +53,5 @@ npm run server
 更新主题时运行 `git -C themes/fluid fetch --tags`、`git -C themes/fluid checkout <新版本标签>`，随后提交子模块指针。右侧栏与站点样式不直接修改上游主题。
 
 移动已有文章时，若要保持原网址，在文章 Front Matter 中指定 `permalink`。例如 `hello-world.md` 使用 `permalink: posts/hello-world/`。
+
+关于页头像使用《明日方舟：终末地》男管理员的官方角色素材，来源为[官网干员情报](https://endfield.hypergryph.com/operator)中的[头像图片](https://web.hycdn.cn/endfield/official-v4/_next/static/media/endministrator2.5ccb44a8.png)，素材权利归原权利方所有。
