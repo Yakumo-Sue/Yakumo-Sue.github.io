@@ -5,3 +5,12 @@ db.json
 .deploy_git/
 .cache/
 *.log
+
+# Generated Vite output copied before Hexo generation
+/source/arknights/
+
+/.openai/
+
+# Vite public files are source assets, unlike the root Hexo output.
+!/projects/arknights/public/
+!/projects/arknights/public/**
