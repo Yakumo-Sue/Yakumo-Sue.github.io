@@ -1,0 +1,424 @@
+{
+  "assets": [
+    {
+      "path": "assets/arknights-logo.svg",
+      "kind": "official-vector",
+      "source": "https://ak.hypergryph.com/",
+      "identifier": "svg_def-title_arknights"
+    },
+    {
+      "path": "assets/rhodes-tower.svg",
+      "kind": "official-vector",
+      "source": "https://ak.hypergryph.com/",
+      "identifier": "svg_def-logo_rhodes_island"
+    },
+    {
+      "path": "assets/cg-main_0.webp",
+      "kind": "game-cg",
+      "story": "黑暗时代·上",
+      "source": "https://media.prts.wiki/b/bc/Avg_avg_0_2.png",
+      "node": "obt/guide/beg/0_welcome_to_guide",
+      "line": 66,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-main_1.webp",
+      "kind": "game-cg",
+      "story": "黑暗时代·下",
+      "source": "https://media.prts.wiki/b/b6/Avg_avg_9_2.png",
+      "node": "obt/main/level_main_01-01_beg",
+      "line": 11,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-main_2.webp",
+      "kind": "game-cg",
+      "story": "异卵同生",
+      "source": "https://media.prts.wiki/4/4f/Avg_bg_1_firstcontact.png",
+      "node": "obt/main/level_main_02-05_beg",
+      "line": 89,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-main_3.webp",
+      "kind": "game-cg",
+      "story": "二次呼吸",
+      "source": "https://media.prts.wiki/c/cc/Avg_avg_21_1.png",
+      "node": "obt/main/level_main_03-01_end",
+      "line": 19,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-main_4.webp",
+      "kind": "game-cg",
+      "story": "急性衰竭",
+      "source": "https://media.prts.wiki/e/ee/Avg_avg_31_1.png",
+      "node": "obt/main/level_main_04-02_end",
+      "line": 136,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-main_5.webp",
+      "kind": "game-cg",
+      "story": "靶向药物",
+      "source": "https://media.prts.wiki/d/d8/Avg_avg_5_1_swire.png",
+      "node": "obt/main/level_main_05-01_beg",
+      "line": 39,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-main_6.webp",
+      "kind": "game-cg",
+      "story": "局部坏死",
+      "source": "https://media.prts.wiki/9/9f/Avg_avg_6_1.png",
+      "node": "obt/main/level_main_06-01_beg",
+      "line": 23,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-main_7.webp",
+      "kind": "game-cg",
+      "story": "苦难摇篮",
+      "source": "https://media.prts.wiki/d/d1/Avg_avg_7_13.png",
+      "node": "obt/main/level_main_07-16_end",
+      "line": 714,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-main_8.webp",
+      "kind": "game-cg",
+      "story": "怒号光明",
+      "source": "https://media.prts.wiki/8/86/Avg_avg_8_34.png",
+      "node": "obt/main/level_main_08-01_beg",
+      "line": 8,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-main_9.webp",
+      "kind": "game-cg",
+      "story": "风暴瞭望",
+      "source": "https://media.prts.wiki/3/34/Avg_21_I1.png",
+      "node": "obt/main/level_main_09-02_end",
+      "line": 329,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-main_10.webp",
+      "kind": "game-cg",
+      "story": "破碎日冕",
+      "source": "https://media.prts.wiki/2/23/Avg_27_i01.png",
+      "node": "obt/main/level_st_10-01",
+      "line": 14,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-main_11.webp",
+      "kind": "game-cg",
+      "story": "淬火尘霾",
+      "source": "https://media.prts.wiki/a/a0/Avg_32_i15.png",
+      "node": "obt/main/level_main_11-01_beg",
+      "line": 289,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-main_12.webp",
+      "kind": "game-cg",
+      "story": "惊霆无声",
+      "source": "https://media.prts.wiki/0/01/Avg_37_i01_1.png",
+      "node": "obt/main/level_st_12-01",
+      "line": 81,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-main_13.webp",
+      "kind": "game-cg",
+      "story": "恶兆湍流",
+      "source": "https://media.prts.wiki/c/c8/Avg_43_i01.png",
+      "node": "obt/main/level_main_13-01_beg",
+      "line": 9,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-main_14.webp",
+      "kind": "game-cg",
+      "story": "慈悲灯塔",
+      "source": "https://media.prts.wiki/b/b9/Avg_50_i25.png",
+      "node": "obt/main/level_st_14-01",
+      "line": 764,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-main_15.webp",
+      "kind": "game-cg",
+      "story": "离解复合",
+      "source": "https://media.prts.wiki/b/b6/Avg_cg_smoke.png",
+      "node": "obt/main/level_st_15-01",
+      "line": 189,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-main_16.webp",
+      "kind": "game-cg",
+      "story": "反常光谱",
+      "source": "https://media.prts.wiki/6/65/Avg_66_i02.png",
+      "node": "obt/main/level_st_16-01",
+      "line": 352,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-main_17.webp",
+      "kind": "game-cg",
+      "story": "相变临界",
+      "source": "https://media.prts.wiki/d/d6/Avg_73_i01_1.png",
+      "node": "obt/main/level_st_17-01",
+      "line": 21,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-act33side.webp",
+      "kind": "game-cg",
+      "story": "巴别塔",
+      "source": "https://media.prts.wiki/3/3e/Avg_49_i02.png",
+      "node": "activities/act33side/level_act33side_01_beg",
+      "line": 431,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-act25side.webp",
+      "kind": "game-cg",
+      "story": "孤星",
+      "source": "https://media.prts.wiki/0/00/Avg_29_i10.png",
+      "node": "activities/act25side/level_act25side_st01",
+      "line": 5,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-act21side.webp",
+      "kind": "game-cg",
+      "story": "叙拉古人",
+      "source": "https://media.prts.wiki/e/e2/Avg_33_i01.png",
+      "node": "activities/act21side/level_act21side_st01",
+      "line": 122,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-act17side.webp",
+      "kind": "game-cg",
+      "story": "愚人号",
+      "source": "https://media.prts.wiki/f/fe/Avg_27_i25.png",
+      "node": "activities/act17side/level_act17side_st01",
+      "line": 14,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-act23side.webp",
+      "kind": "game-cg",
+      "story": "登临意",
+      "source": "https://media.prts.wiki/4/40/Avg_35_i01.png",
+      "node": "activities/act23side/level_act23side_st01",
+      "line": 653,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-act13side.webp",
+      "kind": "game-cg",
+      "story": "长夜临光",
+      "source": "https://media.prts.wiki/0/01/Avg_23_I11.png",
+      "node": "activities/act13side/level_act13side_04_end",
+      "line": 682,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-act20side.webp",
+      "kind": "game-cg",
+      "story": "理想城：长夏狂欢季",
+      "source": "https://media.prts.wiki/a/a8/Avg_30_i01.png",
+      "node": "activities/act20side/level_act20side_01_beg",
+      "line": 84,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-act16side.webp",
+      "kind": "game-cg",
+      "story": "吾导先路",
+      "source": "https://media.prts.wiki/e/ec/Avg_26_i07.png",
+      "node": "activities/act16side/level_act16side_st01",
+      "line": 8,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-act13d5.webp",
+      "kind": "game-cg",
+      "story": "玛莉娅·临光",
+      "source": "https://media.prts.wiki/0/03/Avg_ac13_6.png",
+      "node": "activities/act13d5/level_act13d5_02_beg",
+      "line": 250,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/cg-act9d0.webp",
+      "kind": "game-cg",
+      "story": "生于黑夜",
+      "source": "https://media.prts.wiki/7/77/Avg_avg_ac9_3.png",
+      "node": "activities/act9d0/level_act9d0_01_beg",
+      "line": 196,
+      "note": "精选配图，不表示该图覆盖该篇所有对话节点"
+    },
+    {
+      "path": "assets/hero.webp",
+      "kind": "game-cg",
+      "source": "https://media.prts.wiki/b/b6/Avg_avg_9_2.png",
+      "node": "obt/main/level_main_01-01_beg",
+      "line": 11,
+      "note": "首页以切尔诺伯格天际线作为实际游戏画面背景，不将其标为罗德岛舰船。"
+    },
+    {
+      "path": "assets/portrait-char_128_plosis.webp",
+      "source": "https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avatars/char_128_plosis.png",
+      "width": 180,
+      "height": 180,
+      "bytes": 9066,
+      "kind": "operator-portrait"
+    },
+    {
+      "path": "assets/portrait-char_002_amiya.webp",
+      "source": "https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avatars/char_002_amiya.png",
+      "width": 180,
+      "height": 180,
+      "bytes": 10948,
+      "kind": "operator-portrait"
+    },
+    {
+      "path": "assets/portrait-char_010_chen.webp",
+      "source": "https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avatars/char_010_chen.png",
+      "width": 180,
+      "height": 180,
+      "bytes": 11668,
+      "kind": "operator-portrait"
+    },
+    {
+      "path": "assets/portrait-char_102_texas.webp",
+      "source": "https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avatars/char_102_texas.png",
+      "width": 180,
+      "height": 180,
+      "bytes": 8536,
+      "kind": "operator-portrait"
+    },
+    {
+      "path": "assets/portrait-char_003_kalts.webp",
+      "source": "https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avatars/char_003_kalts.png",
+      "width": 180,
+      "height": 180,
+      "bytes": 11812,
+      "kind": "operator-portrait"
+    },
+    {
+      "path": "assets/portrait-char_103_angel.webp",
+      "source": "https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avatars/char_103_angel.png",
+      "width": 180,
+      "height": 180,
+      "bytes": 12134,
+      "kind": "operator-portrait"
+    },
+    {
+      "path": "assets/character-amiya.webp",
+      "source": "https://web.hycdn.cn/arknights/official/_next/static/media/amiya.a410de75.png",
+      "width": 180,
+      "height": 360,
+      "bytes": 16846,
+      "kind": "official-character-art"
+    },
+    {
+      "path": "assets/portrait-char_172_svrash.webp",
+      "source": "https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avatars/char_172_svrash.png",
+      "width": 180,
+      "height": 180,
+      "bytes": 10688,
+      "kind": "operator-portrait"
+    },
+    {
+      "path": "assets/portrait-char_148_nearl.webp",
+      "source": "https://raw.githubusercontent.com/Aceship/Arknight-Images/main/avatars/char_148_nearl.png",
+      "width": 180,
+      "height": 180,
+      "bytes": 11214,
+      "kind": "operator-portrait"
+    },
+    {
+      "path": "assets/terra-map.webp",
+      "source": "https://media.prts.wiki/b/b4/Campaign_world_map.png",
+      "width": 2000,
+      "height": 1333,
+      "bytes": 129832,
+      "kind": "game-map",
+      "reference": "https://prts.wiki/w/泰拉大典:地理"
+    },
+    {
+      "path": "assets/babel-logo.webp",
+      "source": "https://raw.githubusercontent.com/Aceship/Arknight-Images/main/factions/logo_babel.png",
+      "width": 510,
+      "height": 510,
+      "bytes": 14770,
+      "kind": "game-faction-logo",
+      "reference": "https://github.com/Aceship/Arknight-Images/tree/main/factions"
+    },
+    {
+      "path": "assets/rhodes-logo.webp",
+      "source": "https://raw.githubusercontent.com/Aceship/Arknight-Images/main/factions/logo_rhodes.png",
+      "width": 510,
+      "height": 510,
+      "bytes": 17672,
+      "kind": "game-faction-logo",
+      "reference": "https://github.com/Aceship/Arknight-Images/tree/main/factions"
+    },
+    {
+      "path": "assets/character-kaltsit.webp",
+      "source": "https://web.hycdn.cn/arknights/official/_next/static/media/kaltsit.05c0f5e1.png",
+      "width": 180,
+      "height": 360,
+      "bytes": 18984,
+      "kind": "official-character-art"
+    },
+    {
+      "path": "assets/character-ptilopsis.webp",
+      "source": "https://web.hycdn.cn/arknights/official/_next/static/media/ptilopsis.0483cb6d.png",
+      "width": 180,
+      "height": 360,
+      "bytes": 15508,
+      "kind": "official-character-art"
+    },
+    {
+      "path": "assets/character-chen.webp",
+      "source": "https://web.hycdn.cn/arknights/official/_next/static/media/chen.4d5cd8a0.png",
+      "width": 180,
+      "height": 360,
+      "bytes": 18630,
+      "kind": "official-character-art"
+    },
+    {
+      "path": "assets/character-texas.webp",
+      "source": "https://web.hycdn.cn/arknights/official/_next/static/media/texas.5a198d4c.png",
+      "width": 180,
+      "height": 360,
+      "bytes": 14406,
+      "kind": "official-character-art"
+    },
+    {
+      "path": "assets/character-exusiai.webp",
+      "source": "https://web.hycdn.cn/arknights/official/_next/static/media/exusiai.ff3d47d4.png",
+      "width": 180,
+      "height": 360,
+      "bytes": 19678,
+      "kind": "official-character-art"
+    },
+    {
+      "path": "assets/barlow-condensed-medium.ttf",
+      "kind": "font",
+      "source": "https://github.com/google/fonts/tree/main/ofl/barlowcondensed",
+      "license": "SIL Open Font License 1.1",
+      "licenseFile": "assets/OFL-Barlow.txt"
+    }
+  ],
+  "unavailable": [],
+  "babelLogo": "实际游戏阵营图来自公开游戏图片资源仓库；不是概念图或AI重绘。"
+}
