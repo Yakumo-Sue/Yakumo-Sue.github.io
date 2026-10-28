@@ -21,6 +21,9 @@ scroll_down_arrow:
   enable: true
   banner_height_limit: 80
 post:
+  mermaid:
+    enable: true
+    specific: true
   banner_img: /img/mountain-lake.webp
   banner_img_height: 40
   default_index_img: /img/mountain-lake.webp
